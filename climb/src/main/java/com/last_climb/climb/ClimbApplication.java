@@ -8,6 +8,7 @@ public class ClimbApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ClimbApplication.class, args);
+		System.out.println("first push");
 	}
 
 }
