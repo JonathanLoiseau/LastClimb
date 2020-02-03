@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <title>Connexion</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+  
+
+  <header> 
+
+      
+      
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">FUN ESCALADE</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/index">Acceuil</a></li>
+            <li><a href="/myaccount">Mon Compte</a></li>
+            <li><a href="/topo">Topo</a></li>
+            <li><a href="/sites">Sites</a></li>
+            <li><a href="/connexion">Connexion</a></li>
+          </ul>
+        </div>
+      </nav>
+        <div class="container">
+          <div class="row"> <h1 class="col-lg-12">Fun Escalade: Partagez votre Passion</h1></div>
+        </div>
+
+    </header>  
+
+    
+    
+   <form class="form-horizontal" action="#" th:action="@{/connexion}" th:object="${utilisateur}" method="post">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Veuillez saisir votre identifiant et votre mot de passe</legend>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Password">Password</label>
+  <div class="col-md-4">
+    <input id="Password" name="Password" type="password" placeholder="Ex:134" class="form-control input-md" th:field="*{password}">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Pseudo">Pseudo</label>  
+  <div class="col-md-4">
+  <input id="Pseudo" name="Pseudo" type="text" placeholder="ex:Jozedu92" class="form-control input-md" th:field="*{username}">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Validez"></label>
+  <div class="col-md-4">
+    <button id="Validez" name="Validez" class="btn btn-default">Validez</button>
+  </div>
+</div>
+
+</fieldset>
+
+
+<br/>
+<br/>
+<br/>
+<p> Vous n'avez pas de compte ? Creez en un  <a href="/account">ici</a> </p>
+  
+</body>
+</html>

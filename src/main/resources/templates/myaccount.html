@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <title>Topo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+  
+
+  <header> 
+
+    
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">FUN ESCALADE</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/index">Acceuil</a></li>
+            <li><a href="/myaccount">Mon Compte</a></li>
+            <li><a href="/connexion"></a></li>
+            <li><a href="/topo">Topo</a></li>
+            <li><a href="/sites">Sites</a></li>
+           <li><a href="/connexion">Connexion</a></li>
+          </ul>
+        </div>
+      </nav>
+        <div class="container">
+          <div class="row"> <h1 class="col-lg-12">Fun Escalade: Partagez votre Passion</h1></div>
+        </div>
+          
+        
+
+
+    </header>  
+    <form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Modifier mon mot de passe</legend>
+
+
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Ancien mot de passe">Ancien mot de passe</label>
+  <div class="col-md-4">
+    <input id="Ancien mot de passe" name="Ancien mot de passe" type="password" placeholder="votre mot de passe actuel" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Nouveau mot de passe">Nouveau mot de passe</label>
+  <div class="col-md-4">
+    <input id="Nouveau mot de passe" name="Nouveau mot de passe" type="password" placeholder="ex:1234" class="form-control input-md">
+    
+  </div>
+</div>
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Confirmez le nouveau mot de passe">Confirmez le nouveau mot de passe</label>
+  <div class="col-md-4">
+    <input id="Confirmez le nouveau mot de passe" name="Confirmez le nouveau mot de passe" type="password" placeholder="ex:1234" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Validez"></label>
+  <div class="col-md-4">
+    <button id="Validez" name="Validez" class="btn btn-default">Validez</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+<br/>
+<br/>
+<br/>
+<br/>
+<form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Changement de mail :</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="NouveauMail">Nouveau Mail</label>  
+  <div class="col-md-4">
+  <input id="NouveauMail" name="NouveauMail" type="text" placeholder="ex:pepito@yahoo.com" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Ancien mail">Ancien mail</label>  
+  <div class="col-md-4">
+  <input id="Ancien mail" name="Ancien mail" type="text" placeholder="ex:joze@yahoo.com" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="ValidezMail"></label>
+  <div class="col-md-4">
+    <button id="ValidezMail" name="ValidezMail" class="btn btn-default">Validez</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+<h3> Liste de mes topos :</h3>
+
+</body>
+</html>
