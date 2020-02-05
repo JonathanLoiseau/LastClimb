@@ -1,5 +1,7 @@
 package com.last_climb.climb;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,7 +10,9 @@ public class ClimbApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ClimbApplication.class, args);
-		System.out.println("first push");
+		Logger logger = LoggerFactory.getLogger("Joze");
+		logger.info("firstLog");
+
 	}
 
 }
