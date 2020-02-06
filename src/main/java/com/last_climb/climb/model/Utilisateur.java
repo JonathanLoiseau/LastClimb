@@ -21,12 +21,15 @@ public class Utilisateur {
 	private String birthPlace;
 
 	private String sex;
-
+// todo voir les enum et hibernate
 	private String birthDate;
+	
+	//private Integer age;
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 
 	private String mail;
 
@@ -50,11 +53,11 @@ public class Utilisateur {
 
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
