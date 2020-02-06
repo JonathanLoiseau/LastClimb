@@ -24,10 +24,9 @@ public class AccountCreationController {
 
 	@PostMapping("/account")
 	public String AccCreate(Utilisateur user, BindingResult result, Model model) {
-
 		uRep.save(user);
-		return "account";
-
+		String uName = user.getUsername();
+		model.addAttribute("uname", uName);
+		return "myaccount";
 	}
-
 }
