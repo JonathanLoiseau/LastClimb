@@ -1,5 +1,7 @@
 package com.last_climb.climb.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,10 +24,10 @@ public class AccountCreationController {
 	}
 
 	@PostMapping("/account")
-	public String AccCreate(Utilisateur user,  Model model) {
+	public String AccCreate(Utilisateur user, Model model, HttpSession session) {
 		uRep.save(user);
 		String uName = user.getUsername();
-		model.addAttribute("uname", uName);
+		session.setAttribute("uname", uName);
 		return "myaccount";
 	}
 }

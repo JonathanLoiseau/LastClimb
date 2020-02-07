@@ -39,8 +39,7 @@
 
 
     </header>  
-    <p>Bienvenue</p>
-    <p th:utext="${uname}">
+   <p th:text="${session.uname}" th:unless="${session == null}">Bienvenue</p>
   
 </p>
     <form class="form-horizontal">
