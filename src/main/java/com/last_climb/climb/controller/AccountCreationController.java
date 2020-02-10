@@ -18,7 +18,7 @@ public class AccountCreationController {
 	private UserRepo uRep;
 
 	@GetMapping("/account")
-	public String displayAccountCreationController(Model model) {
+	public String displayAccountCreationController(Model model, HttpSession session) {
 		model.addAttribute("utilisateur", new Utilisateur());
 		return "account";
 	}

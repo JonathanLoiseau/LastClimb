@@ -11,7 +11,6 @@ public class ClimbApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ClimbApplication.class, args);
-
 		logger.info("firstLog");
 
 	}
