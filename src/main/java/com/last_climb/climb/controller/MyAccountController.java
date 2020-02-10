@@ -21,8 +21,9 @@ public class MyAccountController {
 	}
 
 	@PostMapping("/myacount")
-	public String DisplayAccountPost(Model model) {
+	public String DisplayAccountPost(Utilisateur user) {
 		logger.debug("In the do post");
+		String actualPassword = user.getPassword();
 
 		return "/myaccount";
 

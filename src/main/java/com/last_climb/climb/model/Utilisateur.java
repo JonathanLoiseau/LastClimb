@@ -1,10 +1,16 @@
 package com.last_climb.climb.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "UTILISATEUR")
@@ -20,12 +26,14 @@ public class Utilisateur {
 
 	private String birthPlace;
 
-	private String sex;
+	@Enumerated(EnumType.STRING)
+	private Sex sex;
 // todo voir les enum et hibernate
-	private String birthDate;
-	
-	//private Integer age;
-	
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	LocalDate birthDate;
+
+	// private Integer age;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,8 +47,8 @@ public class Utilisateur {
 
 	}
 
-	public Utilisateur(String name, String firstname, String username, String password, String sex, String birthplace,
-			String birthdate, String mail) {
+	public Utilisateur(String name, String firstname, String username, String password, Sex sex, String birthplace,
+			LocalDate birthdate, String mail) {
 
 		this.firstname = firstname;
 		this.name = name;
@@ -101,19 +109,19 @@ public class Utilisateur {
 		this.birthPlace = birthPlace;
 	}
 
-	public synchronized String getSex() {
+	public synchronized Sex getSex() {
 		return sex;
 	}
 
-	public synchronized void setSex(String sex) {
+	public synchronized void setSex(Sex sex) {
 		this.sex = sex;
 	}
 
-	public synchronized String getBirthDate() {
+	public synchronized LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public synchronized void setBirthDate(String birthDate) {
+	public synchronized void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 

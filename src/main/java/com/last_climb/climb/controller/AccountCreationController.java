@@ -26,8 +26,6 @@ public class AccountCreationController {
 	@PostMapping("/account")
 	public String AccCreate(Utilisateur user, Model model, HttpSession session) {
 		uRep.save(user);
-		String uName = user.getUsername();
-		session.setAttribute("uname", uName);
 		return "myaccount";
 	}
 }

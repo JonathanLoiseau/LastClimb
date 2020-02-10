@@ -32,6 +32,7 @@ public class ConnectController {
 		Optional<Utilisateur> realUser = urep.findByUsernameAndPassword(uName, pass);
 		if (realUser.isPresent()) {
 			session.setAttribute("uname", uName);
+			session.setAttribute("pass", pass);
 			return "myaccount";
 		} else
 			return "connexion";
