@@ -36,8 +36,6 @@ public class ConnectController {
 		String pass = user.getPassword();
 		Optional<Utilisateur> realUser = urep.findByUsernameAndPassword(uName, pass);
 		if (realUser.isPresent()) {
-			session.setAttribute("uname", uName);
-			session.setAttribute("pass", pass);
 			session.setAttribute("currentUser", user);
 			model.addAttribute("userform", new UserForm(user));
 			return "myaccount";

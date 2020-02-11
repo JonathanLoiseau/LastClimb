@@ -9,7 +9,6 @@ public class IndexController {
 
 	@GetMapping("/index")
 	public String displayIndex(Model model) {
-
 		return "index";
 	}
 }

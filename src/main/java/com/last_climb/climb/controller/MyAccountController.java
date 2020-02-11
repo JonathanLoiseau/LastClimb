@@ -15,20 +15,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.last_climb.climb.model.UserForm;
 import com.last_climb.climb.model.Utilisateur;
 import com.last_climb.climb.repo.UserRepo;
+import com.last_climb.climb.services.CheckOptional;
+import com.last_climb.climb.services.UtilisateurUpdateServiceImpl;
 
 @Controller
 public class MyAccountController {
 
 	@Autowired
+	private UtilisateurUpdateServiceImpl userUp;
+	@Autowired
 	private UserRepo urep;
-
+	@Autowired
+	private CheckOptional<Utilisateur> checker;
 	private static final Logger logger = LoggerFactory.getLogger(MyAccountController.class);
 
 	@GetMapping("/myaccount")
 	public String displayAccount(Model model, HttpSession session) {
 		logger.info("In the do get");
 		Optional<Object> currentUser = Optional.ofNullable(session.getAttribute("currentUser"));
-//		Optional<Optional<Utilisateur>>checkUser=(currentUser);
 		if (currentUser.isPresent()) {
 			model.addAttribute("utilisateur", currentUser);
 		} else {
@@ -40,16 +44,18 @@ public class MyAccountController {
 
 	@PostMapping("/myaccount")
 	public String DisplayAccountPost(UserForm userform, HttpSession session, Model model) {
-		model.addAttribute("userform", userform);
 		Utilisateur user = (Utilisateur) session.getAttribute("currentUser");
-		String pass = user.getPassword();
-		String uName = user.getUsername();
-		Optional<Utilisateur> newUser = urep.findByUsernameAndPassword(uName, pass);
-		String newPass = userform.getNewPassword();
-		Utilisateur uToUpdate = newUser.get();
-		uToUpdate.setPassword(newPass);
-		urep.save(uToUpdate);
-		return "myaccount";
+		model.addAttribute("userform", userform);
+		Utilisateur current = (Utilisateur) session.getAttribute("currentUser");
+		String name = current.getUsername();
+		String pass = current.getPassword();
+		boolean isHere = checker.findAndCheck(name, pass);
+		if (isHere) {
+			userUp.update(user, userform);
+			return "myaccount";
+		} else {
+			return "index";
+		}
 
 	}
 }

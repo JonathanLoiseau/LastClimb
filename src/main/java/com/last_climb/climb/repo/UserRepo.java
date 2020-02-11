@@ -8,4 +8,6 @@ import com.last_climb.climb.model.Utilisateur;
 
 public interface UserRepo extends CrudRepository<Utilisateur, Long> {
 	Optional<Utilisateur> findByUsernameAndPassword(String username, String password);
+
+	Optional<Utilisateur> findByUsernameAndPassword(Object attribute, Object attribute2);
 }
