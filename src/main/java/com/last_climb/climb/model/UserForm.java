@@ -22,6 +22,17 @@ public class UserForm {
 		this.sex = sex;
 	}
 
+	public UserForm(Utilisateur user) {
+		this.firstname = user.getFirstname();
+		this.name = user.getName();
+		this.username = user.getUsername();
+		this.password = user.getPassword();
+		this.mail = user.getMail();
+		this.birthPlace = user.getBirthPlace();
+		this.birthDate = user.getBirthDate();
+		this.sex = user.getSex();
+	}
+
 	private String firstname;
 
 	private String name;

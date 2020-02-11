@@ -41,8 +41,8 @@
     </header>  
    <p th:text="${session.uname}" th:unless="${session == null}">Bienvenue</p>
   
-</p>
-    <form class="form-horizontal">
+
+    <form class="form-horizontal" action="#" th:action="@{/myaccount}" th:object="${userform}" method="post">
 <fieldset>
 
 <!-- Form Name -->
@@ -54,7 +54,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="Ancien mot de passe">Ancien mot de passe</label>
   <div class="col-md-4">
-    <input id="Ancien mot de passe" name="Ancien mot de passe" type="password" placeholder="votre mot de passe actuel" class="form-control input-md">
+    <input id="Ancien mot de passe" name="Ancien mot de passe" type="password" placeholder="votre mot de passe actuel" class="form-control input-md" th:field="*{password}">
     
   </div>
 </div>
@@ -63,7 +63,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="Nouveau mot de passe">Nouveau mot de passe</label>
   <div class="col-md-4">
-    <input id="Nouveau mot de passe" name="Nouveau mot de passe" type="password" placeholder="ex:1234" class="form-control input-md">
+    <input id="Nouveau mot de passe" name="Nouveau mot de passe" type="password" placeholder="ex:1234" class="form-control input-md" th:field="*{newPassword}">
     
   </div>
 </div>

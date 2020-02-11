@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.last_climb.climb.model.UserForm;
 import com.last_climb.climb.model.Utilisateur;
 import com.last_climb.climb.repo.UserRepo;
 
@@ -29,7 +30,7 @@ public class ConnectController {
 	}
 
 	@PostMapping("/connexion")
-	public String displayConnectPost(HttpSession session, Utilisateur user) {
+	public String displayConnectPost(HttpSession session, Utilisateur user, Model model) {
 		logger.info("inthedopost");
 		String uName = user.getUsername();
 		String pass = user.getPassword();
@@ -38,6 +39,7 @@ public class ConnectController {
 			session.setAttribute("uname", uName);
 			session.setAttribute("pass", pass);
 			session.setAttribute("currentUser", user);
+			model.addAttribute("userform", new UserForm(user));
 			return "myaccount";
 		} else
 			return "topo";

@@ -20,7 +20,7 @@ import com.last_climb.climb.repo.UserRepo;
 public class MyAccountController {
 
 	@Autowired
-	UserRepo urep;
+	private UserRepo urep;
 
 	private static final Logger logger = LoggerFactory.getLogger(MyAccountController.class);
 
@@ -34,16 +34,21 @@ public class MyAccountController {
 		} else {
 			model.addAttribute("utilisateur", new Utilisateur());
 		}
-		model.addAttribute("currentUserForm", new UserForm());
+		model.addAttribute("userform", new UserForm());
 		return "myaccount";
 	}
 
 	@PostMapping("/myaccount")
-	public String DisplayAccountPost(Utilisateur user, UserForm userform) {
-
-		String newpass = userform.getNewPassword();
-		user.setPassword(newpass);
-		urep.save(user);
+	public String DisplayAccountPost(UserForm userform, HttpSession session, Model model) {
+		model.addAttribute("userform", userform);
+		Utilisateur user = (Utilisateur) session.getAttribute("currentUser");
+		String pass = user.getPassword();
+		String uName = user.getUsername();
+		Optional<Utilisateur> newUser = urep.findByUsernameAndPassword(uName, pass);
+		String newPass = userform.getNewPassword();
+		Utilisateur uToUpdate = newUser.get();
+		uToUpdate.setPassword(newPass);
+		urep.save(uToUpdate);
 		return "myaccount";
 
 	}
