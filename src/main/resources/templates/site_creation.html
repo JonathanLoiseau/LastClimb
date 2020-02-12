@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html >
 <head>
-  <title>siteCreation</title>
+  <title>Sites</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -35,7 +35,40 @@
 
     </header>  
 
-   <a href="/site_creation">Je veux faire découvrir un site de ma connaissance</a>
+  <form class="form-horizontal"  action="#" th:action="@{/site_creation}" th:object="${siteForm}" method="post">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Mon site</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Nombre de secteur">Nombre de secteur</label>  
+  <div class="col-md-2">
+  <input id="Nombre de secteur" name="Nombre de secteur" type="text" placeholder="1,2,3" class="form-control input-md" required="" th:field="*{nbSecteur}">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Nom du Site</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="ex Nice Cannes" class="form-control input-md" required= "" th:field="*{name}">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Validez">Validez</label>
+  <div class="col-md-4">
+    <button id="Validez" name="Validez" class="btn btn-default">Validez</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
 </body>
-</html>
 </html>

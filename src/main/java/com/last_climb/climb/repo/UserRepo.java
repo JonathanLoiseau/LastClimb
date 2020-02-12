@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.last_climb.climb.model.Utilisateur;
+import com.last_climb.climb.model.entity.Utilisateur;
 
 public interface UserRepo extends CrudRepository<Utilisateur, Long> {
 	Optional<Utilisateur> findByUsernameAndPassword(String username, String password);

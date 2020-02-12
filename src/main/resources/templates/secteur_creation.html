@@ -1,7 +1,16 @@
 <!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
 <html >
 <head>
-  <title>siteCreation</title>
+  <title>Sites</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -35,7 +44,43 @@
 
     </header>  
 
-   <a href="/site_creation">Je veux faire découvrir un site de ma connaissance</a>
+    <p>nb is: <span th:text="${sect}">pas de nombre</span></p>
+    <th:block th:each="i: ${#numbers.sequence(0, sect - 1)}">
+    <form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Mon site</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nombre de voie">Nombre de voie</label>  
+  <div class="col-md-2">
+  <input id="nombre de voie" name="nombre de voie" type="text" placeholder="1,2,3" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Nom du Secteur</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="ex laFalaise" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Validez">Validez</label>
+  <div class="col-md-4">
+    <button id="Validez" name="Validez" class="btn btn-default">Validez</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+</th:block>
 </body>
-</html>
 </html>

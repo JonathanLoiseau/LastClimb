@@ -1,4 +1,4 @@
-package com.last_climb.climb.model;
+package com.last_climb.climb.model.entity;
 
 import java.util.Set;
 

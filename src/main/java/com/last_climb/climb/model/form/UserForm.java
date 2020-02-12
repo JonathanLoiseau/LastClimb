@@ -1,6 +1,9 @@
-package com.last_climb.climb.model;
+package com.last_climb.climb.model.form;
 
 import java.time.LocalDate;
+
+import com.last_climb.climb.model.Sex;
+import com.last_climb.climb.model.entity.Utilisateur;
 
 public class UserForm {
 

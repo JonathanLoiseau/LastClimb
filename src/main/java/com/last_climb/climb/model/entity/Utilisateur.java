@@ -1,4 +1,4 @@
-package com.last_climb.climb.model;
+package com.last_climb.climb.model.entity;
 
 import java.time.LocalDate;
 
@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.last_climb.climb.model.Sex;
 
 @Entity
 @Table(name = "UTILISATEUR")

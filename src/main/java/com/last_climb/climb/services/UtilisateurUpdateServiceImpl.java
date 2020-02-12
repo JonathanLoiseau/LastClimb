@@ -5,8 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.last_climb.climb.model.UserForm;
-import com.last_climb.climb.model.Utilisateur;
+import com.last_climb.climb.model.entity.Utilisateur;
+import com.last_climb.climb.model.form.UserForm;
 import com.last_climb.climb.repo.UserRepo;
 
 @Service
