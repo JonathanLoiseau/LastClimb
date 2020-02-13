@@ -24,6 +24,7 @@ public class SitesCreationController {
 	public String displaySiteCreationPost(Model model, SiteForm sForm, HttpServletRequest req, HttpSession session) {
 		model.addAttribute("siteForm", new SiteForm());
 		req.setAttribute("sect", sForm.getNbSecteur());
+
 		return "secteur_creation";
 	}
 
