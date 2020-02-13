@@ -6,19 +6,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class SecteurCreationController {
+public class VoieCreationController {
 
-	@GetMapping
-	public String displaySecteurCreation(Model model) {
+	@GetMapping("/voie_creation")
+	public String displayControllerVoiesCreation(Model model) {
 		model.addAttribute("voiesform");
-		return "secteur_creation";
+		return "voie_creation";
 
 	}
 
-	@PostMapping
-	public String displaySecteurCreationPost(Model model) {
+	@PostMapping("/voie_creation")
+	public String displayControllerVoiesCreationPost(Model model) {
 		model.addAttribute("voiesform");
-		return "secteur_creation";
-
+		return "voie_creation";
 	}
 }

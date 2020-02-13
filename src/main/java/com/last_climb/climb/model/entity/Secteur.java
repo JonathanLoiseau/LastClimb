@@ -1,14 +1,30 @@
 package com.last_climb.climb.model.entity;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Secteur {
+
+	@ManyToOne
+	@JoinColumn(name = "Site_id", nullable = false)
+	private Site site;
+
+	@OneToMany(mappedBy = "secteur")
+	private Set<Voie> listvoies;
+
+	private String name;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
 	public Secteur() {
 
@@ -20,16 +36,6 @@ public class Secteur {
 		this.id = id;
 		this.site = site;
 	}
-
-	private String name;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-
-	@ManyToOne
-	@JoinColumn(name = "Site_id", nullable = false)
-	private Site site;
 
 	public String getName() {
 		return name;
@@ -55,9 +61,17 @@ public class Secteur {
 		this.site = site;
 	}
 
+	public Set<Voie> getListvoies() {
+		return listvoies;
+	}
+
+	public void setListvoies(Set<Voie> listvoies) {
+		this.listvoies = listvoies;
+	}
+
 	@Override
 	public String toString() {
-		return "Secteur [name=" + name + ", id=" + id + ", site=" + site + "]";
+		return "Secteur [site=" + site + ", listvoies=" + listvoies + ", name=" + name + ", id=" + id + "]";
 	}
 
 }
