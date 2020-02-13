@@ -1,77 +1,92 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
-  <title>Sites</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<title>Sites</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-  
-
-  <header> 
-  <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">FUN ESCALADE</a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/index">Acceuil</a></li>
-            <li><a href="/myaccount">Mon Compte</a></li>
-            <li><a href="/topo">Topo</a></li>
-            <li><a href="/sites">Sites</a></li>
-            <li><a href="/connexion">Connexion</a></li>
-          </ul>
-        </div>
-      </nav>
-        <div class="container">
-          <div class="row"> <h1 class="col-lg-12">Fun Escalade: Partagez votre Passion</h1></div>
-        </div>
 
 
-    </header>  
+	<header>
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">FUN ESCALADE</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/index">Acceuil</a></li>
+					<li><a href="/myaccount">Mon Compte</a></li>
+					<li><a href="/topo">Topo</a></li>
+					<li><a href="/sites">Sites</a></li>
+					<li><a href="/connexion">Connexion</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="row">
+				<h1 class="col-lg-12">Fun Escalade: Partagez votre Passion</h1>
+			</div>
+		</div>
 
-    <p>nb is: <span th:text="${sect}">pas de nombre</span></p>
-    
-    <form class="form-horizontal" action="#" th:action="@{/voie_creation}" th:object="${voiesform}" method="post">
-<fieldset>
 
-<!-- Form Name -->
-<legend>Les secteurs</legend>
-<th:block th:each="i: ${#numbers.sequence(0, sect - 1)}">
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="nombre de voie">Nombre de voie</label>  
-  <div class="col-md-2">
-  <input id="nombre de voie" name=" voie[]" type="text" placeholder="1,2,3" class="form-control input-md" required="">
-    
-  </div>
-</div>
+	</header>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Nom du Secteur</label>  
-  <div class="col-md-4">
-  <input id="textinput" name="voie[]" type="text" placeholder="ex laFalaise" class="form-control input-md" required="">
-    
-  </div>
-</div>
-<br><br><br>
-</th:block>
+	<p>
+		nb is: <span th:text="${sect}">pas de nombre</span>
+	</p>
 
-</div>
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="Validez">Validez</label>
-  <div class="col-md-4">
-    <button id="Validez" name="Validez" class="btn btn-default">Validez</button>
-  </div>
-</fieldset>
-</form>
+	<form class="form-horizontal" action="#" th:action="@{/voie_creation}"
+		th:object="${voiesform}" method="post">
+		<fieldset>
+
+			<!-- Form Name -->
+			<legend>Les secteurs</legend>
+			<th:block th:each="i: ${#numbers.sequence(0, sect - 1)}">
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="nombre de voie">Nombre
+						de voie</label>
+					<div class="col-md-2">
+						<input id="nombre de voie" name=" voie[]" type="text"
+							placeholder="1,2,3" class="form-control input-md" required="">
+
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="textinput">Nom
+						du Secteur</label>
+					<div class="col-md-4">
+						<input id="textinput" name="voie[]" type="text"
+							placeholder="ex laFalaise" class="form-control input-md"
+							required="">
+
+					</div>
+				</div>
+				<br>
+				<br>
+				<br>
+			</th:block>
+
+			</div>
+			<!-- Button -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="Validez">Validez</label>
+				<div class="col-md-4">
+					<button id="Validez" name="Validez" class="btn btn-default">Validez</button>
+				</div>
+		</fieldset>
+	</form>
 
 
 </body>
