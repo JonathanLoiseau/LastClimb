@@ -1,5 +1,6 @@
 package com.last_climb.climb.model.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ public class Site {
 
 	private String name;
 	@OneToMany(mappedBy = "site")
-	private Set<Secteur> listSecteur;
+	private Set<Secteur> listSecteur = new HashSet<Secteur>();
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +44,7 @@ public class Site {
 	}
 
 	public void setListSecteur(Set<Secteur> listSecteur) {
-		this.listSecteur = listSecteur;
+		this.listSecteur = new HashSet<Secteur>();
 	}
 
 	public long getId() {
@@ -52,6 +53,10 @@ public class Site {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public void addSecteur(Secteur s) {
+		this.listSecteur.add(s);
 	}
 
 	@Override

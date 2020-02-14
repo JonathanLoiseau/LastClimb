@@ -1,5 +1,6 @@
 package com.last_climb.climb.model.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ public class Secteur {
 	private Site site;
 
 	@OneToMany(mappedBy = "secteur")
-	private Set<Voie> listvoies;
+	private Set<Voie> listvoies = new HashSet<Voie>();
 
 	private String name;
 
@@ -67,6 +68,10 @@ public class Secteur {
 
 	public void setListvoies(Set<Voie> listvoies) {
 		this.listvoies = listvoies;
+	}
+
+	public void addVoie(Voie v) {
+		this.listvoies.add(v);
 	}
 
 	@Override

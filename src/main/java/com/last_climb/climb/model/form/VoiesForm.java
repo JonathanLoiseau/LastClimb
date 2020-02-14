@@ -11,8 +11,6 @@ public class VoiesForm {
 
 	private String name;
 
-	private Secteur secteur;
-
 	public VoiesForm() {
 	}
 
@@ -22,7 +20,7 @@ public class VoiesForm {
 		this.cotation = cotation;
 		this.nbPoint = nbPoint;
 		this.name = name;
-		this.secteur = secteur;
+
 	}
 
 	public int getHeight() {
@@ -57,17 +55,9 @@ public class VoiesForm {
 		this.name = name;
 	}
 
-	public Secteur getSecteur() {
-		return secteur;
-	}
-
-	public void setSecteur(Secteur secteur) {
-		this.secteur = secteur;
-	}
-
 	@Override
 	public String toString() {
 		return "VoiesForm [height=" + height + ", cotation=" + cotation + ", nbPoint=" + nbPoint + ", name=" + name
-				+ ", secteur=" + secteur + "]";
+				+ ", secteur=" + "]";
 	}
 }
