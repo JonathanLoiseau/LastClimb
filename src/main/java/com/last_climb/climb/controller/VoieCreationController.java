@@ -26,6 +26,7 @@ public class VoieCreationController {
 
 		model.addAttribute("voie", vf);
 		session.setAttribute("voies", vf);
+
 		return "result";
 	}
 }
