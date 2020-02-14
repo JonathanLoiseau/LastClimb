@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.last_climb.climb.model.form.CreationVoieForm;
 import com.last_climb.climb.model.form.SiteForm;
 
 @Controller
@@ -23,7 +24,8 @@ public class SitesCreationController {
 	@PostMapping("/site_creation")
 	public String displaySiteCreationPost(Model model, SiteForm sForm, HttpServletRequest req, HttpSession session) {
 		model.addAttribute("siteForm", new SiteForm());
-		req.setAttribute("sect", sForm.getNbSecteur());
+		session.setAttribute("site", sForm);
+		model.addAttribute("creationvoieform", new CreationVoieForm());
 
 		return "secteur_creation";
 	}

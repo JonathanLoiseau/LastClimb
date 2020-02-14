@@ -41,44 +41,30 @@
 	</header>
 
 	<p>
-		nb is: <span th:text="${sect}">pas de nombre</span>
+		nb is: <span th:text="${sect}">pas de nombre</span> namesession= <span
+			th:text="${session.site.name}">pas de nombre</span> name= <span
+			th:text="${sitename}">pas de nombre</span>
 	</p>
 
-	<form class="form-horizontal" action="#" th:action="@{/voie_creation}"
-		th:object="${voiesform}" method="post">
+	<form class="form-horizontal" action="#" th:action="@{/secteur_creation}"
+		th:object="${creationvoieform}" method="post">
 		<fieldset>
 
-			<!-- Form Name -->
-			<legend>Les secteurs</legend>
-			<th:block th:each="i: ${#numbers.sequence(0, sect - 1)}">
-				<!-- Text input-->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="nombre de voie">Nombre
-						de voie</label>
-					<div class="col-md-2">
-						<input id="nombre de voie" name=" voie[]" type="text"
-							placeholder="1,2,3" class="form-control input-md" required="">
 
-					</div>
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="textinput">Ajouter
+					un secteur au site <span th:text="${session.site.name}"> site name</span>
+				</label>
+				<div class="col-md-4">
+					<input id="textinput" name="voie[]" type="text"
+						placeholder="nom du secteur ici" class="form-control input-md"
+						required="" th:field="*{name}">
+
 				</div>
-
-				<!-- Text input-->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="textinput">Nom
-						du Secteur</label>
-					<div class="col-md-4">
-						<input id="textinput" name="voie[]" type="text"
-							placeholder="ex laFalaise" class="form-control input-md"
-							required="">
-
-					</div>
-				</div>
-				<br>
-				<br>
-				<br>
-			</th:block>
-
 			</div>
+
+
 			<!-- Button -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="Validez">Validez</label>
