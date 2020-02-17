@@ -1,6 +1,7 @@
 package com.last_climb.climb.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,31 +38,30 @@ public class VoieCreationController {
 
 	}
 
+	@Transactional
 	@PostMapping("/voie_creation")
-	public String displayControllerVoiesCreationPost(CreationVoieForm crea, Model model, HttpSession session,
-			VoiesForm vf, SiteForm sForm) {
+	public String displayControllerVoiesCreationPost(Model model, HttpSession session, VoiesForm vf) {
 
 		model.addAttribute("voie", vf);
 		session.setAttribute("voies", vf);
-
-//		SiteForm sf = (SiteForm) session.getAttribute("site");
-//		CreationVoieForm cvf = (CreationVoieForm) session.getAttribute("secteur");
-//		VoiesForm voief = (VoiesForm) session.getAttribute("voies");
 
 		Secteur secteur = new Secteur();
 		Site site = new Site();
 		Voie voie = new Voie(vf);
 
 		voie.setSecteur(secteur);
+		CreationVoieForm sessionSecteur = (CreationVoieForm) session.getAttribute("secteur");
+		SiteForm sessionsite = (SiteForm) session.getAttribute("site");
 
-		secteur.setName(crea.getName());
+		secteur.setName(sessionSecteur.getName());
 		secteur.addVoie(voie);
 
-		site.setName(sForm.getName());
+		site.setName(sessionsite.getName());
 		site.addSecteur(secteur);
+		secteur.setSite(site);
 		srep.save(site);
-//		sectrep.save(secteur);
-//		vrep.save(voie);
+		sectrep.save(secteur);
+		vrep.save(voie);
 
 		return "result";
 	}
