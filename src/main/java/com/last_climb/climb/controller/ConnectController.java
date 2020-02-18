@@ -32,9 +32,7 @@ public class ConnectController {
 	@PostMapping("/connexion")
 	public String displayConnectPost(HttpSession session, Utilisateur user, Model model) {
 		logger.info("inthedopost");
-		String uName = user.getUsername();
-		String pass = user.getPassword();
-		Optional<Utilisateur> realUser = urep.findByUsernameAndPassword(uName, pass);
+		Optional<Utilisateur> realUser = urep.findByUsernameAndPassword(user.getUsername(), user.getPassword());
 		if (realUser.isPresent()) {
 			session.setAttribute("currentUser", user);
 			model.addAttribute("userform", new UserForm(user));

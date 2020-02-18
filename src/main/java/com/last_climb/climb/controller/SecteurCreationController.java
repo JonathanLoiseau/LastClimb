@@ -16,7 +16,8 @@ public class SecteurCreationController {
 	@GetMapping("/secteur_creation")
 	public String displayControllerVoiesCreation(Model model) {
 		model.addAttribute("voiesform");
-		return "voie_creation";
+		model.addAttribute("creationvoieform", new CreationVoieForm());
+		return "secteur_creation";
 
 	}
 
