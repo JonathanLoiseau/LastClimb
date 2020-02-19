@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.last_climb.climb.model.IdContainer;
 import com.last_climb.climb.model.form.CreationVoieForm;
 import com.last_climb.climb.model.form.SiteForm;
 import com.last_climb.climb.model.form.VoiesForm;
@@ -36,6 +37,7 @@ public class VoieCreationController {
 	public String displayControllerVoiesCreation(Model model) {
 		model.addAttribute("voiesform");
 		model.addAttribute("voie", new VoiesForm());
+		System.out.println("dans le get de voiecontroleur");
 		return "voie_creation";
 
 	}
@@ -47,10 +49,16 @@ public class VoieCreationController {
 		model.addAttribute("voie", vf);
 		session.setAttribute("voies", vf);
 
-		CreationVoieForm sessionSecteur = (CreationVoieForm) session.getAttribute("secteur");
-		SiteForm sessionsite = (SiteForm) session.getAttribute("site");
+		System.out.println("dans le post de voiecontroleur");
 
-		scs.create(sessionsite, sessionSecteur, vf);
+		CreationVoieForm sessionSecteur = (CreationVoieForm) session.getAttribute("secteur");
+		SiteForm sessionSite = (SiteForm) session.getAttribute("site");
+		VoiesForm sessionVoie = (VoiesForm) session.getAttribute("voies");
+		IdContainer container = scs.create(sessionSite, sessionSecteur, sessionVoie);
+		sessionSecteur.setId(container.getSecteurId());
+		sessionSite.setId(container.getSiteId());
+		sessionVoie.setId(container.getVoieId());
+		vf.setId(container.getVoieId());
 
 		return "result";
 	}

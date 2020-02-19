@@ -15,7 +15,7 @@ public class Voie {
 	public Voie() {
 	}
 
-	public Voie(int id, int height, String cotation, int nbPoint, String name, Secteur secteur) {
+	public Voie(Long id, int height, String cotation, int nbPoint, String name, Secteur secteur) {
 		super();
 		this.id = id;
 		this.height = height;
@@ -35,7 +35,7 @@ public class Voie {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 
 	private int height;
 
@@ -55,11 +55,11 @@ public class Voie {
 				+ name + ", secteur=" + secteur + "]";
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

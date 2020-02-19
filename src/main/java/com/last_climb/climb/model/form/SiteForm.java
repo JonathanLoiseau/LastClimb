@@ -3,6 +3,7 @@ package com.last_climb.climb.model.form;
 public class SiteForm {
 
 	private String name;
+	private Long id;
 
 	public SiteForm() {
 	}
@@ -24,6 +25,14 @@ public class SiteForm {
 	@Override
 	public String toString() {
 		return "SiteForm [name=" + name + "]";
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

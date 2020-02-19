@@ -14,9 +14,11 @@ import com.last_climb.climb.model.form.VoiesForm;
 public class SecteurCreationController {
 
 	@GetMapping("/secteur_creation")
-	public String displayControllerVoiesCreation(Model model) {
-		model.addAttribute("voiesform");
+	public String displayControllerVoiesCreation(Model model, HttpSession session) {
+//		model.addAttribute("voiesform");
 		model.addAttribute("creationvoieform", new CreationVoieForm());
+		System.out.println("dans le get de secteur création");
+
 		return "secteur_creation";
 
 	}
@@ -25,7 +27,11 @@ public class SecteurCreationController {
 	public String displayControllerVoiesCreationPost(CreationVoieForm crea, Model model, HttpSession session) {
 		model.addAttribute("voiesform", crea);
 		model.addAttribute("voie", new VoiesForm());
+
 		session.setAttribute("secteur", crea);
+
+		System.out.println("dans le post de secteur création");
+
 		return "voie_creation";
 	}
 }

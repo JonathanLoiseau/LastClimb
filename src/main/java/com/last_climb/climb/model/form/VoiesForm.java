@@ -11,6 +11,8 @@ public class VoiesForm {
 
 	private String name;
 
+	private Long id;
+
 	public VoiesForm() {
 	}
 
@@ -59,5 +61,13 @@ public class VoiesForm {
 	public String toString() {
 		return "VoiesForm [height=" + height + ", cotation=" + cotation + ", nbPoint=" + nbPoint + ", name=" + name
 				+ ", secteur=" + "]";
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 }
