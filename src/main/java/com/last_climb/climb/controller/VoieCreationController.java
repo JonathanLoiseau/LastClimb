@@ -49,8 +49,6 @@ public class VoieCreationController {
 		model.addAttribute("voie", vf);
 		session.setAttribute("voies", vf);
 
-		System.out.println("dans le post de voiecontroleur");
-
 		CreationVoieForm sessionSecteur = (CreationVoieForm) session.getAttribute("secteur");
 		SiteForm sessionSite = (SiteForm) session.getAttribute("site");
 		VoiesForm sessionVoie = (VoiesForm) session.getAttribute("voies");

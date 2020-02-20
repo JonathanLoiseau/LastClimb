@@ -33,13 +33,15 @@ public class MyAccountController {
 	public String displayAccount(Model model, HttpSession session) {
 		logger.info("In the do get");
 		Optional<Object> currentUser = Optional.ofNullable(session.getAttribute("currentUser"));
+		model.addAttribute("userform", new UserForm());
 		if (currentUser.isPresent()) {
 			model.addAttribute("utilisateur", currentUser);
+			return "myaccount";
 		} else {
 			model.addAttribute("utilisateur", new Utilisateur());
+			return "connectez_vous_compte";
 		}
-		model.addAttribute("userform", new UserForm());
-		return "myaccount";
+
 	}
 
 	@PostMapping("/myaccount")

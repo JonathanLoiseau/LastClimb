@@ -34,7 +34,7 @@ public class ConnectController {
 		logger.info("inthedopost");
 		Optional<Utilisateur> realUser = urep.findByUsernameAndPassword(user.getUsername(), user.getPassword());
 		if (realUser.isPresent()) {
-			session.setAttribute("currentUser", user);
+			session.setAttribute("currentUser", realUser.get());
 			model.addAttribute("userform", new UserForm(user));
 			return "myaccount";
 		} else
