@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Topo</title>
+<title>Sites</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
-
+<link rel="stylesheet" type="text/css" href="style.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
@@ -17,8 +17,6 @@
 
 
 	<header>
-
-
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -40,14 +38,37 @@
 		</div>
 
 
-
-
 	</header>
-	<p>
-		je veux <a href="/topo_creation"> creez un topo</a>
-	</p>
-	<p>
-		je veux <a href="/topo_find"> consultez les topos disponible</a>
-	</p>
+
+	<form class="form-horizontal" action="#" th:action="@{/topo_find}" th:object="${topoSearch}"method="post">
+		<fieldset>
+
+			<!-- Form Name -->
+			<legend>Trouvez un topo</legend>
+
+			<!-- Text input-->
+			<div class="form-group" th:field="*{name}">
+				<label class="col-md-4 control-label" for="Lieux">Lieux</label>
+				<div class="col-md-4">
+					<input id="Lieux" name="Lieux" type="text"
+						placeholder="Cannes Nice" class="form-control input-md"
+						required="">
+
+				</div>
+			</div>
+
+			<!-- Button -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="rechercher">Lancer
+					la recherche</label>
+				<div class="col-md-4">
+					<button id="rechercher" name="rechercher" class="btn btn-default">go</button>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+
 </body>
 </html>
+>

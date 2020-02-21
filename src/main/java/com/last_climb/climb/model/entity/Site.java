@@ -20,6 +20,8 @@ public class Site {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	private int nbSect;
+
 	public Site() {
 
 	}
@@ -29,6 +31,7 @@ public class Site {
 		this.name = name;
 		this.listSecteur = listSecteur;
 		this.id = id;
+		this.nbSect = listSecteur.size();
 	}
 
 	public String getName() {
@@ -57,11 +60,20 @@ public class Site {
 
 	public void addSecteur(Secteur s) {
 		this.listSecteur.add(s);
+		this.nbSect++;
 	}
 
 	@Override
 	public String toString() {
 		return "Site [name=" + name + ", listSecteur=" + listSecteur + ", id=" + id + "]";
+	}
+
+	public int getNbSect() {
+		return nbSect;
+	}
+
+	public void setNbSect(int nbSect) {
+		this.nbSect = nbSect;
 	}
 
 }

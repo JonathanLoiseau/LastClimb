@@ -40,36 +40,49 @@
 
 	</header>
 
-	<form class="form-horizontal" action="#" th:action="@{/topo_creation}"
-		th:object="${topo}" method="post">
-		<fieldset>
+	<form class="form-horizontal" action="#" th:action=@{/topo_creation} th:object="${topo}" method = "post">
+<fieldset>
 
-			<!-- Form Name -->
-			<legend>Mon site</legend>
+<!-- Form Name -->
+<legend>Je crée mon topo</legend>
 
-			
-			<!-- Text input-->
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Localisation">Localisation</label>  
+  <div class="col-md-4">
+  <input id="Localisation" name="Localisation" type="text" placeholder="ex : cannes nices, " class="form-control input-md" required="" th:field="*{lieux}">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Nom">Nom</label>  
+  <div class="col-md-4">
+  <input id="Nom" name="Nom" type="text" placeholder="nom du topo" class="form-control input-md" required="" th:field="*{name}">
+    
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Description" th:field="*{description}">Description</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="Description" name="Description">Description rapide  du Topo</textarea>
+  </div>
+</div>
+
+<!-- Button -->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="textinput">Nommez votre
-					topo</label>
+				<label class="col-md-4 control-label" for="validez">validez</label>
 				<div class="col-md-4">
-					<input id="textinput" name="textinput" type="text"
-						placeholder="ex Nice Cannes" class="form-control input-md"
-						required="" th:field="*{name}">
-
+					<button id="validez" name="validez" class="btn btn-default">Je
+						valide</button>
 				</div>
 			</div>
 
-			<!-- Button -->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="Validez">Validez</label>
-				<div class="col-md-4">
-					<button id="Validez" name="Validez" class="btn btn-default">Validez</button>
-				</div>
-			</div>
-
-		</fieldset>
-	</form>
+</fieldset>
+</form>
 
 </body>
 </html>
