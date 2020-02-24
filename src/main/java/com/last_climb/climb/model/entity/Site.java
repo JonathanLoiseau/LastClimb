@@ -16,6 +16,8 @@ public class Site {
 	@OneToMany(mappedBy = "site")
 	private Set<Secteur> listSecteur = new HashSet<Secteur>();
 
+	private String localisation;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -26,12 +28,13 @@ public class Site {
 
 	}
 
-	public Site(String name, Set<Secteur> listSecteur, long id) {
+	public Site(String name, Set<Secteur> listSecteur, long id, String localisation) {
 		super();
 		this.name = name;
 		this.listSecteur = listSecteur;
 		this.id = id;
 		this.nbSect = listSecteur.size();
+		this.localisation = localisation;
 	}
 
 	public String getName() {
@@ -74,6 +77,14 @@ public class Site {
 
 	public void setNbSect(int nbSect) {
 		this.nbSect = nbSect;
+	}
+
+	public String getLocalisation() {
+		return localisation;
+	}
+
+	public void setLocalisation(String localisation) {
+		this.localisation = localisation;
 	}
 
 }

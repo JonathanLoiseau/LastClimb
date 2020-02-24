@@ -49,6 +49,7 @@ public class SiteCreationServiceImpl implements SiteCreationService {
 		secteur.setName(cf.getName());
 		secteur.addVoie(voie);
 		site.setName(sf.getName());
+		site.setLocalisation(sf.getLocalisation());
 		site.addSecteur(secteur);
 		secteur.setSite(site);
 
@@ -65,6 +66,7 @@ public class SiteCreationServiceImpl implements SiteCreationService {
 		} else if (sf.getId() != null && cf.getId() == null) {
 			Optional<Site> testSite = sitRep.findById(sf.getId());
 			Site sitepresent = testSite.get();
+			sitepresent.setNbSect(sitepresent.getNbSect() + 1);
 			sitRep.save(sitepresent);
 			secteur.setSite(sitepresent);
 			secRep.save(secteur);

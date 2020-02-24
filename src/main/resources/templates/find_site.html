@@ -39,47 +39,64 @@
 
 
 	</header>
-
-	<form class="form-horizontal" action="#" th:action="@{/site_creation}"
-		th:object="${siteForm}" method="post">
+	<form class="form-horizontal" th:object="${findform}" action="#" th:action= "@{/find_site}" method = "post">
 		<fieldset>
 
 			<!-- Form Name -->
-			<legend>Mon site</legend>
+			<legend>Quel type de site souhaitez vous</legend>
 
-			
 			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="textinput">Nommez votre
-					site</label>
+			<div class="form-group" >
+				<label class="col-md-4 control-label" for="lieux">lieux</label>
 				<div class="col-md-4">
-					<input id="textinput" name="textinput" type="text"
-						placeholder="ex route champignon" class="form-control input-md"
-						required="" th:field="*{name}">
-
-				</div>
-			</div>
-				<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="textinput">localisation</label>
-				<div class="col-md-4">
-					<input id="textinput" name="textinput" type="text"
-						placeholder="ex Nice Cannes" class="form-control input-md"
-						required="" th:field="*{localisation}">
+					<input id="lieux" name="lieux" type="text"
+						placeholder="nice cannes etc" class="form-control input-md" th:field="*{location}">
 
 				</div>
 			</div>
 
+			<!-- Text input-->
+			<div class="form-group" >
+				<label class="col-md-4 control-label" for="secteurnb">Nombre
+					de secteur minimum</label>
+				<div class="col-md-4">
+					<input id="secteurnb" name="secteurnb" type="text"
+						placeholder="1,2,3" class="form-control input-md" th:field="*{nbSecteur}">
+
+				</div>
+			</div>
+
+			<!-- Select Basic -->
+			<div class="form-group" th:field="*{cotation}">
+				<label class="col-md-4 control-label" for="cotation">contient
+					des voies de cotations:</label>
+				<div class="col-md-4">
+					<select id="cotation" name="cotation" class="form-control">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6a">6a</option>
+						<option value="6b">6b</option>
+						<option value="6c">6c</option>
+						<option value="7a">7a</option>
+						<option value="7b">7b</option>
+						<option value="7c">7c</option>
+						<option value="8a">8a</option>
+						<option value="8b">8b</option>
+						<option value="8c">8c</option>
+						<option value="9">9</option>
+					</select>
+				</div>
+			</div>
 			<!-- Button -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="Validez">Validez</label>
 				<div class="col-md-4">
 					<button id="Validez" name="Validez" class="btn btn-default">Validez</button>
 				</div>
-			</div>
-
 		</fieldset>
 	</form>
-
 </body>
 </html>
