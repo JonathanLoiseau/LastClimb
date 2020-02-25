@@ -19,7 +19,7 @@ import com.last_climb.climb.repo.UserRepo;
 @Controller
 public class ConnectController {
 
-	private static final Logger logger = LoggerFactory.getLogger(MyAccountController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ConnectController.class);
 	@Autowired
 	private UserRepo urep;
 
