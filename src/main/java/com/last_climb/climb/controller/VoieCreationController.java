@@ -57,7 +57,6 @@ public class VoieCreationController {
 		sessionSite.setId(container.getSiteId());
 		sessionVoie.setId(container.getVoieId());
 		vf.setId(container.getVoieId());
-
 		return "result";
 	}
 }

@@ -14,7 +14,7 @@ public class IndexController {
 		return "index";
 	}
 
-	@PostMapping
+	@PostMapping("/index")
 	public String displayIndexPost(Model model) {
 
 		return "index";

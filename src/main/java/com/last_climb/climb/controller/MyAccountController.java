@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.last_climb.climb.model.entity.Utilisateur;
 import com.last_climb.climb.model.form.UserForm;
-import com.last_climb.climb.repo.UserRepo;
 import com.last_climb.climb.services.CheckOptional;
 import com.last_climb.climb.services.UtilisateurUpdateServiceImpl;
 
@@ -23,8 +22,6 @@ public class MyAccountController {
 
 	@Autowired
 	private UtilisateurUpdateServiceImpl userUp;
-	@Autowired
-	private UserRepo urep;
 	@Autowired
 	private CheckOptional<Utilisateur> checker;
 	private static final Logger logger = LoggerFactory.getLogger(MyAccountController.class);

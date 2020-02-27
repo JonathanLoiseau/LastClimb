@@ -5,6 +5,7 @@ public class SiteForm {
 	private String name;
 	private Long id;
 	private String localisation;
+	private byte[] siteimg;
 
 	public SiteForm() {
 	}
@@ -37,6 +38,14 @@ public class SiteForm {
 
 	public void setLocalisation(String localisation) {
 		this.localisation = localisation;
+	}
+
+	public byte[] getSiteimg() {
+		return siteimg;
+	}
+
+	public void setSiteimg(byte[] siteimg) {
+		this.siteimg = siteimg;
 	}
 
 	@Override

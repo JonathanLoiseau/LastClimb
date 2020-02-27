@@ -45,18 +45,24 @@
 
 	<table>
 
-		<tr th:each="secteur: ${session.sitedisplay.listSecteur}">
+		<tr th:each="secteur: ${sitedisplay.listSecteur}">
 			<a th:href="@{/secteur_display(name=${secteur.name})}"><p
 					th:text="${secteur.name}"></p></a>
 		</tr>
 
 	</table>
 
-
+	
+	
+	<img th:src="@{/displayblob}"/>
+	
+	
+	
+	
 
 	<h3>Commentaires</h3>
 
-	sitedisplay
+	
 
 	<!-- comment display -->
 	<table>

@@ -47,11 +47,11 @@
 			<!-- Form Name -->
 			<legend>Mon site</legend>
 
-			
+
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="textinput">Nommez votre
-					site</label>
+				<label class="col-md-4 control-label" for="textinput">Nommez
+					votre site</label>
 				<div class="col-md-4">
 					<input id="textinput" name="textinput" type="text"
 						placeholder="ex route champignon" class="form-control input-md"
@@ -59,7 +59,7 @@
 
 				</div>
 			</div>
-				<!-- Text input-->
+			<!-- Text input-->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="textinput">localisation</label>
 				<div class="col-md-4">
@@ -67,6 +67,16 @@
 						placeholder="ex Nice Cannes" class="form-control input-md"
 						required="" th:field="*{localisation}">
 
+				</div>
+			</div>
+
+			<!-- File Button -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="filebutton">Ajouter
+					une image</label>
+				<div class="col-md-4">
+					<input id="filebutton" name="filebutton" class="input-file"
+						type="file" th:field="*{siteimg}">
 				</div>
 			</div>
 

@@ -50,6 +50,7 @@ public class SiteCreationServiceImpl implements SiteCreationService {
 		secteur.addVoie(voie);
 		site.setName(sf.getName());
 		site.setLocalisation(sf.getLocalisation());
+		site.setSiteimg(sf.getSiteimg());
 		site.addSecteur(secteur);
 		secteur.setSite(site);
 
