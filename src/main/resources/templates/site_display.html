@@ -40,16 +40,106 @@
 
 	</header>
 	<h1 th:text="${session.sitedisplay.name}"></h1>
-	
-	<h2> Voici la liste des secteurs de ce site</h2>
-	
+
+	<h2>Voici la liste des secteurs de ce site</h2>
+
 	<table>
 
 		<tr th:each="secteur: ${session.sitedisplay.listSecteur}">
-			<a th:href="@{/secteur_display(name=${secteur.name})}"><p th:text="${secteur.name}"></p></a>
+			<a th:href="@{/secteur_display(name=${secteur.name})}"><p
+					th:text="${secteur.name}"></p></a>
 		</tr>
-		
+
 	</table>
-	
+
+
+
+	<h3>Commentaires</h3>
+
+	sitedisplay
+
+	<!-- comment display -->
+	<table>
+
+		<tr th:each="comm: ${session.sitedisplay.listCommentaire}">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<!-- Titre??? -->
+					</div>
+					<!-- /col-sm-12 -->
+				</div>
+				<!-- /row -->
+				<div class="row">
+					<div class="col-sm-1">
+						<div class="thumbnail">
+							<img class="img-responsive user-photo"
+								src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+						</div>
+						<!-- /thumbnail -->
+					</div>
+					<!-- /col-sm-1 -->
+
+					<div class="col-sm-5">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<strong th:text="${comm.userName}">myusername</strong> <span
+									class="text-muted"
+									 th:text="${#temporals.format(comm.date, 'dd/MMM/yyyy HH:mm')}">[[${comm.date}]]
+									5 days ago</span>
+							</div>
+							<div class="panel-body" th:text="${comm.commentaire}">Panel
+								content</div>
+							<!-- /panel-body -->
+						</div>
+						<!-- /panel panel-default -->
+					</div>
+					<!-- /col-sm-5 -->
+
+
+				</div>
+
+
+				<!-- /container -->
+		</tr>
+
+	</table>
+
+
+
+
+
+
+
+	<!--form  comment-->
+
+	<form class="form-horizontal" action="#" th:action="@{/site_display}"
+		th:object="${commentForm}" method="post">
+		<fieldset>
+
+			<!-- Form Name -->
+			<legend>Mon commentaire</legend>
+
+			<!-- Textarea -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="sitecom">Dites
+					nous ce que vous pensez de ce site</label>
+				<div class="col-md-4">
+					<textarea class="form-control" id="sitecom" name="sitecom"
+						th:field="*{commentaire}">votre commentaire ici:</textarea>
+				</div>
+			</div>
+
+			<!-- Button -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="validez">Validez</label>
+				<div class="col-md-4">
+					<button id="validez" name="validez" class="btn btn-default">Validez</button>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+
 </body>
 </html>

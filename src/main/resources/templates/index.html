@@ -42,7 +42,8 @@
 	</header>
 	
 
-	Bonjour <span th:text="${session.currentUser?.username}"></span>
+	
+	<h2 th:inline="text">Bonjour et bienvenue sur Fun Escalade [[${session.currentUser?.username}]]</h2>
 	
 	
 	

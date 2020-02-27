@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.last_climb.climb.model.EtatTopo;
@@ -33,6 +34,7 @@ public class Topo {
 	private Utilisateur user;
 
 	@Lob
+	@Type(type = "text")
 	private String description;
 
 	private String lieux;

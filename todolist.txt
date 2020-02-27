@@ -1,4 +1,3 @@
-dump de la base//preque fait
 
 sécurisation 
 
@@ -6,14 +5,7 @@ commentaire
 
 admin
 
-
-recherche de site et topo ->++ en cour.
-
-
-Topo
-
-
-corrigé pb thymeleaf thymeleaf
+upload image
 
 hibernate héritage et many to many
 

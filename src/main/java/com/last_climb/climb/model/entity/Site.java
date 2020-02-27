@@ -13,8 +13,12 @@ import javax.persistence.OneToMany;
 public class Site {
 
 	private String name;
+
 	@OneToMany(mappedBy = "site")
 	private Set<Secteur> listSecteur = new HashSet<Secteur>();
+
+	@OneToMany(mappedBy = "site")
+	private Set<Commentaire> listCommentaire = new HashSet<Commentaire>();
 
 	private String localisation;
 
@@ -66,6 +70,10 @@ public class Site {
 		this.nbSect++;
 	}
 
+	public void addCom(Commentaire c) {
+		this.listCommentaire.add(c);
+	}
+
 	@Override
 	public String toString() {
 		return "Site [name=" + name + ", listSecteur=" + listSecteur + ", id=" + id + "]";
@@ -87,4 +95,11 @@ public class Site {
 		this.localisation = localisation;
 	}
 
+	public Set<Commentaire> getListCommentaire() {
+		return listCommentaire;
+	}
+
+	public void setListCommentaire(Set<Commentaire> listCommentaire) {
+		this.listCommentaire = listCommentaire;
+	}
 }

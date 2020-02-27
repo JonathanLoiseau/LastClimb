@@ -39,11 +39,14 @@
 
 
 	</header>
+	
+	<h2 th:inline="text">Liste des sites disponible près de [[${session.FindSite?.location}]]</h2>
+	
 
 	<table>
 
 		<tr th:each="site: ${ListSite}">
-			<a th:href="@{/site_display(name=${site.name})}"><p th:text="${site.name}"></p></a>
+			<a th:href="@{/site_display(id=${site.id})}"><p th:text="${site.name}"></p></a>
 		</tr>
 		
 	</table>
