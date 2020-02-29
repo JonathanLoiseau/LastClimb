@@ -15,7 +15,6 @@ public class SecteurCreationController {
 
 	@GetMapping("/secteur_creation")
 	public String displayControllerVoiesCreation(Model model, HttpSession session) {
-//		model.addAttribute("voiesform");
 		model.addAttribute("creationvoieform", new CreationVoieForm());
 		System.out.println("dans le get de secteur création");
 
