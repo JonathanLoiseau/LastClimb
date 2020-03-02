@@ -16,34 +16,33 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.last_climb.climb.services.StorageService;
 
 @Controller
-public class UploadController  {
-	
-		@Autowired
-		private  StorageService ss;
-		
-		//fonction de récupération de l'image
-		
-		@GetMapping("/images/{filename}")
-		@ResponseBody
-		public ResponseEntity<Resource> serveFile(@PathVariable String filename){
-			
-			Resource file = ss.loadAsResource(filename);
+public class UploadController {
+
+	@Autowired
+	private StorageService ss;
+
+	// fonction de récupération de l'image
+
+	@GetMapping("/images/{filename}")
+	@ResponseBody
+	public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+
+		Resource file = ss.loadAsResource(filename);
 //			return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
 //					"attachment; filename=\"" + file.getFilename() + "\"").body(file);
-			
-			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE,"image/png").body(file);
-		}
-		
-		
-		@PostMapping("/images")
-		public String handleFileUpload(@RequestParam("file") MultipartFile file,
-				RedirectAttributes redirectAttributes) {
 
-			ss.store(file);
-			redirectAttributes.addFlashAttribute("message",
-					"You successfully uploaded " + file.getOriginalFilename() + "!");
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/png").body(file);
+	}
 
-			return "redirect:/";
-		}
-		
+	@PostMapping("/images")
+	public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+
+		ss.store(file);
+		redirectAttributes.addFlashAttribute("message",
+				"You successfully uploaded " + file.getOriginalFilename() + "!");
+		redirectAttributes.addFlashAttribute("filename", file.getOriginalFilename());
+
+		return "redirect:/";
+	}
+
 }

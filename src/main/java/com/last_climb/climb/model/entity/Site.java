@@ -7,10 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Type;
 
 @Entity
 public class Site {
@@ -31,15 +28,13 @@ public class Site {
 
 	private int nbSect;
 
-	@Lob
-	@Type(type = "org.hibernate.type.BinaryType")
-	private byte[] siteimg;
+	private String siteimg;
 
 	public Site() {
 
 	}
 
-	public Site(String name, Set<Secteur> listSecteur, long id, String localisation, byte[] siteimg) {
+	public Site(String name, Set<Secteur> listSecteur, long id, String localisation, String siteimg) {
 		super();
 		this.name = name;
 		this.listSecteur = listSecteur;
@@ -111,11 +106,11 @@ public class Site {
 		this.listCommentaire = listCommentaire;
 	}
 
-	public byte[] getSiteimg() {
+	public String getSiteimg() {
 		return siteimg;
 	}
 
-	public void setSiteimg(byte[] siteimg) {
+	public void setSiteimg(String siteimg) {
 		this.siteimg = siteimg;
 	}
 }

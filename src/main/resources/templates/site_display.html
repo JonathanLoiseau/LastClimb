@@ -40,6 +40,9 @@
 
 	</header>
 	<h1 th:text="${session.sitedisplay.name}"></h1>
+	<img th:src="|${@environment.getProperty('get.img.controller')}/${sitedisplay.siteimg}|" style="max-height:300px;max-width: 250px;"/>
+	
+	
 
 	<h2>Voici la liste des secteurs de ce site</h2>
 
@@ -54,7 +57,7 @@
 
 	
 	
-	<img th:src="@{/displayblob}"/>
+	
 	
 	
 	

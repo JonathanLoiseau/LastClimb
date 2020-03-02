@@ -5,7 +5,7 @@ public class SiteForm {
 	private String name;
 	private Long id;
 	private String localisation;
-	private byte[] siteimg;
+	private String siteimg;
 
 	public SiteForm() {
 	}
@@ -40,11 +40,11 @@ public class SiteForm {
 		this.localisation = localisation;
 	}
 
-	public byte[] getSiteimg() {
+	public String getSiteimg() {
 		return siteimg;
 	}
 
-	public void setSiteimg(byte[] siteimg) {
+	public void setSiteimg(String siteimg) {
 		this.siteimg = siteimg;
 	}
 

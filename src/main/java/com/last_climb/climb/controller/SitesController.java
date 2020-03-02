@@ -103,15 +103,7 @@ public class SitesController {
 		cf.setUserName(user.getUsername());
 		Site s = (Site) session.getAttribute("sitedisplay");
 		model.addAttribute("sitedisplay", s);
-//		Base64 b = new Base64();
-//		byte[] encodeBase64 = b.encode(s.getSiteimg());
-//		String base64Encoded = new String(encodeBase64, "UTF-8");
-//		model.addAttribute("siteImage", base64Encoded);
-//		byte[] img = s.getSiteimg();
-//		ByteArrayInputStream bis = new ByteArrayInputStream(img);
-//		BufferedImage bImage2 = ImageIO.read(bis);
-//		ImageIO.write(bImage2, "png", new File("output.png"));
-//		model.addAttribute("siteImage", bImage2);
+
 		cs.comment(s, cf);
 
 		return "site_display";

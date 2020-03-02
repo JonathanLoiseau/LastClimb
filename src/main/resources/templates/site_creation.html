@@ -41,7 +41,7 @@
 	</header>
 
 	<form class="form-horizontal" action="#" th:action="@{/site_creation}"
-		th:object="${siteForm}" method="post">
+		th:object="${siteForm}" method="post" enctype="multipart/form-data">
 		<fieldset>
 
 			<!-- Form Name -->
@@ -71,12 +71,13 @@
 			</div>
 
 			<!-- File Button -->
+			
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="filebutton">Ajouter
 					une image</label>
 				<div class="col-md-4">
-					<input id="filebutton" name="filebutton" class="input-file"
-						type="file" th:field="*{siteimg}">
+					<input type="file" name="file" class="form-control input-md"
+						required="" > 
 				</div>
 			</div>
 
