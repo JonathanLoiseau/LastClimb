@@ -7,7 +7,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
-<link rel="stylesheet" type="text/css" href="style.css">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
@@ -44,50 +44,30 @@
 
 
 
-	<form class="form-horizontal" action="#" th:action="@{/connexion}"
-		th:object="${utilisateur}" method="post">
-		<fieldset>
-
-			<!-- Form Name -->
-			<legend>Veuillez saisir votre identifiant et votre mot de
-				passe</legend>
-
-			<!-- Password input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="Password">Password</label>
-				<div class="col-md-4">
-					<input id="Password" name="Password" type="password"
-						placeholder="Ex:134" class="form-control input-md"
-						th:field="*{password}">
-
-				</div>
-			</div>
-
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="Pseudo">Pseudo</label>
-				<div class="col-md-4">
-					<input id="Pseudo" name="Pseudo" type="text"
-						placeholder="ex:Jozedu92" class="form-control input-md"
-						th:field="*{username}">
-
-				</div>
-			</div>
-
-			<!-- Button -->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="Validez"></label>
-				<div class="col-md-4">
-					<button id="Validez" name="Validez" class="btn btn-default">Validez</button>
-				</div>
-			</div>
-
-		</fieldset>
 
 
-		<br /> <br /> <br />
-		<p>
-			Vous n'avez pas de compte ? Creez en un <a href="/account">ici</a>
-		</p>
+	<div th:if="${param.error}">Invalid username and password.</div>
+	<div th:if="${param.logout}">You have been logged out.</div>
+	<form th:action="@{/connexion}" method="post">
+		<div>
+			<label> User Name : <input type="text" name="username" />
+			</label>
+		</div>
+		<div>
+			<label> Password: <input type="password" name="password" />
+			</label>
+		</div>
+		<div>
+			<input type="submit" value="Sign In" />
+		</div>
+	</form>
+
+
+	<br />
+	<br />
+	<br />
+	<p>
+		Vous n'avez pas de compte ? Creez en un <a href="/account">ici</a>
+	</p>
 </body>
 </html>

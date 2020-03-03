@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.last_climb.climb.model.Role;
 import com.last_climb.climb.model.Sex;
 
 @Entity
@@ -33,6 +34,9 @@ public class Utilisateur {
 
 	@Enumerated(EnumType.STRING)
 	private Sex sex;
+
+	@Enumerated(EnumType.STRING)
+	private Role role;
 
 	@OneToMany(mappedBy = "user")
 	private Set<Topo> listTopo = new HashSet<Topo>();
@@ -66,6 +70,7 @@ public class Utilisateur {
 		this.birthPlace = birthplace;
 		this.birthDate = birthdate;
 		this.mail = mail;
+		this.role = Role.USER;
 
 	}
 
@@ -75,6 +80,22 @@ public class Utilisateur {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public Set<Topo> getListTopo() {
+		return listTopo;
+	}
+
+	public void setListTopo(Set<Topo> listTopo) {
+		this.listTopo = listTopo;
 	}
 
 	public String getName() {

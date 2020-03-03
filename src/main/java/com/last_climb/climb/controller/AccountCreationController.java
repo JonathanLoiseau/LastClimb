@@ -3,6 +3,7 @@ package com.last_climb.climb.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,9 @@ public class AccountCreationController {
 	@Autowired
 	private UserRepo uRep;
 
+	@Autowired
+	private PasswordEncoder pass;
+
 	@GetMapping("/account")
 	public String displayAccountCreationController(Model model, HttpSession session) {
 		model.addAttribute("utilisateur", new Utilisateur());
@@ -25,7 +29,9 @@ public class AccountCreationController {
 
 	@PostMapping("/account")
 	public String AccCreate(Utilisateur user, Model model, HttpSession session) {
+		user.setPassword(pass.encode(user.getPassword()));
 		uRep.save(user);
+
 		return "index";
 	}
 }
