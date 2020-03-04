@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.last_climb.climb.model.Role;
 import com.last_climb.climb.model.entity.Utilisateur;
 import com.last_climb.climb.repo.UserRepo;
 
@@ -30,6 +31,7 @@ public class AccountCreationController {
 	@PostMapping("/account")
 	public String AccCreate(Utilisateur user, Model model, HttpSession session) {
 		user.setPassword(pass.encode(user.getPassword()));
+		user.setRole(Role.ROLE_USER);
 		uRep.save(user);
 
 		return "index";

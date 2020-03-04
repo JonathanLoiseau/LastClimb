@@ -70,7 +70,7 @@ public class Utilisateur {
 		this.birthPlace = birthplace;
 		this.birthDate = birthdate;
 		this.mail = mail;
-		this.role = Role.USER;
+		this.role = Role.ROLE_USER;
 
 	}
 
