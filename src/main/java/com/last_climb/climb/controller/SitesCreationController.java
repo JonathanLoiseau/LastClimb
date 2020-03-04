@@ -30,12 +30,8 @@ public class SitesCreationController {
 		session.setAttribute("secteur", new CreationVoieForm());
 		session.setAttribute("site", new SiteForm());
 		session.setAttribute("voie", new VoiesForm());
-		if (user == null) {
-			return "connectez_vous_site";
-		} else {
-			return "site_creation";
-		}
 
+		return "site_creation";
 	}
 
 	@PostMapping("/site_creation")

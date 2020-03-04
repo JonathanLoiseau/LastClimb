@@ -23,12 +23,8 @@ public class TopoCreationController {
 	@GetMapping("/topo_creation")
 	public String DisplayTopoCreation(Model model, HttpSession session) {
 		model.addAttribute("topo", new Topo());
-		Utilisateur user = (Utilisateur) session.getAttribute("currentUser");
-		if (user == null) {
-			return "connectez_vous_topo";
-		} else {
-			return "topo_creation";
-		}
+
+		return "topo_creation";
 	}
 
 	@Transactional

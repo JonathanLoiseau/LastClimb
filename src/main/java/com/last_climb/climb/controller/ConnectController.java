@@ -30,11 +30,7 @@ public class ConnectController {
 	@GetMapping("/connexion")
 	public String displayConnect(Model model) {
 		model.addAttribute("utilisateur", new Utilisateur());
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		Collection<? extends GrantedAuthority> currentPrincipalName = authentication.getAuthorities();
-		for (GrantedAuthority aut : currentPrincipalName) {
-			System.out.println(aut.getAuthority());
-		}
+		
 		return "connexion";
 	}
 
@@ -45,11 +41,6 @@ public class ConnectController {
 		if (realUser.isPresent()) {
 			session.setAttribute("currentUser", realUser.get());
 			model.addAttribute("userform", new UserForm(user));
-			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			Collection<? extends GrantedAuthority> currentPrincipalName = authentication.getAuthorities();
-			for (GrantedAuthority aut : currentPrincipalName) {
-				System.out.println(aut.getAuthority());
-			}
 
 			return "myaccount";
 		} else
