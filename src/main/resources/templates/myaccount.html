@@ -150,9 +150,57 @@
 
 	<h3>Liste de mes topos :</h3>
 
-	<ul th:each="topo: ${topolist}">
-		<li th:text="${topo.name + ' : ' + topo.etat}"  >  </li>	
-	</ul>
+	<div th:each="topo: ${topolist}">
+
+		<p th:text="${topo.name + ' : ' + topo.etat}"></p>
+
+		<div th:switch="${topo.etat}">
+			<p th:case="DISPONIBLE">DISPO</p>
+			<p th:case="INDISPONIBLE">PAS DISPO</p>
+			<p th:case="*" th:text="${topo.etat}">BUG</p>
+		</div>
+
+		<form class="form-horizontal " th:if="${topo.etat == 'DISPONIBLE'}">
+			<fieldset>
+
+				<!-- Form Name -->
+				<legend>Prêter ce topo</legend>
+
+				<!-- Button -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="singlebutton">Prêter
+						ce topo</label>
+					<div class="col-md-4">
+						<button id="singlebutton" name="singlebutton"
+							class="btn btn-success">go!</button>
+					</div>
+				</div>
+
+			</fieldset>
+		</form>
+
+		<form class="form-horizontal"
+			th:unless="${topo.etat == 'INDISPONIBLE'}">
+			<fieldset>
+
+				<!-- Form Name -->
+				<legend>Rendre disponible</legend>
+
+				<!-- Button -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="singlebutton">Rendre
+						Disponible</label>
+					<div class="col-md-4">
+						<button id="singlebutton" name="singlebutton"
+							class="btn btn-success">go!</button>
+					</div>
+				</div>
+
+			</fieldset>
+		</form>
+
+
+	</div>
 
 </body>
 </html>
