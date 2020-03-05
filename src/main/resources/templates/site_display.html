@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
 <title>SitesDisplay</title>
 <meta charset="utf-8">
@@ -40,18 +40,27 @@
 
 	</header>
 	<h1 th:text="${session.sitedisplay.name}"></h1>
+	<!-- img site -->
 	<img
 		th:src="|${@environment.getProperty('get.img.controller')}/${sitedisplay.siteimg}|"
 		style="max-height: 300px; max-width: 250px;" />
+		
+		<!-- is approved? -->
+		<div th:if="${sitedisplay.approved }"><img th:src="|${@environment.getProperty('get.img.controller')}/logo.png|"
+		style="max-height: 300px; max-width: 250px;"/>
+		</div>
+		
+		
 	<div sec:authorize="hasRole('ADMIN')">
-		<form class="form-horizontal">
+		<form class="form-horizontal" action="#" th:action="@{/approval}"
+					method="post" th:object="${sitedisplay}">
 			<fieldset>
 
 				<!-- Form Name -->
 				<legend>Définir comme ami de l'escalade</legend>
 
 				<!-- Button -->
-				<div class="form-group">
+				<div class="form-group" >
 					<label class="col-md-4 control-label" for="singlebutton">Ami
 						de l'escalade!</label>
 					<div class="col-md-4">
@@ -79,17 +88,7 @@
 
 	</table>
 
-
-
-
-
-
-
-
-
 	<h3>Commentaires</h3>
-
-
 
 	<!-- comment display -->
 	<table>

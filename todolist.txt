@@ -9,4 +9,6 @@ upload image
 
 hibernate héritage et many to many
 
+thymeleaf: <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+
 https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/DAJava_P6/Recueil+des+besoins+client+-+Amis+de+l'Escalade.pdf

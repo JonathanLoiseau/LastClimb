@@ -1,0 +1,5 @@
+INSERT INTO public.utilisateur(
+	 birth_date, birth_place, firstname, mail, name, password, role, sex, username)
+	VALUES ( '24-12-0001', 'Nazareth', 'JC', 'jc@gmail.com', 'JC', '$2y$12$vq4dT0RIoeXAwrChlh4XHOM97Gzj4RLhDJnVv2SH5FM4DU3wkQH3K', 'ROLE_ADMIN', 'HOMME', 'JC');
+	
+	Le mot de passe correspond a "123" hashé avec b2encrypt;

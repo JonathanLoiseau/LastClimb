@@ -22,6 +22,8 @@ public class Site {
 
 	private String localisation;
 
+	private boolean approved;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -112,5 +114,13 @@ public class Site {
 
 	public void setSiteimg(String siteimg) {
 		this.siteimg = siteimg;
+	}
+
+	public boolean isApproved() {
+		return approved;
+	}
+
+	public void setApproved(boolean approved) {
+		this.approved = approved;
 	}
 }

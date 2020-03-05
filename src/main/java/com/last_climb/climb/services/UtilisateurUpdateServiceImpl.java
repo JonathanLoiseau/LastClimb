@@ -16,7 +16,7 @@ public class UtilisateurUpdateServiceImpl implements UserUpdateService {
 	private UserRepo uRep;
 
 	@Override
-	public void update(Utilisateur user, UserForm userform) {
+	public void updatePassword(Utilisateur user, UserForm userform) {
 
 		String pass = user.getPassword();
 		String uName = user.getUsername();
@@ -25,6 +25,18 @@ public class UtilisateurUpdateServiceImpl implements UserUpdateService {
 		Utilisateur uToUpdate = newUser.get();
 		uToUpdate.setPassword(newPass);
 		uRep.save(uToUpdate);
+	}
+
+	@Override
+	public void updateMail(Utilisateur user, UserForm userform) {
+		String pass = user.getPassword();
+		String uName = user.getUsername();
+		Optional<Utilisateur> newUser = uRep.findByUsernameAndPassword(uName, pass);
+		String newMail = userform.getNewMail();
+		Utilisateur uToUpdate = newUser.get();
+		uToUpdate.setMail(newMail);
+		uRep.save(uToUpdate);
+
 	}
 
 }

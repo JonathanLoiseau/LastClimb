@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.last_climb.climb.model.entity.Site;
-import com.last_climb.climb.model.entity.Utilisateur;
 import com.last_climb.climb.model.form.CommentForm;
 import com.last_climb.climb.model.form.FindSiteForm;
 import com.last_climb.climb.repo.SiteRepository;
@@ -98,12 +98,11 @@ public class SitesController {
 	@Transactional
 	@PostMapping("/site_display")
 	public String displaySiteDisplayPost(Model model, HttpSession session, CommentForm cf) throws IOException {
-		;
-		Utilisateur user = (Utilisateur) session.getAttribute("currentUser");
-		cf.setUserName(user.getUsername());
+
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		cf.setUserName(username);
 		Site s = (Site) session.getAttribute("sitedisplay");
 		model.addAttribute("sitedisplay", s);
-
 		cs.comment(s, cf);
 
 		return "site_display";

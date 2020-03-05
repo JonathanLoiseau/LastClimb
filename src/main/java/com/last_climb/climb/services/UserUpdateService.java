@@ -5,6 +5,8 @@ import com.last_climb.climb.model.form.UserForm;
 
 public interface UserUpdateService {
 
-	void update(Utilisateur user, UserForm userform);
+	void updatePassword(Utilisateur user, UserForm userform);
+
+	void updateMail(Utilisateur user, UserForm userform);
 
 }

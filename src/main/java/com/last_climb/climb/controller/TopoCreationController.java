@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.last_climb.climb.model.entity.Topo;
 import com.last_climb.climb.model.entity.Utilisateur;
 import com.last_climb.climb.model.form.UserForm;
+import com.last_climb.climb.services.PrincipalToUserService;
 import com.last_climb.climb.services.TopoCreator;
 
 @Controller
@@ -19,11 +20,12 @@ public class TopoCreationController {
 
 	@Autowired
 	private TopoCreator tCreate;
+	@Autowired
+	private PrincipalToUserService principal;
 
 	@GetMapping("/topo_creation")
 	public String DisplayTopoCreation(Model model, HttpSession session) {
 		model.addAttribute("topo", new Topo());
-
 		return "topo_creation";
 	}
 
@@ -33,9 +35,9 @@ public class TopoCreationController {
 
 		model.addAttribute("topo", new Topo());
 		model.addAttribute("userform", new UserForm());
-
 		session.setAttribute("topo", topo);
-		Utilisateur user = (Utilisateur) session.getAttribute("currentUser");
+
+		Utilisateur user = principal.principalToUser();
 
 		tCreate.topoCreator(topo, user);
 

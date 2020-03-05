@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
 <title>TopoSelect</title>
 <meta charset="utf-8">
@@ -40,15 +40,14 @@
 
 	</header>
 
-	<p>topoSelect</p>
-	 <table>
+	<p>Liste topo</p>
 
-      <tr th:each="topos : ${topolist}">
-        <td th:text="${topos.name}">Nom topo</td>
-        <td th:text="${topos.description}">description</td>
-        <td th:text= "${topos.etat}">
-       
-      </tr>
-    </table>
+
+
+
+	<div th:each="topo : ${topolist}">
+		<p th:text="${'nom: '+topo.name + ' etat: ' + topo.etat +' ' +'Description : ' + topo.description}"></p>
+	</div>
+
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Connexion</title>
 <meta charset="utf-8">
@@ -48,13 +48,13 @@
 
 	<div th:if="${param.error}">Invalid username and password.</div>
 	<div th:if="${param.logout}">You have been logged out.</div>
-	<form th:action="@{/connexion}" method="post">
+	<form th:action="@{/connexion}" method="post" >
 		<div>
 			<label> User Name : <input type="text" name="username" />
 			</label>
 		</div>
 		<div>
-			<label> Password: <input type="password" name="password" />
+			<label> Password: <input type="password" name="password"  />
 			</label>
 		</div>
 		<div>
@@ -65,6 +65,8 @@
 	 <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sign Out"/>
         </form>
+        
+        
 
 
 	<br />
