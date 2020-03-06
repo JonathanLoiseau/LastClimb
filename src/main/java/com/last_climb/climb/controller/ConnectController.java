@@ -26,7 +26,6 @@ public class ConnectController {
 	@GetMapping("/connexion")
 	public String displayConnect(Model model) {
 		model.addAttribute("utilisateur", new Utilisateur());
-
 		return "connexion";
 	}
 
@@ -41,7 +40,6 @@ public class ConnectController {
 			return "myaccount";
 		} else
 			return "topo";
-
 	}
 
 }

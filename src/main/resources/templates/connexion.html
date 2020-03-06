@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+ <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
 <title>Connexion</title>
 <meta charset="utf-8">
@@ -62,9 +62,11 @@
 		</div>
 	</form>
 	
-	 <form th:action="@{/logout}" method="post">
+	 <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
             <input type="submit" value="Sign Out"/>
-        </form>
+      </form>
+      
+      
         
         
 
