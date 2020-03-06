@@ -9,11 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.last_climb.climb.model.entity.Utilisateur;
 import com.last_climb.climb.model.form.UserForm;
 import com.last_climb.climb.services.CheckOptional;
 import com.last_climb.climb.services.PrincipalToUserService;
+import com.last_climb.climb.services.TopoGestionService;
 import com.last_climb.climb.services.UtilisateurUpdateServiceImpl;
 
 @Controller
@@ -24,6 +26,9 @@ public class MyAccountController {
 
 	@Autowired
 	private CheckOptional<Utilisateur> checker;
+
+	@Autowired
+	private TopoGestionService topoManager;
 
 	private static final Logger logger = LoggerFactory.getLogger(MyAccountController.class);
 	@Autowired
@@ -55,6 +60,7 @@ public class MyAccountController {
 
 	@PostMapping("/setPassword")
 	public String DisplayAccountPass(UserForm userform, HttpSession session, Model model) {
+
 		Utilisateur user = principal.principalToDbUser();
 
 		model.addAttribute("topolist", user.getListTopo());
@@ -89,6 +95,30 @@ public class MyAccountController {
 		} else {
 			return "index";
 		}
+
+	}
+
+	@PostMapping("/share")
+	public String shareTopo(@RequestParam("iD") Long iD, Model model) {
+		topoManager.share(iD);
+		Utilisateur user = principal.principalToDbUser();
+
+		model.addAttribute("topolist", user.getListTopo());
+		model.addAttribute("userform", new UserForm());
+		return "myaccount";
+
+	}
+
+	@PostMapping("/available")
+	public String makeAvailableTopo(@RequestParam("iD") Long iD, Model model) {
+		topoManager.share(iD);
+		Utilisateur user = principal.principalToDbUser();
+
+		model.addAttribute("topolist", user.getListTopo());
+		model.addAttribute("userform", new UserForm());
+
+		topoManager.makeAvailable(iD);
+		return "myaccount";
 
 	}
 }

@@ -9,7 +9,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-
+<link rel="icon" href="/images/favicon.png" />
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -38,7 +38,8 @@
 		</nav>
 		<div class="container">
 			<div class="row">
-				<h1 class="col-lg-12">Fun Escalade: Partagez votre Passion</h1>
+				<h1 class="col-lg-12"><span><img th:src="|${@environment.getProperty('get.img.controller')}/logo.png|" style="max-height: 100px; max-width:100px;"/>
+				</span> Fun Escalade: Partagez votre Passion</h1>
 			</div>
 		</div>
 
@@ -49,25 +50,9 @@
 	<h2 th:inline="text">Bonjour et bienvenue sur Fun Escalade
 	 <span sec:authorize="isAuthenticated()" sec:authentication="name" >Username</span></h2>
 
-	<h2>Welcome</h2>
-	<p>Spring Security Thymeleaf tutorial</p>
-	<div sec:authorize="hasRole('USER')">Text visible to user.</div>
-	<div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
-	<div sec:authorize="isAuthenticated()">Text visible only to
-		authenticated users.</div>
-	Authenticated username:
-	<div sec:authentication="name"></div>
-	Authenticated user roles:
 	
-<div sec:authorize="isAuthenticated()">
-  This content is only shown to authenticated users.
-</div>
-<div sec:authorize="hasRole('ROLE_ADMIN')">
-  This content is only shown to administrators.
-</div>
-<div sec:authorize="hasRole('ROLE_USER')">
-  This content is only shown to users.
-</div>
+
+
 
 
 

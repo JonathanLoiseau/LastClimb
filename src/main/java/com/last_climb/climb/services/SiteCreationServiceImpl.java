@@ -61,7 +61,6 @@ public class SiteCreationServiceImpl implements SiteCreationService {
 			voie.setSecteur(secteur);
 			vRep.save(voie);
 			logger.debug("y'a rien");
-//			System.out.println("y'a rien");
 			return extractor.extractId(site, secteur, voie);
 
 		} else if (sf.getId() != null && cf.getId() == null) {
@@ -74,14 +73,13 @@ public class SiteCreationServiceImpl implements SiteCreationService {
 			voie.setSecteur(secteur);
 			vRep.save(voie);
 			logger.debug("seulement site");
-//			System.out.println("seulement site présent");
+
 			return extractor.extractId(sitepresent, secteur, voie);
 
 		}
 
 		else {
 			logger.debug("test optional");
-//			System.out.println("test optional");
 			Optional<Site> testSite = sitRep.findById(sf.getId());
 			Optional<Secteur> testSect = secRep.findById(cf.getId());
 			Site sitepresent = testSite.get();
@@ -92,7 +90,6 @@ public class SiteCreationServiceImpl implements SiteCreationService {
 			voie.setSecteur(secteurpresent);
 			vRep.save(voie);
 			logger.debug("secteur et site présent");
-//			System.out.println("secteur et site présent");
 			return extractor.extractId(sitepresent, secteurpresent, voie);
 
 		}

@@ -27,7 +27,6 @@ public class FindSiteImpl implements FindSiteService {
 
 		ArrayList<Site> siteList = sRep.findDistinctByListSecteur_Listvoies_CotationAndNbSectAndLocalisation(cotation,
 				nbSecteur, location);
-
 		return siteList;
 	}
 

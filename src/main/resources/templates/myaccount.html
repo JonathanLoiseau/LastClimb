@@ -155,49 +155,60 @@
 		<p th:text="${topo.name + ' : ' + topo.etat}"></p>
 
 		<div th:switch="${topo.etat}">
-			<p th:case="DISPONIBLE">DISPO</p>
-			<p th:case="INDISPONIBLE">PAS DISPO</p>
+			<div th:case="${T(com.last_climb.climb.model.EtatTopo).DISPONIBLE}">
+
+				<form class="form-horizontal " action="#" th:action="@{/share(iD=${topo.iD})}"
+		 		method="post">
+					<fieldset>
+
+						<!-- Form Name -->
+						<legend>Prêter ce topo</legend>
+
+						<!-- Button -->
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="singlebutton">Prêter
+								ce topo</label>
+							<div class="col-md-4">
+								<button id="singlebutton" name="singlebutton"
+									class="btn btn-success">go!</button>
+							</div>
+						</div>
+
+					</fieldset>
+				</form>
+
+
+			</div>
+
+			<div th:case="${T(com.last_climb.climb.model.EtatTopo).INDISPONIBLE}">
+				<form class="form-horizontal"action="#" th:action="@{/available(iD=${topo.iD})}"
+		 		method="post">
+					<fieldset>
+
+						<!-- Form Name -->
+						<legend>Rendre disponible</legend>
+
+						<!-- Button -->
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="singlebutton">Rendre
+								Disponible</label>
+							<div class="col-md-4">
+								<button id="singlebutton" name="singlebutton"
+									class="btn btn-success">go!</button>
+							</div>
+						</div>
+
+					</fieldset>
+				</form>
+
+
+			</div>
 			<p th:case="*" th:text="${topo.etat}">BUG</p>
 		</div>
 
-		<form class="form-horizontal " th:if="${topo.etat == 'DISPONIBLE'}">
-			<fieldset>
 
-				<!-- Form Name -->
-				<legend>Prêter ce topo</legend>
 
-				<!-- Button -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="singlebutton">Prêter
-						ce topo</label>
-					<div class="col-md-4">
-						<button id="singlebutton" name="singlebutton"
-							class="btn btn-success">go!</button>
-					</div>
-				</div>
-
-			</fieldset>
-		</form>
-
-		<form class="form-horizontal"
-			th:unless="${topo.etat == 'INDISPONIBLE'}">
-			<fieldset>
-
-				<!-- Form Name -->
-				<legend>Rendre disponible</legend>
-
-				<!-- Button -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="singlebutton">Rendre
-						Disponible</label>
-					<div class="col-md-4">
-						<button id="singlebutton" name="singlebutton"
-							class="btn btn-success">go!</button>
-					</div>
-				</div>
-
-			</fieldset>
-		</form>
+	
 
 
 	</div>
