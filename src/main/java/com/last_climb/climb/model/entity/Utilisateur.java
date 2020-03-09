@@ -40,20 +40,15 @@ public class Utilisateur {
 
 	@OneToMany(mappedBy = "user")
 	private Set<Topo> listTopo = new HashSet<Topo>();
-// todo voir les enum et hibernate
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	LocalDate birthDate;
-
-	// private Integer age;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	private String mail;
-
-//		private boolean log;
 
 	public Utilisateur() {
 
@@ -71,7 +66,6 @@ public class Utilisateur {
 		this.birthDate = birthdate;
 		this.mail = mail;
 		this.role = Role.ROLE_USER;
-
 	}
 
 	public long getId() {
@@ -153,14 +147,6 @@ public class Utilisateur {
 	public synchronized void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
-
-//		public synchronized boolean isLog() {
-//			return log;
-//		}
-	//
-//		public synchronized void setLog(boolean log) {
-//			this.log = log;
-//		}
 
 	public synchronized String getMail() {
 		return mail;

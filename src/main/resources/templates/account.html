@@ -46,21 +46,21 @@
 		<h1>
 
 			<form class="well" action='#' th:action="@{/account}"
-				th:object="${utilisateur}" method="post">
+				th:object="${userForm}" method="post">
 				<legend>Merci de bien vouloir renseigner les champs
 					suivants</legend>
 				<h4>Votre sexe ?</h4>
 				<fieldset>
 					<div class="radio">
 						<label for="ami" class="radio"> <input type="radio"
-							name="origine" value="Homme" id="Homme" th:field="*{sex}">
-							<p>HOMME</p>
+							name="origine" value="HOMME" id="HOMME" th:field="*{sex}">
+							<p>Homme</p>
 						</label>
 					</div>
 					<div class="radio">
 						<label for="web" class="radio"> <input type="radio"
-							name="origine" value="Femme" id="Femme" th:field="*{sex}">
-							<p>FEMME</p>
+							name="origine" value="FEMME" id="FEMME" th:field="*{sex}">
+							<p>Femme</p>
 						</label>
 					</div>
 
@@ -105,9 +105,6 @@
 
 					<input type="date" name="anniversaire" th:field="*{birthDate}">
 
-
-
-
 					<h4>Votre adresse mail</h4>
 
 					<label for="textarea">
@@ -118,7 +115,7 @@
 					<label for="textarea">
 						<p>confirmation :</p>
 					</label>
-					<textarea id="textarea" class="form-control" rows="1"></textarea>
+					<textarea id="textarea" class="form-control" rows="1" th:field="*{mailConfirm}"></textarea>
 
 
 					<h4>Votre pseudo</h4>
@@ -131,16 +128,27 @@
 
 					<h4>Votre mot de passe</h4>
 
-					<label for="textarea">
-						<p>mot de passe</p>
-					</label>
-					<textarea id="textarea" class="form-control" rows="1"
-						th:field="*{password}">  </textarea>
+					<!-- Password input-->
+					<div class="form-group">
+						<label class=>Mot
+							de passe</label>
+						<div >
+							<input id="passwordinput" name="passwordinput" type="password"
+								placeholder="ex:123" class="form-control input-md" th:field="*{password}" >
+						</div>
+					</div>
+					
+					
+					<!-- Password input-->
+					<div class="form-group">
+						<label >Confirmez votre mot
+							de passe</label>
+						<div >
+							<input id="passwordinput" name="passwordinput" type="password"
+								placeholder="ex:123" class="form-control input-md" th:field="*{passwordConfirm}">
+						</div>
+					</div>
 
-					<label for="textarea">
-						<p>confirmation :</p>
-					</label>
-					<textarea id="textarea" class="form-control" rows="1"></textarea>
 
 					<h4>Votre prénom</h4>
 

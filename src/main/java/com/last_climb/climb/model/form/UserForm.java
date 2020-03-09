@@ -2,6 +2,8 @@ package com.last_climb.climb.model.form;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.last_climb.climb.model.Sex;
 import com.last_climb.climb.model.entity.Utilisateur;
 
@@ -11,7 +13,8 @@ public class UserForm {
 	}
 
 	public UserForm(String firstname, String name, String username, String password, String newPassword, String mail,
-			String newMail, String birthPlace, LocalDate birthDate, Sex sex) {
+			String newMail, String birthPlace, LocalDate birthDate, Sex sex, String mailConfirm,
+			String passwordConfirm) {
 		super();
 		this.firstname = firstname;
 		this.name = name;
@@ -23,6 +26,8 @@ public class UserForm {
 		this.birthPlace = birthPlace;
 		this.birthDate = birthDate;
 		this.sex = sex;
+		this.mailConfirm = mailConfirm;
+		this.passwordConfirm = passwordConfirm;
 	}
 
 	public UserForm(Utilisateur user) {
@@ -38,6 +43,16 @@ public class UserForm {
 
 	private String firstname;
 
+	private String passwordConfirm;
+
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
+
 	private String name;
 
 	private String username;
@@ -52,9 +67,20 @@ public class UserForm {
 
 	private String birthPlace;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birthDate;
 
 	private Sex sex;
+
+	private String mailConfirm;
+
+	public String getMailConfirm() {
+		return mailConfirm;
+	}
+
+	public void setMailConfirm(String mailConfirm) {
+		this.mailConfirm = mailConfirm;
+	}
 
 	public String getFirstname() {
 		return firstname;

@@ -66,7 +66,6 @@ public class SitesController {
 		session.setAttribute("FindSite", fs);
 		model.addAttribute("findform", new FindSiteForm());
 		List<Site> siteList = (ArrayList<Site>) fss.findSite(fs);
-//		session.setAttribute("listsite", siteList);
 		model.addAttribute("ListSite", siteList);
 		for (Site s : siteList) {
 			logger.debug(s.getName());
@@ -107,7 +106,6 @@ public class SitesController {
 		model.addAttribute("sitedisplay", s);
 		cs.comment(s, cf);
 		redirectAttributes.addAttribute("id", s.getId());
-
 		return "redirect:/site_display";
 
 	}
