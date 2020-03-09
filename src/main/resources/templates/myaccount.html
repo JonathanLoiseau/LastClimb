@@ -121,7 +121,6 @@
 					<input id="NouveauMail" name="NouveauMail" type="text"
 						placeholder="ex:pepito@yahoo.com" class="form-control input-md"
 						th:field="*{newMail}">
-
 				</div>
 			</div>
 
@@ -163,6 +162,7 @@
 
 						<!-- Form Name -->
 						<legend>Prêter ce topo</legend>
+						<p> adresse mail du demandeur :<span th:text="${topo.BookerMail}"> </span></p>
 
 						<!-- Button -->
 						<div class="form-group">

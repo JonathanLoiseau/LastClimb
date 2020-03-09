@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.last_climb.climb.model.entity.Site;
 import com.last_climb.climb.model.form.CommentForm;
@@ -65,7 +66,7 @@ public class SitesController {
 		session.setAttribute("FindSite", fs);
 		model.addAttribute("findform", new FindSiteForm());
 		List<Site> siteList = (ArrayList<Site>) fss.findSite(fs);
-		session.setAttribute("listsite", siteList);
+//		session.setAttribute("listsite", siteList);
 		model.addAttribute("ListSite", siteList);
 		for (Site s : siteList) {
 			logger.debug(s.getName());
@@ -97,15 +98,17 @@ public class SitesController {
 
 	@Transactional
 	@PostMapping("/site_display")
-	public String displaySiteDisplayPost(Model model, HttpSession session, CommentForm cf) throws IOException {
+	public String displaySiteDisplayPost(Model model, HttpSession session, CommentForm cf,
+			RedirectAttributes redirectAttributes) throws IOException {
 
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		cf.setUserName(username);
 		Site s = (Site) session.getAttribute("sitedisplay");
 		model.addAttribute("sitedisplay", s);
 		cs.comment(s, cf);
+		redirectAttributes.addAttribute("id", s.getId());
 
-		return "site_display";
+		return "redirect:/site_display";
 
 	}
 

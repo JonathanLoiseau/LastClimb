@@ -41,7 +41,7 @@ public class TopoCreationController {
 
 		tCreate.topoCreator(topo, user);
 
-		return "myaccount";
+		return "redirect:/myaccount";
 
 	}
 

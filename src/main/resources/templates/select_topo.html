@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
 <head>
 <title>TopoSelect</title>
 <meta charset="utf-8">
@@ -46,7 +47,38 @@
 
 
 	<div th:each="topo : ${topolist}">
-		<p th:text="${'nom: '+topo.name + ' etat: ' + topo.etat +' ' +'Description : ' + topo.description}"></p>
+		<p
+			th:text="${'nom: '+topo.name + ' etat: ' + topo.etat +' ' +'Description : ' + topo.description}"></p>
+		<div th:switch="${topo.etat}">
+			<div th:case="${T(com.last_climb.climb.model.EtatTopo).DISPONIBLE}">
+				<form class="form-horizontal" action="#"
+							th:action="@{/topobooking(iD=${topo.iD})}" method="post">
+
+					<fieldset>
+
+						<!-- Form Name -->
+						<legend>Demande de réservation</legend>
+
+						<!-- Button -->
+						<div class="form-group" >
+
+							<label class="col-md-4 control-label" for="singlebutton">Réservez</label>
+							<div class="col-md-4">
+								<button id="singlebutton" name="singlebutton"
+									class="btn btn-success">go</button>
+							</div>
+						</div>
+
+					</fieldset>
+				</form>
+			</div>
+			<div th:case="${T(com.last_climb.climb.model.EtatTopo).INDISPONIBLE}">
+				<p>Désolé ce topo est actuelement réservé</p>
+			</div>
+
+
+
+		</div>
 	</div>
 
 </body>

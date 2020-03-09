@@ -2,6 +2,7 @@ package com.last_climb.climb.model.entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -20,6 +21,7 @@ import com.last_climb.climb.model.EtatTopo;
 @Entity
 public class Topo {
 
+	@Column(unique = true)
 	private String name;
 
 	@Id
@@ -39,10 +41,31 @@ public class Topo {
 
 	private String lieux;
 
+	private boolean isBooked;
+
+	private String BookerMail;
+
+	public String getBookerMail() {
+		return BookerMail;
+	}
+
+	public void setBookerMail(String bookerMail) {
+		BookerMail = bookerMail;
+	}
+
+	public boolean isBooked() {
+		return isBooked;
+	}
+
+	public void setBooked(boolean isBooked) {
+		this.isBooked = isBooked;
+	}
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 
-	public Topo(String name, Long iD, EtatTopo etat, Utilisateur user, String description, String lieux) {
+	public Topo(String name, Long iD, EtatTopo etat, Utilisateur user, String description, String lieux,
+			boolean isBooked) {
 		super();
 		this.name = name;
 		this.iD = iD;
@@ -51,6 +74,7 @@ public class Topo {
 		this.description = description;
 		this.lieux = lieux;
 		this.date = LocalDate.now();
+		this.isBooked = isBooked;
 	}
 
 	public Topo() {
