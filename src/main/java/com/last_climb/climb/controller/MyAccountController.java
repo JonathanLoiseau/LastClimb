@@ -5,12 +5,15 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.last_climb.climb.model.InvalidMailException;
+import com.last_climb.climb.model.InvalidPasswordExeption;
 import com.last_climb.climb.model.entity.Utilisateur;
 import com.last_climb.climb.model.form.UserForm;
 import com.last_climb.climb.services.CheckOptional;
@@ -29,6 +32,9 @@ public class MyAccountController {
 
 	@Autowired
 	private TopoGestionService topoManager;
+
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 
 	private static final Logger logger = LoggerFactory.getLogger(MyAccountController.class);
 	@Autowired
@@ -71,7 +77,12 @@ public class MyAccountController {
 
 		boolean isHere = checker.findAndCheck(name, pass);
 		if (isHere) {
-			userUp.updatePassword(user, userform);
+			try {
+				userUp.updatePassword(user, userform);
+			} catch (InvalidPasswordExeption e) {
+				model.addAttribute("erreurPass", true);
+				e.printStackTrace();
+			}
 			return "myaccount";
 		} else {
 			return "index";
@@ -90,7 +101,12 @@ public class MyAccountController {
 
 		boolean isHere = checker.findAndCheck(name, pass);
 		if (isHere) {
-			userUp.updateMail(user, userform);
+			try {
+				userUp.updateMail(user, userform);
+			} catch (InvalidMailException e) {
+				model.addAttribute("erreurMail", true);
+				e.printStackTrace();
+			}
 			return "myaccount";
 		} else {
 			return "index";

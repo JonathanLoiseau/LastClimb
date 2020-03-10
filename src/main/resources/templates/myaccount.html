@@ -46,6 +46,9 @@
 		Account Details
 	</h2>
 
+	<p th:if="${erreurPass}">Password incorrect</p>
+	<p th:if="${erreurMail}">Mail incorrect</p>
+
 
 	<form class="form-horizontal" action="#" th:action="@{/setPassword}"
 		th:object="${userform}" method="post">
@@ -79,7 +82,7 @@
 
 				</div>
 			</div>
-			
+
 
 			<!-- Button -->
 			<div class="form-group">
@@ -108,7 +111,7 @@
 				<div class="col-md-4">
 					<input id="NouveauMail" name="NouveauMail" type="text"
 						placeholder="ex:pepito@yahoo.com" class="form-control input-md"
-						th:field="*{newMail}">  
+						th:field="*{newMail}">
 				</div>
 			</div>
 
@@ -144,13 +147,16 @@
 		<div th:switch="${topo.etat}">
 			<div th:case="${T(com.last_climb.climb.model.EtatTopo).DISPONIBLE}">
 
-				<form class="form-horizontal " action="#" th:action="@{/share(iD=${topo.iD})}"
-		 		method="post">
+				<form class="form-horizontal " action="#"
+					th:action="@{/share(iD=${topo.iD})}" method="post">
 					<fieldset>
 
 						<!-- Form Name -->
 						<legend>Prêter ce topo</legend>
-						<p> adresse mail du demandeur :<span th:text="${topo.BookerMail}"> </span></p>
+						<p>
+							adresse mail du demandeur :<span th:text="${topo.BookerMail}">
+							</span>
+						</p>
 
 						<!-- Button -->
 						<div class="form-group">
@@ -169,8 +175,8 @@
 			</div>
 
 			<div th:case="${T(com.last_climb.climb.model.EtatTopo).INDISPONIBLE}">
-				<form class="form-horizontal"action="#" th:action="@{/available(iD=${topo.iD})}"
-		 		method="post">
+				<form class="form-horizontal" action="#"
+					th:action="@{/available(iD=${topo.iD})}" method="post">
 					<fieldset>
 
 						<!-- Form Name -->
@@ -196,7 +202,7 @@
 
 
 
-	
+
 
 
 	</div>
