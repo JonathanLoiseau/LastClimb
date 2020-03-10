@@ -1,8 +1,8 @@
 package com.last_climb.climb.model.entity;
 
-import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,13 +12,14 @@ import javax.persistence.OneToMany;
 @Entity
 public class Site {
 
+	@Column(unique = true)
 	private String name;
 
 	@OneToMany(mappedBy = "site")
-	private Set<Secteur> listSecteur = new HashSet<Secteur>();
+	private Set<Secteur> listSecteur;
 
 	@OneToMany(mappedBy = "site")
-	private Set<Commentaire> listCommentaire = new HashSet<Commentaire>();
+	private Set<Commentaire> listCommentaire;
 
 	private String localisation;
 
@@ -59,7 +60,7 @@ public class Site {
 	}
 
 	public void setListSecteur(Set<Secteur> listSecteur) {
-		this.listSecteur = new HashSet<Secteur>();
+		this.listSecteur = listSecteur;
 	}
 
 	public long getId() {
