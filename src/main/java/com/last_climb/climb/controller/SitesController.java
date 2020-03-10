@@ -31,11 +31,11 @@ public class SitesController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SitesController.class);
 	@Autowired
-	private FindSiteService fss;
+	private FindSiteService findSiteService;
 	@Autowired
-	private SiteRepository sRep;
+	private SiteRepository siteRepository;
 	@Autowired
-	private CommentService cs;
+	private CommentService commentService;
 
 	@GetMapping("/sites")
 	public String displaySites(Model model, HttpSession session) {
@@ -65,7 +65,7 @@ public class SitesController {
 	public String displaySiteFind(Model model, HttpSession session, FindSiteForm fs) {
 		session.setAttribute("FindSite", fs);
 		model.addAttribute("findform", new FindSiteForm());
-		List<Site> siteList = (ArrayList<Site>) fss.findSite(fs);
+		List<Site> siteList = (ArrayList<Site>) findSiteService.findSite(fs);
 		model.addAttribute("ListSite", siteList);
 		for (Site s : siteList) {
 			logger.debug(s.getName());
@@ -86,7 +86,7 @@ public class SitesController {
 	@GetMapping("/site_display")
 	public String displaySiteDisplay(@RequestParam("id") Long id, Model model, HttpSession session) {
 
-		Optional<Site> site = sRep.findById(id);
+		Optional<Site> site = siteRepository.findById(id);
 		model.addAttribute("sitedisplay", site.get());
 		session.setAttribute("sitedisplay", site.get());
 		model.addAttribute("commentForm", new CommentForm());
@@ -104,10 +104,17 @@ public class SitesController {
 		cf.setUserName(username);
 		Site s = (Site) session.getAttribute("sitedisplay");
 		model.addAttribute("sitedisplay", s);
-		cs.comment(s, cf);
+		commentService.comment(s, cf);
 		redirectAttributes.addAttribute("id", s.getId());
 		return "redirect:/site_display";
+	}
 
+	@PostMapping("/deletecom")
+	public String deleteComm(@RequestParam("id") Long id, RedirectAttributes redirectAttributes, HttpSession session) {
+		commentService.delete(id);
+		Site s = (Site) session.getAttribute("sitedisplay");
+		redirectAttributes.addAttribute("id", s.getId());
+		return "redirect:/site_display";
 	}
 
 }

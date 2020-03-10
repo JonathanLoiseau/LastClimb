@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
 <head>
 <title>SitesDisplay</title>
 <meta charset="utf-8">
@@ -44,23 +45,25 @@
 	<img
 		th:src="|${@environment.getProperty('get.img.controller')}/${sitedisplay.siteimg}|"
 		style="max-height: 300px; max-width: 250px;" />
-		
-		<!-- is approved? -->
-		<div th:if="${sitedisplay.approved }"><img th:src="|${@environment.getProperty('get.img.controller')}/seal.png|"
-		style="max-height: 300px; max-width: 250px;"/>
-		</div>
-		
-		
+
+	<!-- is approved? -->
+	<div th:if="${sitedisplay.approved }">
+		<img
+			th:src="|${@environment.getProperty('get.img.controller')}/seal.png|"
+			style="max-height: 300px; max-width: 250px;" />
+	</div>
+
+
 	<div sec:authorize="hasRole('ADMIN')">
 		<form class="form-horizontal" action="#" th:action="@{/approval}"
-					method="post" th:object="${sitedisplay}">
+			method="post" th:object="${sitedisplay}">
 			<fieldset>
 
 				<!-- Form Name -->
 				<legend>Définir comme ami de l'escalade</legend>
 
 				<!-- Button -->
-				<div class="form-group" >
+				<div class="form-group">
 					<label class="col-md-4 control-label" for="singlebutton">Ami
 						de l'escalade!</label>
 					<div class="col-md-4">
@@ -130,7 +133,25 @@
 
 
 				</div>
+				<div sec:authorize="hasRole('ADMIN')">
+					<form class="form-horizontal" action="#" th:action="@{/deletecom(id=${comm.id})}"
+						method="post">
+						<fieldset>
 
+							<!-- Form Name -->
+							<legend>supprimer commentaire?</legend>
+
+							<!-- Button -->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="singlebutton">Supprimer</label>
+								<div class="col-md-4">
+									<button id="singlebutton" name="singlebutton"
+										class="btn btn-success">X</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
 
 				<!-- /container -->
 		</tr>

@@ -34,4 +34,14 @@ public class CommentServiceImpl implements CommentService {
 		cRep.save(com);
 	}
 
+	@Override
+	public void delete(Long id) {
+		Optional<Commentaire> com = cRep.findById(id);
+		if (com.isPresent()) {
+			Commentaire commentaire = com.get();
+			cRep.delete(commentaire);
+		}
+
+	}
+
 }

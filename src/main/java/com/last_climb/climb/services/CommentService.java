@@ -6,4 +6,6 @@ import com.last_climb.climb.model.form.CommentForm;
 public interface CommentService {
 
 	void comment(Site s, CommentForm cf);
+
+	void delete(Long id);
 }

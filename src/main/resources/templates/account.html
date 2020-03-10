@@ -42,138 +42,136 @@
 
 	</header>
 
-	<h1>
-		Création d'un nouveau compte:
-		</h1>
+	<h1>Création d'un nouveau compte:</h1>
 
-			<p th:if="${erreur}">Erreur lors de la création du compte
-				veuillez vérifier les informations renseignés</p>
-			<form class="well" action='#' th:action="@{/account}"
-				th:object="${userForm}" method="post">
-				<legend>Merci de bien vouloir renseigner les champs
-					suivants</legend>
-				<h4>Votre sexe ?</h4>
-				<fieldset>
-					<div class="radio">
-						<label for="ami" class="radio"> <input type="radio"
-							name="origine" value="HOMME" id="HOMME" th:field="*{sex}">
-							<p>Homme</p>
-						</label>
-					</div>
-					<div class="radio">
-						<label for="web" class="radio"> <input type="radio"
-							name="origine" value="FEMME" id="FEMME" th:field="*{sex}">
-							<p>Femme</p>
-						</label>
-					</div>
+	<p th:if="${erreur}">Erreur lors de la création du compte veuillez
+		vérifier les informations renseignés</p>
+	<form class="well" action='#' th:action="@{/account}"
+		th:object="${userForm}" method="post">
+		<legend>Merci de bien vouloir renseigner les champs suivants</legend>
+		<h4>Votre sexe ?</h4>
+		<fieldset>
+			<div class="radio">
+				<label for="ami" class="radio"> <input type="radio"
+					name="origine" value="HOMME" id="HOMME" th:field="*{sex}" required>
+					<p>Homme</p>
+				</label>
+			</div>
+			<div class="radio">
+				<label for="web" class="radio"> <input type="radio"
+					name="origine" value="FEMME" id="FEMME" th:field="*{sex}"required>
+					<p>Femme</p>
+				</label>
+			</div>
 
-					<h4>Votre nationalité ?</h4>
+			<h4>Votre nationalité ?</h4>
 
-					<div class="radio">
-						<label for="ami" class="radio"> <input type="radio"
-							name="origine" value="Francais" id="francais"
-							th:field="*{birthPlace}">
-							<p>Francais</p>
-						</label>
-					</div>
-					<div class="radio">
-						<label for="web" class="radio"> <input type="radio"
-							name="origine" value="Espagnol" id="espagnol"
-							th:field="*{birthPlace}">
-							<p>Espagnol</p>
-						</label>
+			<div class="radio">
+				<label for="ami" class="radio"> <input type="radio"
+					name="origine" value="Francais" id="francais"
+					th:field="*{birthPlace}"required>
+					<p>Francais</p>
+				</label>
+			</div>
+			<div class="radio">
+				<label for="web" class="radio"> <input type="radio"
+					name="origine" value="Espagnol" id="espagnol"
+					th:field="*{birthPlace}"required>
+					<p>Espagnol</p>
+				</label>
 
-						<div class="radio">
-							<label for="ami" class="radio"> <input type="radio"
-								name="origine" value="Italien" id="Italien"
-								th:field="*{birthPlace}">
-								<p>Italien</p>
-							</label>
-						</div>
-						<div class="radio">
-							<label for="web" class="radio"> <input type="radio"
-								name="origine" value="Anglais" id="Anglais"
-								th:field="*{birthPlace}">
-								<p>Anglais</p>
-							</label>
-						</div>
-						<div class="radio">
-							<label for="ami" class="radio"> <input type="radio"
-								name="origine" value="autre" id="autre" th:field="*{birthPlace}">
-								<p>autre</p>
-							</label>
-						</div>
-					</div>
-					<h4>Votre date de naissance</h4>
-
-					<input type="date" name="anniversaire" th:field="*{birthDate}">
-
-					<h4>Votre adresse mail</h4>
-
-					<label for="textarea">
-						<p>votre mail :</p>
-					</label> <input id="mail" class="mail" rows="1" th:field="*{mail}">
-					</textarea>
-					<label for="textarea">
-						<p>confirmation :</p>
-					</label> <input id="mail" class="mail" rows="1" th:field="*{mailConfirm}"></input>
-
-
-					<h4>Votre pseudo</h4>
-
-					<label for="textarea">
-						<p>Pseudo :</p>
+				<div class="radio">
+					<label for="ami" class="radio"> <input type="radio"
+						name="origine" value="Italien" id="Italien"
+						th:field="*{birthPlace}"required>
+						<p>Italien</p>
 					</label>
-					<textarea id="textarea" class="form-control" rows="1"
-						th:field="*{username}">  </textarea>
-
-					<h4>Votre mot de passe</h4>
-
-					<!-- Password input-->
-					<div class="form-group">
-						<label class=>Mot de passe</label>
-						<div>
-							<input id="passwordinput" name="passwordinput" type="password"
-								placeholder="ex:123" class="form-control input-md"
-								th:field="*{password}">
-						</div>
-					</div>
-
-
-					<!-- Password input-->
-					<div class="form-group">
-						<label>Confirmez votre mot de passe</label>
-						<div>
-							<input id="passwordinput" name="passwordinput" type="password"
-								placeholder="ex:123" class="form-control input-md"
-								th:field="*{passwordConfirm}">
-						</div>
-					</div>
-
-
-					<h4>Votre prénom</h4>
-
-					<label for="textarea">
-						<p>prénom:</p>
+				</div>
+				<div class="radio">
+					<label for="web" class="radio"> <input type="radio"
+						name="origine" value="Anglais" id="Anglais"
+						th:field="*{birthPlace}"required>
+						<p>Anglais</p>
 					</label>
-					<textarea id="textarea" class="form-control" rows="1"
-						th:field="*{firstname}">  </textarea>
-
-					<h4>Votre nom</h4>
-
-					<label for="textarea">
-						<p>nom:</p>
+				</div>
+				<div class="radio">
+					<label for="ami" class="radio"> <input type="radio"
+						name="origine" value="autre" id="autre" th:field="*{birthPlace}"required>
+						<p>autre</p>
 					</label>
-					<textarea id="textarea" class="form-control" rows="1"
-						th:field="*{name}">  </textarea>
+				</div>
+			</div>
+			<h4>Votre date de naissance</h4>
 
-					<div class="form-group">
-						<label class="col-md-4 control-label" for="Validez"></label>
-						<div class="col-md-4">
-							<button id="Validez" name="Validez" class="btn btn-default">Validez</button>
-						</div>
-					</div>
-				</fieldset>
-			</form>
+			<input type="date" name="anniversaire" required th:field="*{birthDate}" required>
+
+			<h4>Votre adresse mail</h4>
+
+			<label for="email">
+				<p>votre mail :</p>
+			</label> <input id="email"type="email" class="email" rows="1" th:field="*{mail}"
+				  required>
+			
+			<label for="email">
+				<p>confirmation :</p>
+			</label> <input id="email" type="email" class="email" rows="1" th:field="*{mailConfirm}"></input>
+
+
+			<h4>Votre pseudo</h4>
+
+			<label for="textarea">
+				<p>Pseudo :</p>
+			</label>
+			<textarea id="textarea" class="form-control" rows="1"
+				th:field="*{username}" required>  </textarea>
+
+			<h4>Votre mot de passe</h4>
+
+			<!-- Password input-->
+			<div class="form-group">
+				<label class=>Mot de passe</label>
+				<div>
+					<input id="passwordinput" name="passwordinput" type="password"
+						placeholder="ex:123" class="form-control input-md"
+						th:field="*{password}" required>
+				</div>
+			</div>
+
+
+			<!-- Password input-->
+			<div class="form-group">
+				<label>Confirmez votre mot de passe</label>
+				<div>
+					<input id="passwordinput" name="passwordinput" type="password"
+						placeholder="ex:123" class="form-control input-md"
+						th:field="*{passwordConfirm}">
+				</div>
+			</div>
+
+
+			<h4>Votre prénom</h4>
+
+			<label for="textarea">
+				<p>prénom:</p>
+			</label>
+			<textarea id="textarea" class="form-control" rows="1"
+				th:field="*{firstname}" required>  </textarea>
+
+			<h4>Votre nom</h4>
+
+			<label for="textarea">
+				<p>nom:</p>
+			</label>
+			<textarea id="textarea" class="form-control" rows="1"
+				th:field="*{name}" required>  </textarea>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="Validez"></label>
+				<div class="col-md-4">
+					<button id="Validez" name="Validez" class="btn btn-default">Validez</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
 </body>
 </html>
