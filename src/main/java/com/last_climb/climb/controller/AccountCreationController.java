@@ -2,21 +2,21 @@ package com.last_climb.climb.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.last_climb.climb.model.InvalidFormException;
 import com.last_climb.climb.model.form.UserForm;
-import com.last_climb.climb.repo.UserRepo;
 import com.last_climb.climb.services.UserFormToUserService;
 
 @Controller
 public class AccountCreationController {
-
-	@Autowired
-	private UserRepo uRep;
+	static Logger logger = LoggerFactory.getLogger(AccountCreationController.class);
 
 	@Autowired
 	private UserFormToUserService userFormToUser;
@@ -28,9 +28,15 @@ public class AccountCreationController {
 	}
 
 	@PostMapping("/account")
-	public String AccCreate(UserForm userForm, Model model, HttpSession session) {
-		userFormToUser.userCreation(userForm);
+	public String AccCreate(UserForm userForm, Model model, HttpSession session) throws InvalidFormException {
+		try {
+			userFormToUser.userCreation(userForm);
+			return "index";
+		} catch (InvalidFormException e) {
+			logger.debug("account creation failed");
+			model.addAttribute("erreur", true);
 
-		return "index";
+			return "account";
+		}
 	}
 }

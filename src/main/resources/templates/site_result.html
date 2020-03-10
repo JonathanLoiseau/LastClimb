@@ -47,6 +47,7 @@
 
 		<tr th:each="site: ${ListSite}">
 			<a th:href="@{/site_display(id=${site.id})}"><p th:text="${site.name}"></p></a>
+			<p th:if ="${site.approved}">Officiel Fun Escalade </p>
 		</tr>
 		
 	</table>
