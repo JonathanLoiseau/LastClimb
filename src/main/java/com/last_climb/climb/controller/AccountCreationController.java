@@ -28,14 +28,13 @@ public class AccountCreationController {
 	}
 
 	@PostMapping("/account")
-	public String AccCreate(UserForm userForm, Model model, HttpSession session) throws InvalidFormException {
+	public String accCreate(UserForm userForm, Model model, HttpSession session) throws InvalidFormException {
 		try {
 			userFormToUser.userCreation(userForm);
 			return "index";
 		} catch (InvalidFormException e) {
-			logger.debug("account creation failed");
+			logger.error("account creation failed", e);
 			model.addAttribute("erreur", true);
-
 			return "account";
 		}
 	}

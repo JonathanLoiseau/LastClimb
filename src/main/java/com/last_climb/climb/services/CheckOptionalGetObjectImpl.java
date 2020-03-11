@@ -17,6 +17,7 @@ public class CheckOptionalGetObjectImpl<T> implements CheckOptionalGetObjectServ
 
 	@Autowired
 	private UserRepo userRepository;
+	@Autowired
 	private SiteRepository siteRepository;
 
 	@Override

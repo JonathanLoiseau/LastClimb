@@ -86,18 +86,15 @@ public class SitesController {
 	@GetMapping("/site_display")
 	public String displaySiteDisplay(@RequestParam("id") Long id, Model model, HttpSession session) {
 
-		Site site;
 		try {
-			site = checkAndGet.findANdCheckSiteById(id);
+			Site site = checkAndGet.findANdCheckSiteById(id);
 			model.addAttribute("sitedisplay", site);
 			session.setAttribute("sitedisplay", site);
 			model.addAttribute("commentForm", new CommentForm());
 			session.setAttribute("commentform", new CommentForm());
 		} catch (NoSiteException e) {
 			logger.error("pas de site", e);
-
 		}
-
 		return "site_display";
 	}
 

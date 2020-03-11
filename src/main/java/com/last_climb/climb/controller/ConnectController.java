@@ -18,5 +18,4 @@ public class ConnectController {
 		model.addAttribute("utilisateur", new Utilisateur());
 		return "connexion";
 	}
-
 }

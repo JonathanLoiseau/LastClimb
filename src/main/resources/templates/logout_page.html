@@ -1,17 +1,13 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org">
-
+<html>
 <head>
-<title>FunEscalade</title>
+<title>Sites</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
-<link rel="icon" href="/images/favicon.png" />
-
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+<link rel="stylesheet" type="text/css" href="style.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
@@ -21,8 +17,6 @@
 
 
 	<header>
-
-
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -33,54 +27,19 @@
 					<li><a href="/myaccount">Mon Compte</a></li>
 					<li><a href="/topo">Topo</a></li>
 					<li><a href="/site">Sites</a></li>
-					<li sec:authorize="!isAuthenticated()"><a href="/connexion"> Connexion</a></li>
-					<li sec:authorize="isAuthenticated()">
-						<form th:action="@{/logout}" method="post"
-							>
-							<button type="submit" class="btn btn-link" value="Sign Out" >Deconnexion</button>
-						</form>
-					</li>
-					
-					
-
-
+					<li><a href="/connexion">Connexion</a></li>
 				</ul>
 			</div>
 		</nav>
 		<div class="container">
 			<div class="row">
-				<h1 class="col-lg-12">
-					<span><img
-						th:src="|${@environment.getProperty('get.img.controller')}/logo.png|"
-						style="max-height: 100px; max-width: 100px;" /> </span> Fun Escalade:
-					Partagez votre Passion
-				</h1>
+				<h1 class="col-lg-12">Fun Escalade: Partagez votre Passion</h1>
 			</div>
 		</div>
 
+
 	</header>
 
-
-
-	<h2 th:inline="text">
-		Bonjour et bienvenue sur Fun Escalade <span
-			sec:authorize="isAuthenticated()" sec:authentication="name">Username</span>
-	</h2>
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<p>déco</p>
 </body>
 </html>
