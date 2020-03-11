@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.last_climb.climb.model.entity.Topo;
 import com.last_climb.climb.model.entity.Utilisateur;
+import com.last_climb.climb.model.exception.CantFindUserException;
 import com.last_climb.climb.repo.TopoRepository;
 import com.last_climb.climb.services.PrincipalToUserService;
 import com.last_climb.climb.services.TopoBookingService;
@@ -47,23 +48,20 @@ public class TopoFindController {
 		for (Topo t : topoList) {
 			System.out.println(t.getName());
 		}
-
 		return "select_topo";
 	}
 
 	@Transactional
 	@PostMapping("/topobooking")
 	public String bookTopo(@RequestParam Long iD) {
-		Utilisateur user = principal.principalToDbUser();
-		topoBooking.bookTopo(iD, user.getId());
+		Utilisateur user;
+		try {
+			user = principal.principalToDbUser();
+			topoBooking.bookTopo(iD, user.getId());
+		} catch (CantFindUserException e) {
+			e.printStackTrace();
+			return "login";
+		}
 		return "TopoSave";
 	}
-
-//	@Transactional
-//	@GetMapping("/topobooking/{iD}")
-//	public String bookTopoGet(@PathVariable Long iD) {
-//		topoBooking.bookTopo(iD);
-//
-//		return "index";
-//	}
 }

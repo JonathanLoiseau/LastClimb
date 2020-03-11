@@ -22,7 +22,7 @@ public class SitesCreationController {
 	@Autowired
 	private StorageService ss;
 
-	@GetMapping("/site_creation")
+	@GetMapping("/creation_site")
 	public String displaySiteCreation(Model model, HttpSession session) {
 
 		Utilisateur user = (Utilisateur) session.getAttribute("currentUser");
@@ -31,10 +31,10 @@ public class SitesCreationController {
 		session.setAttribute("site", new SiteForm());
 		session.setAttribute("voie", new VoiesForm());
 
-		return "site_creation";
+		return "creation_site";
 	}
 
-	@PostMapping("/site_creation")
+	@PostMapping("/creation_site")
 	public String displaySiteCreationPost(Model model, SiteForm sForm, HttpServletRequest req, HttpSession session,
 			@RequestParam("file") MultipartFile file) {
 		model.addAttribute("siteForm", new SiteForm());

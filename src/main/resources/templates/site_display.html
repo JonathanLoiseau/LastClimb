@@ -27,7 +27,7 @@
 					<li class="active"><a href="/index">Acceuil</a></li>
 					<li><a href="/myaccount">Mon Compte</a></li>
 					<li><a href="/topo">Topo</a></li>
-					<li><a href="/sites">Sites</a></li>
+					<li><a href="/site">Sites</a></li>
 					<li><a href="/connexion">Connexion</a></li>
 				</ul>
 			</div>
@@ -166,7 +166,7 @@
 
 	<!--form  comment-->
 
-	<form class="form-horizontal" action="#" th:action="@{/site_display}"
+	<form class="form-horizontal" action="#" th:action="@{/comment}"
 		th:object="${commentForm}" method="post">
 		<fieldset>
 
@@ -179,7 +179,7 @@
 					nous ce que vous pensez de ce site</label>
 				<div class="col-md-4">
 					<textarea class="form-control" id="sitecom" name="sitecom"
-						th:field="*{commentaire}">votre commentaire ici:</textarea>
+						th:field="*{commentaire}" placeholder="Vous devez vous connecter pour laisser un commentaire">votre commentaire ici:</textarea>
 				</div>
 			</div>
 

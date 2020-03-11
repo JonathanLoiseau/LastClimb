@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.last_climb.climb.model.InvalidFormException;
+import com.last_climb.climb.model.exception.InvalidFormException;
 import com.last_climb.climb.model.form.UserForm;
 import com.last_climb.climb.services.UserFormToUserService;
 

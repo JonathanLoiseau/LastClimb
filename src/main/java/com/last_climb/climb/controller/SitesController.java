@@ -3,7 +3,6 @@ package com.last_climb.climb.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
@@ -20,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.last_climb.climb.model.entity.Site;
+import com.last_climb.climb.model.exception.NoSiteException;
 import com.last_climb.climb.model.form.CommentForm;
 import com.last_climb.climb.model.form.FindSiteForm;
 import com.last_climb.climb.repo.SiteRepository;
+import com.last_climb.climb.services.CheckOptionalGetObjectService;
 import com.last_climb.climb.services.CommentService;
 import com.last_climb.climb.services.FindSiteService;
 
@@ -37,27 +38,26 @@ public class SitesController {
 	@Autowired
 	private CommentService commentService;
 
-	@GetMapping("/sites")
-	public String displaySites(Model model, HttpSession session) {
+	@Autowired
+	private CheckOptionalGetObjectService checkAndGet;
 
+	@GetMapping("/site")
+	public String displaySites(Model model, HttpSession session) {
 		model.addAttribute("findform", new FindSiteForm());
-		return "sites";
+		return "site";
 
 	}
 
-	@PostMapping("/sites")
+	@PostMapping("/site")
 	public String displaySitesPost(Model model, HttpSession session) {
-
 		model.addAttribute("findform", new FindSiteForm());
-		return "sites";
-
+		return "site";
 	}
 
 	@GetMapping("/find_site")
 	public String displaySiteFind(Model model, HttpSession session) {
 		model.addAttribute("findform", new FindSiteForm());
 		session.setAttribute("FindSite", new FindSiteForm());
-
 		return "find_site";
 	}
 
@@ -86,18 +86,24 @@ public class SitesController {
 	@GetMapping("/site_display")
 	public String displaySiteDisplay(@RequestParam("id") Long id, Model model, HttpSession session) {
 
-		Optional<Site> site = siteRepository.findById(id);
-		model.addAttribute("sitedisplay", site.get());
-		session.setAttribute("sitedisplay", site.get());
-		model.addAttribute("commentForm", new CommentForm());
-		session.setAttribute("commentform", new CommentForm());
+		Site site;
+		try {
+			site = checkAndGet.findANdCheckSiteById(id);
+			model.addAttribute("sitedisplay", site);
+			session.setAttribute("sitedisplay", site);
+			model.addAttribute("commentForm", new CommentForm());
+			session.setAttribute("commentform", new CommentForm());
+		} catch (NoSiteException e) {
+			logger.error("pas de site", e);
+
+		}
 
 		return "site_display";
 	}
 
 	@Transactional
-	@PostMapping("/site_display")
-	public String displaySiteDisplayPost(Model model, HttpSession session, CommentForm cf,
+	@PostMapping("/comment")
+	public String displayComment(Model model, HttpSession session, CommentForm cf,
 			RedirectAttributes redirectAttributes) throws IOException {
 
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();

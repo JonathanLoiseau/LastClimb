@@ -1,8 +1,8 @@
 package com.last_climb.climb.services;
 
-import com.last_climb.climb.model.InvalidMailException;
-import com.last_climb.climb.model.InvalidPasswordExeption;
 import com.last_climb.climb.model.entity.Utilisateur;
+import com.last_climb.climb.model.exception.InvalidMailException;
+import com.last_climb.climb.model.exception.InvalidPasswordExeption;
 import com.last_climb.climb.model.form.UserForm;
 
 public interface UserUpdateService {

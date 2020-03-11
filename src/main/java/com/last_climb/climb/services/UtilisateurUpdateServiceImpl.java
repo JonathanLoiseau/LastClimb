@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.last_climb.climb.model.InvalidMailException;
-import com.last_climb.climb.model.InvalidPasswordExeption;
 import com.last_climb.climb.model.entity.Utilisateur;
+import com.last_climb.climb.model.exception.InvalidMailException;
+import com.last_climb.climb.model.exception.InvalidPasswordExeption;
 import com.last_climb.climb.model.form.UserForm;
 import com.last_climb.climb.repo.UserRepo;
 

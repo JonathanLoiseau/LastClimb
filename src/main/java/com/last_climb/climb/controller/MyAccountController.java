@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.last_climb.climb.model.InvalidMailException;
-import com.last_climb.climb.model.InvalidPasswordExeption;
 import com.last_climb.climb.model.entity.Utilisateur;
+import com.last_climb.climb.model.exception.CantFindUserException;
+import com.last_climb.climb.model.exception.InvalidMailException;
+import com.last_climb.climb.model.exception.InvalidPasswordExeption;
 import com.last_climb.climb.model.form.UserForm;
-import com.last_climb.climb.services.CheckOptional;
+import com.last_climb.climb.services.CheckOptionalGetObjectService;
 import com.last_climb.climb.services.PrincipalToUserService;
 import com.last_climb.climb.services.TopoGestionService;
 import com.last_climb.climb.services.UtilisateurUpdateServiceImpl;
@@ -28,7 +29,7 @@ public class MyAccountController {
 	private UtilisateurUpdateServiceImpl userUp;
 
 	@Autowired
-	private CheckOptional<Utilisateur> checker;
+	private CheckOptionalGetObjectService<Utilisateur> checker;
 
 	@Autowired
 	private TopoGestionService topoManager;
@@ -44,10 +45,15 @@ public class MyAccountController {
 	public String displayAccount(Model model, HttpSession session) {
 		logger.info("In the do get");
 
-		Utilisateur user = principal.principalToDbUser();
-
-		model.addAttribute("topolist", user.getListTopo());
-		model.addAttribute("userform", new UserForm());
+		Utilisateur user;
+		try {
+			user = principal.principalToDbUser();
+			model.addAttribute("topolist", user.getListTopo());
+			model.addAttribute("userform", new UserForm());
+		} catch (CantFindUserException e) {
+			model.addAttribute("missUser", true);
+			e.printStackTrace();
+		}
 
 		return "myaccount";
 	}
@@ -56,71 +62,67 @@ public class MyAccountController {
 	public String displayAccountPost(Model model, HttpSession session) {
 		logger.info("In the do post");
 
-		Utilisateur user = principal.principalToDbUser();
-
-		model.addAttribute("topolist", user.getListTopo());
-		model.addAttribute("userform", new UserForm());
-
+		try {
+			Utilisateur user = principal.principalToDbUser();
+			model.addAttribute("topolist", user.getListTopo());
+			model.addAttribute("userform", new UserForm());
+		} catch (CantFindUserException e) {
+			model.addAttribute("missUser", true);
+			e.printStackTrace();
+		}
 		return "myaccount";
 	}
 
 	@PostMapping("/setPassword")
 	public String DisplayAccountPass(UserForm userform, HttpSession session, Model model) {
 
-		Utilisateur user = principal.principalToDbUser();
-
-		model.addAttribute("topolist", user.getListTopo());
-		model.addAttribute("userform", userform);
-
-		String name = user.getUsername();
-		String pass = user.getPassword();
-
-		boolean isHere = checker.findAndCheck(name, pass);
-		if (isHere) {
-			try {
-				userUp.updatePassword(user, userform);
-			} catch (InvalidPasswordExeption e) {
-				model.addAttribute("erreurPass", true);
-				e.printStackTrace();
-			}
-			return "myaccount";
-		} else {
-			return "index";
+		try {
+			Utilisateur user = principal.principalToDbUser();
+			model.addAttribute("topolist", user.getListTopo());
+			model.addAttribute("userform", userform);
+			userUp.updatePassword(user, userform);
+		} catch (InvalidPasswordExeption e) {
+			model.addAttribute("erreurPass", true);
+			e.printStackTrace();
 		}
+
+		catch (CantFindUserException e1) {
+			model.addAttribute("missUser", true);
+			e1.printStackTrace();
+		}
+		return "myaccount";
 	}
 
 	@PostMapping("/setMail")
 	public String DisplayAccountMail(UserForm userform, HttpSession session, Model model) {
-		Utilisateur user = principal.principalToDbUser();
+		try {
+			Utilisateur user = principal.principalToDbUser();
+			model.addAttribute("topolist", user.getListTopo());
+			model.addAttribute("userform", userform);
 
-		model.addAttribute("topolist", user.getListTopo());
-		model.addAttribute("userform", userform);
+			userUp.updateMail(user, userform);
+		} catch (InvalidMailException e) {
+			model.addAttribute("erreurMail", true);
+			e.printStackTrace();
 
-		String name = user.getUsername();
-		String pass = user.getPassword();
-
-		boolean isHere = checker.findAndCheck(name, pass);
-		if (isHere) {
-			try {
-				userUp.updateMail(user, userform);
-			} catch (InvalidMailException e) {
-				model.addAttribute("erreurMail", true);
-				e.printStackTrace();
-			}
-			return "myaccount";
-		} else {
-			return "index";
+		} catch (CantFindUserException e1) {
+			model.addAttribute("missUser", true);
+			e1.printStackTrace();
 		}
-
+		return "myaccount";
 	}
 
 	@PostMapping("/share")
 	public String shareTopo(@RequestParam("iD") Long iD, Model model) {
 		topoManager.share(iD);
-		Utilisateur user = principal.principalToDbUser();
-
-		model.addAttribute("topolist", user.getListTopo());
-		model.addAttribute("userform", new UserForm());
+		try {
+			Utilisateur user = principal.principalToDbUser();
+			model.addAttribute("topolist", user.getListTopo());
+			model.addAttribute("userform", new UserForm());
+		} catch (CantFindUserException e) {
+			model.addAttribute("missUser", true);
+			e.printStackTrace();
+		}
 		return "myaccount";
 
 	}
@@ -128,11 +130,14 @@ public class MyAccountController {
 	@PostMapping("/available")
 	public String makeAvailableTopo(@RequestParam("iD") Long iD, Model model) {
 		topoManager.share(iD);
-		Utilisateur user = principal.principalToDbUser();
-
-		model.addAttribute("topolist", user.getListTopo());
-		model.addAttribute("userform", new UserForm());
-
+		try {
+			Utilisateur user = principal.principalToDbUser();
+			model.addAttribute("topolist", user.getListTopo());
+			model.addAttribute("userform", new UserForm());
+		} catch (CantFindUserException e) {
+			model.addAttribute("missUser", true);
+			e.printStackTrace();
+		}
 		topoManager.makeAvailable(iD);
 		return "myaccount";
 
