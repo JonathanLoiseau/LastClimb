@@ -1,5 +1,6 @@
 package com.last_climb.climb.services;
 
+import java.util.HashSet;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -37,20 +38,29 @@ public class SiteCreationServiceImpl implements SiteCreationService {
 	@Autowired
 	private ExtractIdService extractor;
 
+	@Autowired
+	private VoieFormToVoie voieFormToVoie;
+
 	@Transactional
 	@Override
 	public IdContainer create(SiteForm sf, CreationVoieForm cf, VoiesForm vf) {
 
 		Secteur secteur = new Secteur();
 		Site site = new Site();
-		Voie voie = new Voie(vf);
+		Voie voie = voieFormToVoie.createVoie(vf, secteur);
 
-		voie.setSecteur(secteur);
+//		voie.setSecteur(secteur);
+//		voie.setCotation(vf.getCotation());
+//		voie.setHeight(vf.getHeight());
+//		voie.setNbPoint(vf.getNbPoint());
+//		voie.setName(vf.getName());
 		secteur.setName(cf.getName());
+		secteur.setListvoies(new HashSet<Voie>());
 		secteur.addVoie(voie);
 		site.setName(sf.getName());
 		site.setLocalisation(sf.getLocalisation());
 		site.setSiteimg(sf.getSiteimg());
+		site.setListSecteur(new HashSet<Secteur>());
 		site.addSecteur(secteur);
 		secteur.setSite(site);
 

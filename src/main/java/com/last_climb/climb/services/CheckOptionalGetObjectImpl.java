@@ -5,10 +5,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.last_climb.climb.model.entity.Commentaire;
 import com.last_climb.climb.model.entity.Site;
 import com.last_climb.climb.model.entity.Utilisateur;
 import com.last_climb.climb.model.exception.CantFindUserException;
+import com.last_climb.climb.model.exception.NoCommentaryException;
 import com.last_climb.climb.model.exception.NoSiteException;
+import com.last_climb.climb.repo.CommentaireRepository;
 import com.last_climb.climb.repo.SiteRepository;
 import com.last_climb.climb.repo.UserRepo;
 
@@ -19,6 +22,8 @@ public class CheckOptionalGetObjectImpl<T> implements CheckOptionalGetObjectServ
 	private UserRepo userRepository;
 	@Autowired
 	private SiteRepository siteRepository;
+	@Autowired
+	private CommentaireRepository commentaireRepository;
 
 	@Override
 	public Utilisateur findAndCheckUserByUsernameAndPassword(String username, String password)
@@ -53,4 +58,17 @@ public class CheckOptionalGetObjectImpl<T> implements CheckOptionalGetObjectServ
 			throw new NoSiteException();
 		}
 	}
+
+	@Override
+	public Commentaire findANdCheckCommentaireById(Long id) throws NoCommentaryException {
+		Optional<Commentaire> newComm = commentaireRepository.findById(id);
+		if (newComm.isPresent()) {
+			Commentaire comm = newComm.get();
+			return comm;
+		} else {
+			throw new NoCommentaryException();
+		}
+
+	}
+
 }

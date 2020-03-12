@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
-<title>Sites</title>
+<title>TopoSave</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -27,7 +27,13 @@
 					<li><a href="/myaccount">Mon Compte</a></li>
 					<li><a href="/topo">Topo</a></li>
 					<li><a href="/site">Sites</a></li>
-					<li><a href="/connexion">Connexion</a></li>
+					<li sec:authorize="!isAuthenticated()"><a href="/connexion"> Connexion</a></li>
+					<li sec:authorize="isAuthenticated()">
+						<form th:action="@{/logout}" method="post"
+							>
+							<button type="submit" class="btn btn-link" value="Sign Out" >Deconnexion</button>
+						</form>
+					</li>
 				</ul>
 			</div>
 		</nav>

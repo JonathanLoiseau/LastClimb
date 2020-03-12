@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.last_climb.climb.model.entity.Site;
+import com.last_climb.climb.model.exception.NoCommentaryException;
 import com.last_climb.climb.model.exception.NoSiteException;
 import com.last_climb.climb.model.form.CommentForm;
 import com.last_climb.climb.model.form.FindSiteForm;
-import com.last_climb.climb.repo.SiteRepository;
 import com.last_climb.climb.services.CheckOptionalGetObjectService;
 import com.last_climb.climb.services.CommentService;
 import com.last_climb.climb.services.FindSiteService;
@@ -33,8 +33,7 @@ public class SitesController {
 	private static final Logger logger = LoggerFactory.getLogger(SitesController.class);
 	@Autowired
 	private FindSiteService findSiteService;
-	@Autowired
-	private SiteRepository siteRepository;
+
 	@Autowired
 	private CommentService commentService;
 
@@ -114,7 +113,29 @@ public class SitesController {
 
 	@PostMapping("/deletecom")
 	public String deleteComm(@RequestParam("id") Long id, RedirectAttributes redirectAttributes, HttpSession session) {
-		commentService.delete(id);
+		try {
+			commentService.delete(id);
+		} catch (NoCommentaryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Site s = (Site) session.getAttribute("sitedisplay");
+		redirectAttributes.addAttribute("id", s.getId());
+		return "redirect:/site_display";
+	}
+
+	@Transactional
+	@PostMapping("/editcom")
+	public String editComm(@RequestParam("id") Long id, RedirectAttributes redirectAttributes, HttpSession session,
+			Model model, CommentForm cf) {
+
+		try {
+			System.out.println("editcom");
+			commentService.edit(id, cf.getCommentaire());
+		} catch (NoCommentaryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Site s = (Site) session.getAttribute("sitedisplay");
 		redirectAttributes.addAttribute("id", s.getId());
 		return "redirect:/site_display";

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.last_climb.climb.model.entity.Site;
 import com.last_climb.climb.repo.SiteRepository;
@@ -24,11 +25,12 @@ public class ApprovalController {
 	}
 
 	@PostMapping("/approval")
-	public String approvalValidationPost(Model model, HttpSession session) {
+	public String approvalValidationPost(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
 		Site s = (Site) session.getAttribute("sitedisplay");
 		s.setApproved(true);
 		sRep.save(s);
-		return "index";
+		redirectAttributes.addAttribute("id", s.getId());
+		return "redirect:/site_display";
 
 	}
 

@@ -1,7 +1,6 @@
 package com.last_climb.climb.model.entity;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -41,7 +40,7 @@ public class Utilisateur {
 	private Role role;
 
 	@OneToMany(mappedBy = "user")
-	private Set<Topo> listTopo = new HashSet<Topo>();
+	private Set<Topo> listTopo;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	LocalDate birthDate;
