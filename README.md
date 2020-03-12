@@ -38,6 +38,6 @@ mode prod -> cd target java -jar nom du projet lancer le jar.
 Lancer localhost:8080
 (insert screenshot(doc:SCREENSHOT))+default user.
 user +pass
-admin+pass
+admin+pass 
 
 
