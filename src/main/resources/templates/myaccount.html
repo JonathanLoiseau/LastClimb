@@ -30,11 +30,11 @@
 					<li><a href="/myaccount">Mon Compte</a></li>
 					<li><a href="/topo">Topo</a></li>
 					<li><a href="/site">Sites</a></li>
-					<li sec:authorize="!isAuthenticated()"><a href="/connexion"> Connexion</a></li>
+					<li sec:authorize="!isAuthenticated()"><a href="/connexion">
+							Connexion</a></li>
 					<li sec:authorize="isAuthenticated()">
-						<form th:action="@{/logout}" method="post"
-							>
-							<button type="submit" class="btn btn-link" value="Sign Out" >Deconnexion</button>
+						<form th:action="@{/logout}" method="post">
+							<button type="submit" class="btn btn-link" value="Sign Out">Deconnexion</button>
 						</form>
 					</li>
 				</ul>
@@ -184,6 +184,11 @@
 				<form class="form-horizontal" action="#"
 					th:action="@{/available(iD=${topo.iD})}" method="post">
 					<fieldset>
+
+						<p>
+							Ce toppo est actuellement prété a :<span
+								th:text="${topo.BookerMail}"> </span>
+						</p>
 
 						<!-- Form Name -->
 						<legend>Rendre disponible</legend>

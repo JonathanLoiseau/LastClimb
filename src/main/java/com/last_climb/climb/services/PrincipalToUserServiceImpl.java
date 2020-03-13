@@ -15,7 +15,7 @@ public class PrincipalToUserServiceImpl<T> implements PrincipalToUserService {
 	@Autowired
 	private UserRepo uRep;
 	@Autowired
-	private CheckOptionalGetObjectService<T> checkOptional;
+	private CheckOptionalGetObjectService checkOptional;
 
 	@Override
 	public Utilisateur principalToUser() {

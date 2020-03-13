@@ -17,7 +17,6 @@ import com.last_climb.climb.model.exception.CantFindUserException;
 import com.last_climb.climb.model.exception.InvalidMailException;
 import com.last_climb.climb.model.exception.InvalidPasswordExeption;
 import com.last_climb.climb.model.form.UserForm;
-import com.last_climb.climb.services.CheckOptionalGetObjectService;
 import com.last_climb.climb.services.PrincipalToUserService;
 import com.last_climb.climb.services.TopoGestionService;
 import com.last_climb.climb.services.UtilisateurUpdateServiceImpl;
@@ -27,9 +26,6 @@ public class MyAccountController {
 
 	@Autowired
 	private UtilisateurUpdateServiceImpl userUp;
-
-	@Autowired
-	private CheckOptionalGetObjectService<Utilisateur> checker;
 
 	@Autowired
 	private TopoGestionService topoManager;
@@ -45,16 +41,14 @@ public class MyAccountController {
 	public String displayAccount(Model model, HttpSession session) {
 		logger.info("In the do get");
 
-		Utilisateur user;
 		try {
-			user = principal.principalToDbUser();
+			Utilisateur user = principal.principalToDbUser();
 			model.addAttribute("topolist", user.getListTopo());
 			model.addAttribute("userform", new UserForm());
 		} catch (CantFindUserException e) {
 			model.addAttribute("missUser", true);
-			e.printStackTrace();
+			logger.error("missingUser", e);
 		}
-
 		return "myaccount";
 	}
 
@@ -68,7 +62,7 @@ public class MyAccountController {
 			model.addAttribute("userform", new UserForm());
 		} catch (CantFindUserException e) {
 			model.addAttribute("missUser", true);
-			e.printStackTrace();
+			logger.error("missingUser", e);
 		}
 		return "myaccount";
 	}
@@ -83,12 +77,12 @@ public class MyAccountController {
 			userUp.updatePassword(user, userform);
 		} catch (InvalidPasswordExeption e) {
 			model.addAttribute("erreurPass", true);
-			e.printStackTrace();
+			logger.error("incorrectPassword", e);
 		}
 
 		catch (CantFindUserException e1) {
 			model.addAttribute("missUser", true);
-			e1.printStackTrace();
+			logger.error("missingUser", e1);
 		}
 		return "myaccount";
 	}
@@ -103,11 +97,10 @@ public class MyAccountController {
 			userUp.updateMail(user, userform);
 		} catch (InvalidMailException e) {
 			model.addAttribute("erreurMail", true);
-			e.printStackTrace();
-
+			logger.debug("erreurMail", e);
 		} catch (CantFindUserException e1) {
 			model.addAttribute("missUser", true);
-			e1.printStackTrace();
+			logger.debug("missingUser", e1);
 		}
 		return "myaccount";
 	}
@@ -121,7 +114,7 @@ public class MyAccountController {
 			model.addAttribute("userform", new UserForm());
 		} catch (CantFindUserException e) {
 			model.addAttribute("missUser", true);
-			e.printStackTrace();
+			logger.error("missingUser", e);
 		}
 		return "myaccount";
 
@@ -134,11 +127,11 @@ public class MyAccountController {
 			Utilisateur user = principal.principalToDbUser();
 			model.addAttribute("topolist", user.getListTopo());
 			model.addAttribute("userform", new UserForm());
+			topoManager.makeAvailable(iD);
 		} catch (CantFindUserException e) {
 			model.addAttribute("missUser", true);
-			e.printStackTrace();
+			logger.error("missingUser", e);
 		}
-		topoManager.makeAvailable(iD);
 		return "myaccount";
 
 	}

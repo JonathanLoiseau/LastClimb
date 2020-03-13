@@ -1,13 +1,15 @@
 package com.last_climb.climb.services;
 
 import java.util.Objects;
-import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.last_climb.climb.model.entity.Utilisateur;
+import com.last_climb.climb.model.exception.CantFindUserException;
 import com.last_climb.climb.model.exception.InvalidMailException;
 import com.last_climb.climb.model.exception.InvalidPasswordExeption;
 import com.last_climb.climb.model.form.UserForm;
@@ -20,20 +22,28 @@ public class UtilisateurUpdateServiceImpl implements UserUpdateService {
 	private UserRepo uRep;
 
 	@Autowired
-	BCryptPasswordEncoder passwordEncoder;
+	private BCryptPasswordEncoder passwordEncoder;
+
+	@Autowired
+	private CheckOptionalGetObjectService checkAndGet;
+
+	private static final Logger logger = LoggerFactory.getLogger(UtilisateurUpdateServiceImpl.class);
 
 	@Override
 	public void updatePassword(Utilisateur user, UserForm userform) throws InvalidPasswordExeption {
-//		String password = passwordEncoder.encode(userform.getPassword());
-
 		if (passwordEncoder.matches(userform.getPassword(), user.getPassword())) {
 			String pass = user.getPassword();
 			String uName = user.getUsername();
-			Optional<Utilisateur> newUser = uRep.findByUsernameAndPassword(uName, pass);
-			String newPass = passwordEncoder.encode(userform.getNewPassword());
-			Utilisateur uToUpdate = newUser.get();
-			uToUpdate.setPassword(newPass);
-			uRep.save(uToUpdate);
+			Utilisateur utilisateurToUpdate;
+			try {
+				utilisateurToUpdate = checkAndGet.findAndCheckUserByUsernameAndPassword(uName, pass);
+				String newPass = passwordEncoder.encode(userform.getNewPassword());
+				utilisateurToUpdate.setPassword(newPass);
+				uRep.save(utilisateurToUpdate);
+			} catch (CantFindUserException e) {
+				logger.error("cantFindUser", e);
+			}
+
 		} else {
 			throw new InvalidPasswordExeption();
 		}
@@ -44,15 +54,19 @@ public class UtilisateurUpdateServiceImpl implements UserUpdateService {
 		if (Objects.equals(user.getMail(), userform.getMail())) {
 			String pass = user.getPassword();
 			String uName = user.getUsername();
-			Optional<Utilisateur> newUser = uRep.findByUsernameAndPassword(uName, pass);
-			String newMail = userform.getNewMail();
-			Utilisateur uToUpdate = newUser.get();
-			uToUpdate.setMail(newMail);
-			uRep.save(uToUpdate);
+
+			try {
+				Utilisateur utilisateurToUpdate = checkAndGet.findAndCheckUserByUsernameAndPassword(uName, pass);
+				String newMail = userform.getNewMail();
+				utilisateurToUpdate.setMail(newMail);
+				uRep.save(utilisateurToUpdate);
+			} catch (CantFindUserException e) {
+				logger.error("cantFindUser", e);
+			}
+
 		} else {
 			throw new InvalidMailException();
 		}
-
 	}
 
 }

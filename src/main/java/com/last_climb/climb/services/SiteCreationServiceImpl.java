@@ -1,7 +1,6 @@
 package com.last_climb.climb.services;
 
 import java.util.HashSet;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -14,6 +13,8 @@ import com.last_climb.climb.model.IdContainer;
 import com.last_climb.climb.model.entity.Secteur;
 import com.last_climb.climb.model.entity.Site;
 import com.last_climb.climb.model.entity.Voie;
+import com.last_climb.climb.model.exception.NoSiteException;
+import com.last_climb.climb.model.exception.SecteurNotFoundException;
 import com.last_climb.climb.model.form.CreationVoieForm;
 import com.last_climb.climb.model.form.SiteForm;
 import com.last_climb.climb.model.form.VoiesForm;
@@ -40,28 +41,28 @@ public class SiteCreationServiceImpl implements SiteCreationService {
 
 	@Autowired
 	private VoieFormToVoie voieFormToVoie;
+	@Autowired
+	private CheckOptionalGetObjectService checkAndGet;
 
 	@Transactional
 	@Override
-	public IdContainer create(SiteForm sf, CreationVoieForm cf, VoiesForm vf) {
+	public IdContainer create(SiteForm sf, CreationVoieForm cf, VoiesForm vf)
+			throws NoSiteException, SecteurNotFoundException {
 
 		Secteur secteur = new Secteur();
 		Site site = new Site();
 		Voie voie = voieFormToVoie.createVoie(vf, secteur);
 
-//		voie.setSecteur(secteur);
-//		voie.setCotation(vf.getCotation());
-//		voie.setHeight(vf.getHeight());
-//		voie.setNbPoint(vf.getNbPoint());
-//		voie.setName(vf.getName());
 		secteur.setName(cf.getName());
 		secteur.setListvoies(new HashSet<Voie>());
 		secteur.addVoie(voie);
+
 		site.setName(sf.getName());
 		site.setLocalisation(sf.getLocalisation());
 		site.setSiteimg(sf.getSiteimg());
 		site.setListSecteur(new HashSet<Secteur>());
 		site.addSecteur(secteur);
+
 		secteur.setSite(site);
 
 		if (sf.getId() == null && cf.getId() == null) {
@@ -74,8 +75,8 @@ public class SiteCreationServiceImpl implements SiteCreationService {
 			return extractor.extractId(site, secteur, voie);
 
 		} else if (sf.getId() != null && cf.getId() == null) {
-			Optional<Site> testSite = sitRep.findById(sf.getId());
-			Site sitepresent = testSite.get();
+
+			Site sitepresent = checkAndGet.findANdCheckSiteById(sf.getId());
 			sitepresent.setNbSect(sitepresent.getNbSect() + 1);
 			sitRep.save(sitepresent);
 			secteur.setSite(sitepresent);
@@ -83,17 +84,13 @@ public class SiteCreationServiceImpl implements SiteCreationService {
 			voie.setSecteur(secteur);
 			vRep.save(voie);
 			logger.debug("seulement site");
-
 			return extractor.extractId(sitepresent, secteur, voie);
-
 		}
 
 		else {
 			logger.debug("test optional");
-			Optional<Site> testSite = sitRep.findById(sf.getId());
-			Optional<Secteur> testSect = secRep.findById(cf.getId());
-			Site sitepresent = testSite.get();
-			Secteur secteurpresent = testSect.get();
+			Site sitepresent = checkAndGet.findANdCheckSiteById(sf.getId());
+			Secteur secteurpresent = checkAndGet.findAndCheckSecteurById(cf.getId());
 			sitRep.save(sitepresent);
 			secteurpresent.setSite(sitepresent);
 			secRep.save(secteurpresent);
@@ -101,8 +98,6 @@ public class SiteCreationServiceImpl implements SiteCreationService {
 			vRep.save(voie);
 			logger.debug("secteur et site présent");
 			return extractor.extractId(sitepresent, secteurpresent, voie);
-
 		}
 	}
-
 }
