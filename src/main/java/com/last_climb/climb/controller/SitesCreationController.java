@@ -11,15 +11,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.last_climb.climb.model.entity.Utilisateur;
+import com.last_climb.climb.model.exception.CantFindUserException;
 import com.last_climb.climb.model.form.CreationVoieForm;
 import com.last_climb.climb.model.form.SiteForm;
 import com.last_climb.climb.model.form.VoiesForm;
+import com.last_climb.climb.services.PrincipalToUserService;
 import com.last_climb.climb.services.StorageService;
 
 @Controller
 public class SitesCreationController {
 	@Autowired
 	private StorageService ss;
+	@Autowired
+	private PrincipalToUserService principal;
 
 	@GetMapping("/creation_site")
 	public String displaySiteCreation(Model model, HttpSession session) {
@@ -37,11 +42,20 @@ public class SitesCreationController {
 			@RequestParam("file") MultipartFile file) {
 		model.addAttribute("siteForm", new SiteForm());
 		model.addAttribute("creationvoieform", new CreationVoieForm());
-		ss.store(file);
-		sForm.setSiteimg(file.getOriginalFilename());
-		session.setAttribute("site", sForm);
+		try {
+			Utilisateur user = principal.principalToDbUser();
+			Long userid = user.getId();
+			String idtoSave = userid.toString();
+			ss.store(file, idtoSave);
+			sForm.setSiteimg(file.getOriginalFilename());
+			session.setAttribute("site", sForm);
 
+		} catch (CantFindUserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "secteur_creation";
+
 	}
 
 }

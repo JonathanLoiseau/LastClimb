@@ -30,8 +30,8 @@ public class PrincipalToUserServiceImpl<T> implements PrincipalToUserService {
 		UtilisateurPrincipal up = (UtilisateurPrincipal) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
 		Utilisateur user = up.getUser();
-
-		Utilisateur newUser = checkOptional.findAndCheckUserById(user.getId());
+		Utilisateur newUser = checkOptional.findAndCheckUserByUsernameAndPassword(user.getUsername(),
+				user.getPassword());
 		return newUser;
 
 	}

@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface StorageService {
 
 	Resource loadAsResource(String filename);
-	void store(MultipartFile multipass);
+
+	void store(MultipartFile multipass, String name);
 
 }

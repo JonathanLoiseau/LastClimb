@@ -7,6 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -41,9 +43,15 @@ public class StorageServiceImpl implements StorageService {
 	}
 
 	@Override
-	public void store(MultipartFile multipass) {
+	public void store(MultipartFile multipass, String name) {
+		String pattern = "dd_MM_yyyy_hh_mm_ss a";
+		LocalDateTime nowTime = LocalDateTime.now();
+		String date = nowTime.format(DateTimeFormatter.ofPattern(pattern));
+		String filename = "";
+		filename += date;
+		filename += name;
+		filename += StringUtils.cleanPath(multipass.getOriginalFilename());
 
-		String filename = StringUtils.cleanPath(multipass.getOriginalFilename());
 		try {
 			if (multipass.isEmpty()) {
 				throw new IllegalStateException("Failed to store empty file " + filename);
@@ -61,7 +69,5 @@ public class StorageServiceImpl implements StorageService {
 		} catch (IOException e) {
 			throw new IllegalStateException("Failed to store file " + filename, e);
 		}
-
 	}
-
 }
