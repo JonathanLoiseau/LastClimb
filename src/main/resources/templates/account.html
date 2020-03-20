@@ -1,50 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org">
+
 <head>
-<title>Account</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.css">
 
+    <title>Acceuil</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 
-
-	<header>
-
-		<nav class="navbar navbar-inverse">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="#">FUN ESCALADE</a>
-				</div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="/index">Acceuil</a></li>
-					<li><a href="/myaccount">Mon Compte</a></li>
-					<li><a href="/topo">Topo</a></li>
-					<li><a href="/site">Sites</a></li>
-					<li sec:authorize="!isAuthenticated()"><a href="/connexion"> Connexion</a></li>
-					<li sec:authorize="isAuthenticated()">
-						<form th:action="@{/logout}" method="post"
-							>
-							<button type="submit" class="btn btn-link" value="Sign Out" >Deconnexion</button>
+    <nav class="navbar navbar-expand-md">
+      <img src="images/logo.png" class="img-fluid logo" >
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navigation">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/index">Acceuil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/myaccount">Mon compte</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/topo">Topo</a>
+            </li>
+            <li  class="nav-item">
+              <a class="nav-link" href="/site">Sites</a>
+            </li>
+            <li class="nav-item" sec:authorize="!isAuthenticated()">
+              <a class="nav-link" href="/connexion">Connexion</a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+						<form th:action="@{/logout}" method="post">
+							<button type="submit" class="btn btn-link nav-link" value="Sign Out">Deconnexion</button>
 						</form>
 					</li>
-				</ul>
-			</div>
-		</nav>
-		<div class="container">
-			<div class="row">
-				<h1 class="col-lg-12">Fun Escalade: Partagez votre Passion</h1>
-			</div>
-		</div>
+          </ul>
+        </div>
+      </nav>
 
+      <header class="page-header header container-fluid">
+        <div class="overlay"></div>
+        <div class="description">
+          <h1>Bienvenue sur Fun Escalade</h1>
+          <p>Ce site a pour but de vous permettre de découvrir de nouveaux spots de grimpe. Partagez des sites que vous connaissez, découvrez en près de chez vous ou sur vos lieux de vacances et si vous souhaitez des informations poussées vous pouvez toujours consulter les toppos disponibles </p>
+        </div>
+      </header>
 
 	</header>
 
