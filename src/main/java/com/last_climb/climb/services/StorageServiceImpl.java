@@ -10,6 +10,7 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -22,7 +23,7 @@ public class StorageServiceImpl implements StorageService {
 
 	@Value("${path.root}")
 	private String PATH_ROOT;
-
+	
 	@Override
 	public Resource loadAsResource(String filename) {
 		try {
@@ -43,30 +44,25 @@ public class StorageServiceImpl implements StorageService {
 	}
 
 	@Override
-	public void store(MultipartFile multipass, String name) {
-		String pattern = "dd_MM_yyyy_hh_mm_ss a";
-		LocalDateTime nowTime = LocalDateTime.now();
-		String date = nowTime.format(DateTimeFormatter.ofPattern(pattern));
-		String filename = "";
-		filename += date;
-		filename += name;
-		filename += StringUtils.cleanPath(multipass.getOriginalFilename());
+	public void store(MultipartFile multipass, String newName) {
+		
+		
 		try {
 			if (multipass.isEmpty()) {
-				throw new IllegalStateException("Failed to store empty file " + filename);
+				throw new IllegalStateException("Failed to store empty file " + newName);
 			}
-			if (filename.contains("..")) {
+			if (newName.contains("..")) {
 				// This is a security check
 				throw new IllegalStateException(
-						"Cannot store file with relative path outside current directory " + filename);
+						"Cannot store file with relative path outside current directory " + newName);
 			}
 			// prends le stream et le copy
 			try (InputStream inputStream = multipass.getInputStream()) {
-				Path file = Paths.get(PATH_ROOT).resolve(filename);
+				Path file = Paths.get(PATH_ROOT).resolve(newName);
 				Files.copy(inputStream, file, StandardCopyOption.REPLACE_EXISTING);
 			}
 		} catch (IOException e) {
-			throw new IllegalStateException("Failed to store file " + filename, e);
+			throw new IllegalStateException("Failed to store file " +newName, e);
 		}
 	}
 }

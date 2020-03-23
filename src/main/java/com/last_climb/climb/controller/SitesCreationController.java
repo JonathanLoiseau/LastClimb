@@ -16,15 +16,18 @@ import com.last_climb.climb.model.exception.CantFindUserException;
 import com.last_climb.climb.model.form.CreationVoieForm;
 import com.last_climb.climb.model.form.SiteForm;
 import com.last_climb.climb.model.form.VoiesForm;
+import com.last_climb.climb.services.ImgNameCreationService;
 import com.last_climb.climb.services.PrincipalToUserService;
 import com.last_climb.climb.services.StorageService;
 
 @Controller
 public class SitesCreationController {
 	@Autowired
-	private StorageService ss;
+	private StorageService storageService;
 	@Autowired
 	private PrincipalToUserService principal;
+	@Autowired
+	private ImgNameCreationService imgNameCreationService;
 
 	@GetMapping("/creation_site")
 	public String displaySiteCreation(Model model, HttpSession session) {
@@ -46,8 +49,9 @@ public class SitesCreationController {
 			Utilisateur user = principal.principalToDbUser();
 			Long userid = user.getId();
 			String idtoSave = userid.toString();
-			ss.store(file, idtoSave);
-			sForm.setSiteimg(file.getOriginalFilename());
+			String newName= imgNameCreationService.changeName(idtoSave,file);
+			storageService.store(file, newName);
+			sForm.setSiteimg(newName);
 			session.setAttribute("site", sForm);
 
 		} catch (CantFindUserException e) {

@@ -4,10 +4,23 @@
   <meta charset="UTF-8">
   </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-bottom">
-	  <div class="container">
-	    <p class="navbar-text"><a href="http://com.imako.digital/">Souleymane  SANOGO</a> &copy; <put-date th:text=${#dates.year(#dates.createNow())}></put-date> | Créateur de Valeurs.</p> 
-	  </div>
-	</nav>
+	
+    <div th:fragment="footer">
+        <div class="container" >
+          <div class="row page-footer" >
+            <div class="col-lg-8 col-md-8 col-sm-12">
+            <h6 class="text-uppercase font-weight-bold">Information additionelles</h6>
+            <p>Fun escalade ne peux en aucun cas être tenu responsable suite à un accident ou une chute, pensez a bien vous équipez et prenez toutes les précaution nécaissaire lors de vos sorties. </p>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <h6 class="text-uppercase font-weight-bold">Contact</h6>
+            <p>1 Rond point Georges Pompidou Sophia-Antipolis</p>
+            <p>info@FunEscalade.com</p>
+            <p>06 12 94 23 27</p>
+          </div>
+        </div>
+        <div class="footer-copyright text-center">© 2020 Copyright:FunEscalade.com</div>
+        
+     
 </body>
 </html>

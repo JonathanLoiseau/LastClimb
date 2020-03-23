@@ -30,16 +30,5 @@ public class UploadController {
 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/png").body(file);
 	}
 
-//	@PostMapping("/images")
-//	public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes,
-//			SiteForm sform) {
-//
-//		ss.store(file, sform.getName());
-//		redirectAttributes.addFlashAttribute("message",
-//				"You successfully uploaded " + file.getOriginalFilename() + "!");
-//		redirectAttributes.addFlashAttribute("filename", file.getOriginalFilename());
-//
-//		return "redirect:/";
-//	}
 
 }

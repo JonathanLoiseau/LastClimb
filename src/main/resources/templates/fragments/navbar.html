@@ -1,0 +1,38 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html>
+  <head>
+  <meta charset="UTF-8">
+  </head>
+<body>
+	
+    <div th:fragment="navbar">
+      <nav class="navbar navbar-expand-md">
+		<img src="img/logo.png" class="img-fluid logo">
+		<button class="navbar-toggler navbar-dark" type="button"
+			data-toggle="collapse" data-target="#main-navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="main-navigation">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="/index">Acceuil</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/myaccount">Mon
+						compte</a></li>
+				<li class="nav-item"><a class="nav-link" href="/topo">Topo</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/site">Sites</a>
+				</li>
+				<li class="nav-item" sec:authorize="!isAuthenticated()"><a
+					class="nav-link" href="/connexion">Connexion</a></li>
+				<li sec:authorize="isAuthenticated()" class="nav-item">
+					<form th:action="@{/logout}" method="post">
+						<button type="submit" class="btn btn-link nav-link"
+							value="Sign Out">Deconnexion</button>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	</div>
+</body>
+</html>
