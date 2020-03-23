@@ -23,11 +23,13 @@ body {
   }
 
   .header {
-    background-image: url(img/header-background.jpg');
+    background-image: url('/img/header-background.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
     max-height: 450px;
+    height: 100vh;
+    
   }
 
   .overlay {

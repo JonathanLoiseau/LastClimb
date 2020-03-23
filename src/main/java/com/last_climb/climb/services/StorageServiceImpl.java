@@ -51,7 +51,6 @@ public class StorageServiceImpl implements StorageService {
 		filename += date;
 		filename += name;
 		filename += StringUtils.cleanPath(multipass.getOriginalFilename());
-
 		try {
 			if (multipass.isEmpty()) {
 				throw new IllegalStateException("Failed to store empty file " + filename);
