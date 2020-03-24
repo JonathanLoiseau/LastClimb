@@ -127,7 +127,41 @@ body {
   .h2account{
   padding: 10px;
   }
+  .usernameSignIn{
+  margin-left: 5px;
+  }
   
   .formaccount{
   padding: 20px;
+  }
+  .passwordSignIn{
+  margin-left: 22px;
+  }
+  .connexionform{
+  margin: 50px;
+  }
+  .accountcrea{
+  margin-bottom: 150px;
+  }
+  
+ .h1connect{
+  padding-left: 20px;
+  padding-top:80px
+ 
+  }
+  .h2account{
+  padding-left: 35%;
+  }
+  
+  .h3account{
+   padding-left: 35%;
+   margin: 30px;
+  }
+  .topoblock{
+  border-bottom: solid black 3px;  
+  }
+  .toponame{
+  font-size:25px;
+  font-weight: bold;
+  font-style: italic;
   }
