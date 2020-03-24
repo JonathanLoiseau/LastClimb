@@ -8,6 +8,8 @@
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <title>account_creationreation</title>
 <meta charset="utf-8">
@@ -20,76 +22,142 @@
 
 	<div th:replace="fragments/header :: header">&copy; header</div>
 
-	<h1>Création d'un nouveau compte:</h1>
+	<h1 class="h1account row offset-3">Création d'un nouveau compte:</h1>
+	<h2 class="h2account row offset-2">Veuillez remplir le formulaire
+		suivant pour créez votre compte</h2>
 
 	<p th:if="${erreur}">Erreur lors de la création du compte veuillez
 		vérifier les informations renseignés</p>
 	<p th:if="${duplicateError}">Erreur lors de la création du
 		comptemail ou nom d'utilisateur déjà pris</p>
-	<form class="form-horizontal">
-		<fieldset>
-
-			<!-- Form Name -->
-			<legend>Creation d'un compte</legend>
-
-			<!-- Multiple Checkboxes (inline) -->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="checkboxes">Sexe</label>
-				<div class="col-md-4">
-					<label class="checkbox-inline" for="checkboxes-0"> <input
-						type="checkbox" name="checkboxes" id="checkboxes-0" value="HOMME">
-						homme
-					</label> <label class="checkbox-inline" for="checkboxes-1"> <input
-						type="checkbox" name="checkboxes" id="checkboxes-1" value="FEMME">
-						femme
-					</label>
-				</div>
-			</div>
-
-			<!-- Multiple Radios -->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="radios">Nationalité</label>
-				<div class="col-md-4">
-					<div class="radio">
-						<label for="radios-0"> <input type="radio" name="radios"
-							id="radios-0" value="Français" checked="checked">
-							Français
-						</label>
+	<fieldset class="formaccount">
+		<form>
+			<div class="form-group row offset-4">
+				<label class="col-1">Sexe</label>
+				<div class="col-4">
+					<div class="custom-control custom-radio custom-control-inline">
+						<input name="radiosex" id="radiosex_0" type="radio"
+							class="custom-control-input" value="HOMME" required="required">
+						<label for="radiosex_0" class="custom-control-label">Homme</label>
 					</div>
-					<div class="radio">
-						<label for="radios-1"> <input type="radio" name="radios"
-							id="radios-1" value="Espagnol"> Espagnol
-						</label>
-					</div>
-					<div class="radio">
-						<label for="radios-2"> <input type="radio" name="radios"
-							id="radios-2" value="Italien"> Italien
-						</label>
-					</div>
-					<div class="radio">
-						<label for="radios-3"> <input type="radio" name="radios"
-							id="radios-3" value="Anglais"> Anglais
-						</label>
-					</div>
-					<div class="radio">
-						<label for="radios-4"> <input type="radio" name="radios"
-							id="radios-4" value="Autre"> Autre
-						</label>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input name="radiosex" id="radiosex_1" type="radio"
+							class="custom-control-input" value="FEMME" required="required">
+						<label for="radiosex_1" class="custom-control-label">Femme</label>
 					</div>
 				</div>
 			</div>
-
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="date">Date de
-					naissance</label>
-				<div class="col-md-4">
-					<input type="date" name="anniversaire" required>
+			<div class="form-group row offset-4">
+				<label class="col-1 col-form-label">Nationalité</label>
+				<div class="col-8">
+					<div class="custom-controls-stacked">
+						<div class="custom-control custom-radio">
+							<input name="radio" id="radio_0" type="radio"
+								class="custom-control-input" value="Francais"
+								required="required"> <label for="radio_0"
+								class="custom-control-label">Français</label>
+						</div>
+					</div>
+					<div class="custom-controls-stacked">
+						<div class="custom-control custom-radio">
+							<input name="radio" id="radio_1" type="radio"
+								class="custom-control-input" value="Espagnol"
+								required="required"> <label for="radio_1"
+								class="custom-control-label">Espagnol</label>
+						</div>
+					</div>
+					<div class="custom-controls-stacked">
+						<div class="custom-control custom-radio">
+							<input name="radio" id="radio_2" type="radio"
+								class="custom-control-input" value="Italien" required="required">
+							<label for="radio_2" class="custom-control-label">Italien</label>
+						</div>
+					</div>
+					<div class="custom-controls-stacked">
+						<div class="custom-control custom-radio">
+							<input name="radio" id="radio_3" type="radio" required="required"
+								class="custom-control-input" value="Anglais"> <label
+								for="radio_3" class="custom-control-label">Anglais</label>
+						</div>
+					</div>
+					<div class="custom-controls-stacked">
+						<div class="custom-control custom-radio">
+							<input name="radio" id="radio_4" type="radio" required="required"
+								class="custom-control-input" value="autre"> <label
+								for="radio_4" class="custom-control-label">autre</label>
+						</div>
+					</div>
 				</div>
 			</div>
-
-
-		</fieldset>
-	</form>
+			<div class="form-group row offset-4">
+				<label for="mail" class="col-1 col-form-label">Mail</label>
+				<div class="col-2">
+					<input id="mail" name="mail" placeholder="Ex:joze@gmail.com"
+						type="text" class="form-control" required="required">
+				</div>
+			</div>
+			<div class="form-group row offset-4">
+				<label for="mailconfirm" class="col-1 col-form-label">Confirmation
+					mail</label>
+				<div class="col-2">
+					<input id="mailconfirm" name="mailconfirm"
+						placeholder="confirmez votre mail" type="text"
+						class="form-control" required="required">
+				</div>
+			</div>
+			<div class="form-group row offset-4">
+				<label for="username" class="col-1 col-form-label">Nom
+					d'utilisateur</label>
+				<div class="col-2">
+					<input id="username" name="username"
+						placeholder="ex: XxDarkPepitodu06Xx" type="text"
+						class="form-control" required="required">
+				</div>
+			</div>
+			<div class="form-group row offset-4">
+				<label for="password" class="col-1 col-form-label">Password</label>
+				<div class="col-2">
+					<input id="password" name="password" placeholder="ex 123"
+						type="password" class="form-control" required="required">
+				</div>
+			</div>
+			<div class="form-group row offset-4">
+				<label for="passconfirm" class="col-1 col-form-label">Confirmation
+					du password</label>
+				<div class="col-2">
+					<input id="passconfirm" name="passconfirm"
+						placeholder="confirmez votre password" type="password"
+						class="form-control" required="required">
+				</div>
+			</div>
+			<div class="form-group row offset-4">
+				<label for="nom" class="col-1 col-form-label">Nom</label>
+				<div class="col-2">
+					<input id="nom" name="nom" placeholder="votre nom de famille"
+						type="text" class="form-control" required="required">
+				</div>
+			</div>
+			<div class="form-group row offset-4">
+				<label for="prenom" class="col-1 col-form-label">Prenom</label>
+				<div class="col-2">
+					<input id="prenom" name="prenom" placeholder="votre prenom"
+						type="text" class="form-control" required="required">
+				</div>
+			</div>
+			<div class="form-group row offset-4">
+				<label for="date" class="col-1 col-form-label">Date de naissance</label>
+				<div class="col-2">
+					<input class="form-control" type="date" value="2011-08-19"
+						id="example-date-input">
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="offset-5 col-8">
+					<button name="submit" type="submit" class="btn btn-success">Validez</button>
+				</div>
+			</div>
+		</form>
+	</fieldset>
 
 
 
