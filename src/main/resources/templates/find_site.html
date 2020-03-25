@@ -1,79 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sites</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" type="image/png" href="img/logo.png" />
+
+<title>trouver_site</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
-<link rel="stylesheet" type="text/css" href="style.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 
+	<div th:replace="fragments/navbar :: navbar">&copy;navbar</div>
 
-	<header>
-		<nav class="navbar navbar-inverse">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="#">FUN ESCALADE</a>
-				</div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="/index">Acceuil</a></li>
-					<li><a href="/myaccount">Mon Compte</a></li>
-					<li><a href="/topo">Topo</a></li>
-					<li><a href="/site">Sites</a></li>
-					<li sec:authorize="isAuthenticated()">
-						<form th:action="@{/logout}" method="post"
-							>
-							<button type="submit" class="btn btn-link" value="Sign Out" >Deconnexion</button>
-						</form>
-					</li>
-				</ul>
-			</div>
-		</nav>
-		<div class="container">
-			<div class="row">
-				<h1 class="col-lg-12">Fun Escalade: Partagez votre Passion</h1>
-			</div>
-		</div>
-
-
-	</header>
-	<form class="form-horizontal" th:object="${findform}" action="#" th:action= "@{/find_site}" method = "post">
+	<div th:replace="fragments/header :: header">&copy; header</div>
+	<form class="form-horizontal" th:object="${findform}" action="#"
+		th:action="@{/find_site}" method="post">
 		<fieldset>
 
 			<!-- Form Name -->
-			<legend>Quel type de site souhaitez vous</legend>
+			<legend>Quel type de sites souhaitez vous?</legend>
 
 			<!-- Text input-->
-			<div class="form-group" >
-				<label class="col-md-4 control-label" for="lieux">lieux</label>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="lieux">Lieux</label>
 				<div class="col-md-4">
 					<input id="lieux" name="lieux" type="text"
-						placeholder="nice cannes etc" class="form-control input-md" th:field="*{location}">
+						placeholder="nice cannes etc" class="form-control input-md"
+						th:field="*{location}">
 
 				</div>
 			</div>
 
 			<!-- Text input-->
-			<div class="form-group" >
+			<div class="form-group">
 				<label class="col-md-4 control-label" for="secteurnb">Nombre
-					de secteur minimum</label>
+					de secteur </label>
 				<div class="col-md-4">
 					<input id="secteurnb" name="secteurnb" type="text"
-						placeholder="1,2,3" class="form-control input-md" th:field="*{nbSecteur}">
+						placeholder="1,2,3" class="form-control input-md"
+						th:field="*{nbSecteur}">
 
 				</div>
 			</div>
 
 			<!-- Select Basic -->
 			<div class="form-group" th:field="*{cotation}">
-				<label class="col-md-4 control-label" for="cotation">contient
+				<label class="col-md-4 control-label" for="cotation">Contient
 					des voies de cotations:</label>
 				<div class="col-md-4">
 					<select id="cotation" name="cotation" class="form-control">
@@ -97,11 +76,21 @@
 			</div>
 			<!-- Button -->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="Validez">Validez</label>
+				<label class="col-md-4 control-label" for="Validez"></label>
 				<div class="col-md-4">
-					<button id="Validez" name="Validez" class="btn btn-default">Validez</button>
+					<button id="Validez" name="Validez" class="btn btn-success">Validez</button>
 				</div>
 		</fieldset>
 	</form>
+	<div th:replace="fragments/footer :: footer">&copy; footer</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous">
+		
+	</script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
 </body>
 </html>

@@ -27,7 +27,7 @@ body {
     background-size: cover;
     background-position: center;
     position: relative;
-    max-height: 450px;
+    max-height: 400px;
     height: 100vh;
     
   }
@@ -152,6 +152,9 @@ body {
   .h2account{
   padding-left: 35%;
   }
+   .h2accountceation{
+  padding-left: 35%;
+  }
   
   .h3account{
    padding-left: 35%;
@@ -165,3 +168,38 @@ body {
   font-weight: bold;
   font-style: italic;
   }
+  .topomain{
+  margin:200px}
+  .head{
+  margin-bottom: 100px;
+  }
+  .foot{
+  margin-top: 80px;
+  }
+  .topolist_select{
+  margin: 30px;
+  border: solid black 2px ;
+  }
+  .describetopo{
+  font-size:25px;
+  font-style: italic;
+  }
+  .Official{
+  font-style: italic;
+ color: red;
+  }
+  .h2siteresult{
+ margin-bottom:  50px;
+  }
+  
+  .sitedisplayimg{
+  max-height: 250px;
+  max-width: 250px; 
+  margin: 50px;
+  }
+  
+  .h2sitedisplay{
+  margin: 50px;
+  }
+  
+  

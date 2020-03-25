@@ -1,12 +1,12 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html>
-  <head>
-  <meta charset="UTF-8">
-  </head>
+<head>
+<meta charset="UTF-8">
+</head>
 <body>
-	
-    <div th:fragment="navbar">
-      <nav class="navbar navbar-expand-md">
+
+	<div th:fragment="navbar">
+	<nav class="navbar navbar-expand-md">
 		<img src="img/logo.png" class="img-fluid logo">
 		<button class="navbar-toggler navbar-dark" type="button"
 			data-toggle="collapse" data-target="#main-navigation">
@@ -18,10 +18,27 @@
 				</li>
 				<li class="nav-item"><a class="nav-link" href="/myaccount">Mon
 						compte</a></li>
-				<li class="nav-item"><a class="nav-link" href="/topo">Topo</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="/site">Sites</a>
-				</li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> Topo </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="/topo_find">Consulter</a> <a
+							class="dropdown-item" href="/topo_creation">Partager</a>
+						<div class="dropdown-divider"></div>
+
+					</div></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> Site </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="/find_site">Consulter</a> <a
+							class="dropdown-item" href="/creation_site">Partager</a>
+						<div class="dropdown-divider"></div>
+
+					</div></li>
+
 				<li class="nav-item" sec:authorize="!isAuthenticated()"><a
 					class="nav-link" href="/connexion">Connexion</a></li>
 				<li sec:authorize="isAuthenticated()" class="nav-item">

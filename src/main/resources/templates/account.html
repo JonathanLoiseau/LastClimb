@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" type="image/png" href="img/logo.png" />
 
 <title>account_creationreation</title>
 <meta charset="utf-8">
@@ -23,28 +24,30 @@
 	<div th:replace="fragments/header :: header">&copy; header</div>
 
 	<h1 class="h1account row offset-3">Création d'un nouveau compte:</h1>
-	<h2 class="h2account row offset-2">Veuillez remplir le formulaire
-		suivant pour créez votre compte</h2>
+	<h2 class=" row offset-2">Veuillez remplir le formulaire suivant
+		pour créez votre compte</h2>
 
 	<p th:if="${erreur}">Erreur lors de la création du compte veuillez
 		vérifier les informations renseignés</p>
 	<p th:if="${duplicateError}">Erreur lors de la création du
 		comptemail ou nom d'utilisateur déjà pris</p>
 	<fieldset class="formaccount">
-		<form action='#' th:action="@{/account}"
-		th:object="${userForm}" method="post">
+		<form action='#' th:action="@{/account}" th:object="${userForm}"
+			method="post">
 			<div class="form-group row offset-4">
 				<label class="col-1">Sexe</label>
 				<div class="col-4">
 					<div class="custom-control custom-radio custom-control-inline">
 						<input name="radiosex" id="radiosex_0" type="radio"
-							class="custom-control-input" value="HOMME" required="required" th:field="*{sex}">
-						<label for="radiosex_0" class="custom-control-label">Homme</label>
+							class="custom-control-input" value="HOMME" required="required"
+							th:field="*{sex}"> <label for="radiosex_0"
+							class="custom-control-label">Homme</label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
 						<input name="radiosex" id="radiosex_1" type="radio"
-							class="custom-control-input" value="FEMME" required="required" th:field="*{sex}">
-						<label for="radiosex_1" class="custom-control-label">Femme</label>
+							class="custom-control-input" value="FEMME" required="required"
+							th:field="*{sex}"> <label for="radiosex_1"
+							class="custom-control-label">Femme</label>
 					</div>
 				</div>
 			</div>
@@ -55,37 +58,40 @@
 						<div class="custom-control custom-radio">
 							<input name="radio" id="radio_0" type="radio"
 								class="custom-control-input" value="Francais"
-								required="required" th:field="*{birthPlace}"> <label for="radio_0"
-								class="custom-control-label">Français</label>
+								required="required" th:field="*{birthPlace}"> <label
+								for="radio_0" class="custom-control-label">Français</label>
 						</div>
 					</div>
 					<div class="custom-controls-stacked">
 						<div class="custom-control custom-radio">
 							<input name="radio" id="radio_1" type="radio"
 								class="custom-control-input" value="Espagnol"
-								required="required" th:field="*{birthPlace}"> <label for="radio_1"
-								class="custom-control-label">Espagnol</label>
+								required="required" th:field="*{birthPlace}"> <label
+								for="radio_1" class="custom-control-label">Espagnol</label>
 						</div>
 					</div>
 					<div class="custom-controls-stacked">
 						<div class="custom-control custom-radio">
 							<input name="radio" id="radio_2" type="radio"
-								class="custom-control-input" value="Italien" required="required" th:field="*{birthPlace}">
-							<label for="radio_2" class="custom-control-label">Italien</label>
+								class="custom-control-input" value="Italien" required="required"
+								th:field="*{birthPlace}"> <label for="radio_2"
+								class="custom-control-label">Italien</label>
 						</div>
 					</div>
 					<div class="custom-controls-stacked">
 						<div class="custom-control custom-radio">
-							<input name="radio" id="radio_3" type="radio" required="required" th:field="*{birthPlace}"
-								class="custom-control-input" value="Anglais"> <label
-								for="radio_3" class="custom-control-label">Anglais</label>
+							<input name="radio" id="radio_3" type="radio" required="required"
+								th:field="*{birthPlace}" class="custom-control-input"
+								value="Anglais"> <label for="radio_3"
+								class="custom-control-label">Anglais</label>
 						</div>
 					</div>
 					<div class="custom-controls-stacked">
 						<div class="custom-control custom-radio">
-							<input name="radio" id="radio_4" type="radio" required="required" th:field="*{birthPlace}"
-								class="custom-control-input" value="autre"> <label
-								for="radio_4" class="custom-control-label">autre</label>
+							<input name="radio" id="radio_4" type="radio" required="required"
+								th:field="*{birthPlace}" class="custom-control-input"
+								value="autre"> <label for="radio_4"
+								class="custom-control-label">autre</label>
 						</div>
 					</div>
 				</div>
@@ -94,7 +100,8 @@
 				<label for="mail" class="col-1 col-form-label">Mail</label>
 				<div class="col-2">
 					<input id="mail" name="mail" placeholder="Ex:joze@gmail.com"
-						type="text" class="form-control" required="required" th:field="*{mail}">
+						type="text" class="form-control" required="required"
+						th:field="*{mail}">
 				</div>
 			</div>
 			<div class="form-group row offset-4">
@@ -119,7 +126,8 @@
 				<label for="password" class="col-1 col-form-label">Password</label>
 				<div class="col-2">
 					<input id="password" name="password" placeholder="ex 123"
-						type="password" class="form-control" required="required" th:field="*{password}">
+						type="password" class="form-control" required="required"
+						th:field="*{password}">
 				</div>
 			</div>
 			<div class="form-group row offset-4">
@@ -128,25 +136,29 @@
 				<div class="col-2">
 					<input id="passconfirm" name="passconfirm"
 						placeholder="confirmez votre password" type="password"
-						class="form-control" required="required" th:field="*{passwordConfirm}">
+						class="form-control" required="required"
+						th:field="*{passwordConfirm}">
 				</div>
 			</div>
 			<div class="form-group row offset-4">
 				<label for="nom" class="col-1 col-form-label">Nom</label>
 				<div class="col-2">
 					<input id="nom" name="nom" placeholder="votre nom de famille"
-						type="text" class="form-control" required="required" th:field="*{name}" >
+						type="text" class="form-control" required="required"
+						th:field="*{name}">
 				</div>
 			</div>
 			<div class="form-group row offset-4">
 				<label for="prenom" class="col-1 col-form-label">Prenom</label>
 				<div class="col-2">
 					<input id="prenom" name="prenom" placeholder="votre prenom"
-						type="text" class="form-control" required="required" th:field="*{firstname}">
+						type="text" class="form-control" required="required"
+						th:field="*{firstname}">
 				</div>
 			</div>
 			<div class="form-group row offset-4">
-				<label for="date" class="col-1 col-form-label">Date de naissance</label>
+				<label for="date" class="col-1 col-form-label">Date de
+					naissance</label>
 				<div class="col-2">
 					<input class="form-control" type="date" th:field="*{birthDate}"
 						id="example-date-input">
@@ -162,7 +174,15 @@
 
 
 
-	<div th:replace="fragments/footer :: footer">&copy; 2016 The
-		Static Templates</div>
+	<div th:replace="fragments/footer :: footer">&copy; footer</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous">
+		
+	</script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
 </body>
 </html>
