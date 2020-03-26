@@ -29,12 +29,11 @@
 	</div>
 	<!-- img site -->
 
-
-	<img
-		th:src="|${@environment.getProperty('get.img.controller')}/${sitedisplay.siteimg}|"
-		class="sitedisplayimg" />
-
-
+	<div th:if=${sitedisplay.siteimg!=null}>
+		<img
+			th:src="|${@environment.getProperty('get.img.controller')}/${sitedisplay.siteimg}|"
+			class="sitedisplayimg" />
+	</div>
 
 
 	<div sec:authorize="hasRole('ADMIN')">
@@ -77,10 +76,11 @@
 
 	<!--form  comment-->
 
-	
+
 	<!-- comment4.1 -->
 	<div class="container">
-		<h2 class="text-center h2sitedisplay">Ce que les grimpeurs en pensent</h2>
+		<h2 class="text-center h2sitedisplay">Ce que les grimpeurs en
+			pensent</h2>
 		<div th:each="comm: ${session.sitedisplay.listCommentaire}">
 			<div class="card">
 				<div class="card-body">
@@ -164,37 +164,37 @@
 
 		</div>
 		<form class="form-horizontal " action="#" th:action="@{/comment}"
-		th:object="${commentForm}" method="post">
-		<fieldset>
+			th:object="${commentForm}" method="post">
+			<fieldset class=offset-4>
 
-			<!-- Form Name -->
-			<legend>Mon commentaire</legend>
+				<!-- Form Name -->
+				<legend>Mon commentaire</legend>
 
-			<!-- Textarea -->
-			<div class="form-group">
-				<label class="col-md-4 control-label " for="sitecom">Dites
-					nous ce que vous pensez de ce site</label>
-				<div class="col-md-4">
-					<textarea class="form-control" id="sitecom" name="sitecom"
-						th:field="*{commentaire}"
-						placeholder="Vous devez vous connecter pour laisser un commentaire">votre commentaire ici:</textarea>
+				<!-- Textarea -->
+				<div class="form-group">
+					<label class="col-md-4 control-label " for="sitecom">Dites
+						nous ce que vous pensez de ce site</label>
+					<div class="col-md-4">
+						<textarea class="form-control" id="sitecom" name="sitecom"
+							th:field="*{commentaire}"
+							placeholder="Vous devez vous connecter pour laisser un commentaire">votre commentaire ici:</textarea>
+					</div>
 				</div>
-			</div>
 
-			<!-- Button -->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="validez"></label>
-				<div class="col-md-4">
-					<button id="validez" name="validez" class="btn btn-success">Validez</button>
+				<!-- Button -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="validez"></label>
+					<div class="col-md-4">
+						<button id="validez" name="validez" class="btn btn-success">Validez</button>
+					</div>
 				</div>
-			</div>
 
-		</fieldset>
-	</form>
-		</div>
-		
-		<div th:replace="fragments/footer :: footer">&copy; footer</div>
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			</fieldset>
+		</form>
+	</div>
+
+	<div th:replace="fragments/footer :: footer">&copy; footer</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous">
 		
@@ -203,7 +203,7 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 		crossorigin="anonymous"></script>
-		
-		
+
+
 </body>
 </html>

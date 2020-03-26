@@ -16,22 +16,12 @@ import com.last_climb.climb.model.exception.SecteurNotFoundException;
 import com.last_climb.climb.model.form.CreationVoieForm;
 import com.last_climb.climb.model.form.SiteForm;
 import com.last_climb.climb.model.form.VoiesForm;
-import com.last_climb.climb.repo.SecteurRepository;
-import com.last_climb.climb.repo.SiteRepository;
-import com.last_climb.climb.repo.VoieRepository;
+
 import com.last_climb.climb.services.SiteCreationService;
 
 @Controller
 public class VoieCreationController {
 
-	@Autowired
-	private SiteRepository srep;
-
-	@Autowired
-	private SecteurRepository sectrep;
-
-	@Autowired
-	private VoieRepository vrep;
 
 	@Autowired
 	private SiteCreationService scs;
@@ -44,7 +34,10 @@ public class VoieCreationController {
 		model.addAttribute("voie", new VoiesForm());
 		System.out.println("dans le get de voiecontroleur");
 		return "voie_creation";
-
+	}
+	@GetMapping("/result")
+	public String displayResult(Model model) {
+		return "result";
 	}
 
 	@Transactional
@@ -53,7 +46,6 @@ public class VoieCreationController {
 
 		model.addAttribute("voie", vf);
 		session.setAttribute("voies", vf);
-
 		CreationVoieForm sessionSecteur = (CreationVoieForm) session.getAttribute("secteur");
 		SiteForm sessionSite = (SiteForm) session.getAttribute("site");
 		VoiesForm sessionVoie = (VoiesForm) session.getAttribute("voies");
@@ -64,11 +56,10 @@ public class VoieCreationController {
 			sessionSite.setId(container.getSiteId());
 			sessionVoie.setId(container.getVoieId());
 			vf.setId(container.getVoieId());
-			return "result";
+			return "redirect:/result";
 		} catch (NoSiteException | SecteurNotFoundException e) {
 			logger.error("voieCreationFailed", e);
-			return "result";
+			return "redirect:/result";
 		}
 	}
-
 }

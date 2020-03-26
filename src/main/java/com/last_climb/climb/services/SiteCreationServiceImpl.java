@@ -99,5 +99,6 @@ public class SiteCreationServiceImpl implements SiteCreationService {
 			logger.debug("secteur et site présent");
 			return extractor.extractId(sitepresent, secteurpresent, voie);
 		}
+		
 	}
 }

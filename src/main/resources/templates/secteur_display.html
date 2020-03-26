@@ -1,63 +1,56 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+
 <head>
-<title>SecteurDisplay</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" type="image/png" href="img/logo.png" />
+
+<title>secteur_display</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
-<link rel="stylesheet" type="text/css" href="style.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 
+	<div th:replace="fragments/navbar :: navbar">&copy;navbar</div>
 
-	<header>
-		<nav class="navbar navbar-inverse">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="#">FUN ESCALADE</a>
-				</div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="/index">Acceuil</a></li>
-					<li><a href="/myaccount">Mon Compte</a></li>
-					<li><a href="/topo">Topo</a></li>
-					<li><a href="/site">Sites</a></li>
-					<li sec:authorize="!isAuthenticated()"><a href="/connexion"> Connexion</a></li>
-					<li sec:authorize="isAuthenticated()">
-						<form th:action="@{/logout}" method="post"
-							>
-							<button type="submit" class="btn btn-link" value="Sign Out" >Deconnexion</button>
-						</form>
-					</li>
-				</ul>
-			</div>
-		</nav>
-		<div class="container">
-			<div class="row">
-				<h1 class="col-lg-12">Fun Escalade: Partagez votre Passion</h1>
-			</div>
-		</div>
+	<div th:replace="fragments/header :: header">&copy; header</div>
+	
 
 
-	</header>
+	
 	<h1 th:text="${session.displaysecteur.name}"></h1>
 
 
-	<ul th:each="voie : ${session.displaysecteur.listvoies}">
+	<ul class="list-unstyled"
+		th:each="voie : ${session.displaysecteur.listvoies}">
 		<li th:inline="text">nom de la voie: [[${voie.name}]]</li>
-		<li th:inline="text">cotation: [[${voie.cotation}]]</li>
-		<li th:inline="text">hauteur: [[${voie.height}]]</li>
-		<li th:inline="text">nombre de point: [[${voie.nbPoint}]]</li>
-		<br><br><br><br>
+		<br>
+		<li>Spécificités :
+			<ul>
+				<li th:inline="text">cotation: [[${voie.cotation}]]</li>
+				<li th:inline="text">hauteur: [[${voie.height}]]</li>
+				<li th:inline="text">nombre de point: [[${voie.nbPoint}]]</li>
+			</ul> <br>
+		<br>
 	</ul>
 	
-	
-
-
+	<div th:replace="fragments/footer :: footer">&copy; footer</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous">
+		
+	</script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
 </body>
 </html>

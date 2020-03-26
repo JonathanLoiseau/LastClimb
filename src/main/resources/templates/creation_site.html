@@ -1,96 +1,91 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+
+
+
 <head>
-<title>Sites</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" type="image/png" href="img/logo.png" />
+
+<title>creation_site</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
-<link rel="stylesheet" type="text/css" href="style.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 
+	<div th:replace="fragments/navbar :: navbar">&copy;navbar</div>
 
-	<header>
-		<nav class="navbar navbar-inverse">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="#">FUN ESCALADE</a>
-				</div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="/index">Acceuil</a></li>
-					<li><a href="/myaccount">Mon Compte</a></li>
-					<li><a href="/topo">Topo</a></li>
-					<li><a href="/sites">Sites</a></li>
-					<li><a href="/connexion">Connexion</a></li>
-				</ul>
+	<div th:replace="fragments/header :: header">&copy; header</div><form class="form-horizontal" action="#" th:action="@{/creation_site}"
+	th:object="${siteForm}" method="post" enctype="multipart/form-data">
+	<fieldset>
+
+		<!-- Form Name -->
+		<legend class="siteName">Mon site:</legend>
+
+		<div th:if= ${alreadyexist}>
+		<p> un site comportant ce nom existe déjà</p>
+		</div>
+
+		<!-- Text input-->
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="textinput">Nommez
+				votre site:</label>
+			<div class="col-md-4">
+				<input id="textinput" name="textinput" type="text"
+					placeholder="ex route champignon" class="form-control input-md"
+					required="" th:field="*{name}">
+
 			</div>
-		</nav>
-		<div class="container">
-			<div class="row">
-				<h1 class="col-lg-12">Fun Escalade: Partagez votre Passion</h1>
+		</div>
+		<!-- Text input-->
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="textinput">Localisation:</label>
+			<div class="col-md-4">
+				<input id="textinput" name="textinput" type="text"
+					placeholder="ex Nice Cannes" class="form-control input-md"
+					required="" th:field="*{localisation}">
+
 			</div>
 		</div>
 
+		<!-- File Button -->
 
-	</header>
-
-	<form class="form-horizontal" action="#" th:action="@{/creation_site}"
-		th:object="${siteForm}" method="post" enctype="multipart/form-data">
-		<fieldset>
-
-			<!-- Form Name -->
-			<legend>Mon site</legend>
-
-
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="textinput">Nommez
-					votre site</label>
-				<div class="col-md-4">
-					<input id="textinput" name="textinput" type="text"
-						placeholder="ex route champignon" class="form-control input-md"
-						required="" th:field="*{name}">
-
-				</div>
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="filebutton">Ajouter
+				une image:</label>
+			<div class="col-md-4">
+				<input type="file" name="file" class=" input-md">
 			</div>
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="textinput">localisation</label>
-				<div class="col-md-4">
-					<input id="textinput" name="textinput" type="text"
-						placeholder="ex Nice Cannes" class="form-control input-md"
-						required="" th:field="*{localisation}">
+		</div>
 
-				</div>
+		<!-- Button -->
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="Validez"></label>
+			<div class="col-md-4">
+				<button id="Validez" name="Validez" class="btn btn-success">Validez</button>
 			</div>
+		</div>
 
-			<!-- File Button -->
-			
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="filebutton">Ajouter
-					une image</label>
-				<div class="col-md-4">
-					<input type="file" name="file" class="form-control input-md"
-						 > 
-				</div>
-			</div>
-
-			<!-- Button -->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="Validez">Validez</label>
-				<div class="col-md-4">
-					<button id="Validez" name="Validez" class="btn btn-default">Validez</button>
-				</div>
-			</div>
-
-		</fieldset>
-	</form>
+	</fieldset>
+</form>
+<div th:replace="fragments/footer :: footer">&copy; footer</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous">
+		
+	</script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	crossorigin="anonymous"></script>
 
 </body>
 </html>

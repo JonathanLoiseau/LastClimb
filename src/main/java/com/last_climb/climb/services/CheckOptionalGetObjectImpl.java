@@ -10,16 +10,20 @@ import com.last_climb.climb.model.entity.Secteur;
 import com.last_climb.climb.model.entity.Site;
 import com.last_climb.climb.model.entity.Topo;
 import com.last_climb.climb.model.entity.Utilisateur;
+import com.last_climb.climb.model.entity.Voie;
 import com.last_climb.climb.model.exception.CantFindUserException;
+import com.last_climb.climb.model.exception.CantFindVoieException;
 import com.last_climb.climb.model.exception.NoCommentaryException;
 import com.last_climb.climb.model.exception.NoSiteException;
 import com.last_climb.climb.model.exception.SecteurNotFoundException;
+import com.last_climb.climb.model.exception.SiteAlreadyExistException;
 import com.last_climb.climb.model.exception.TopoNotFoundException;
 import com.last_climb.climb.repo.CommentaireRepository;
 import com.last_climb.climb.repo.SecteurRepository;
 import com.last_climb.climb.repo.SiteRepository;
 import com.last_climb.climb.repo.TopoRepository;
 import com.last_climb.climb.repo.UserRepo;
+import com.last_climb.climb.repo.VoieRepository;
 
 @Service
 public class CheckOptionalGetObjectImpl implements CheckOptionalGetObjectService {
@@ -34,6 +38,8 @@ public class CheckOptionalGetObjectImpl implements CheckOptionalGetObjectService
 	private TopoRepository topoRepository;
 	@Autowired
 	private SecteurRepository secteurRepository;
+	@Autowired
+	private VoieRepository voieRepository;
 
 	@Override
 	public Utilisateur findAndCheckUserByUsernameAndPassword(String username, String password)
@@ -102,4 +108,26 @@ public class CheckOptionalGetObjectImpl implements CheckOptionalGetObjectService
 		}
 	}
 
+	@Override
+	public Voie findAndCheckVoieById(Long id) throws CantFindVoieException {
+		Optional<Voie> newVoie = voieRepository.findById(id);
+		if (newVoie.isPresent()) {
+			Voie voie = newVoie.get();
+			return voie;
+		} else {
+			throw new CantFindVoieException();
+		}
+
+	}
+
+	@Override
+	public Site findANdCheckSiteByName(String name) throws SiteAlreadyExistException {
+		Optional<Site> newSite = siteRepository.findByName(name);
+		if (newSite.isPresent()) {
+			return newSite.get();
+		} else {
+			throw new SiteAlreadyExistException();
+		
+	}
+	}
 }

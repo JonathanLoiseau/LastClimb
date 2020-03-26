@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.last_climb.climb.model.entity.Site;
 import com.last_climb.climb.model.entity.Utilisateur;
 import com.last_climb.climb.model.exception.CantFindUserException;
+import com.last_climb.climb.model.exception.SiteAlreadyExistException;
 import com.last_climb.climb.model.form.CreationVoieForm;
 import com.last_climb.climb.model.form.SiteForm;
 import com.last_climb.climb.model.form.VoiesForm;
+import com.last_climb.climb.services.CheckOptionalGetObjectService;
 import com.last_climb.climb.services.ImgNameCreationService;
 import com.last_climb.climb.services.PrincipalToUserService;
 import com.last_climb.climb.services.StorageService;
@@ -28,6 +31,8 @@ public class SitesCreationController {
 	private PrincipalToUserService principal;
 	@Autowired
 	private ImgNameCreationService imgNameCreationService;
+	@Autowired
+	private CheckOptionalGetObjectService check;
 
 	@GetMapping("/creation_site")
 	public String displaySiteCreation(Model model, HttpSession session) {
@@ -46,15 +51,28 @@ public class SitesCreationController {
 		model.addAttribute("siteForm", new SiteForm());
 		model.addAttribute("creationvoieform", new CreationVoieForm());
 		try {
+			Site site = check.findANdCheckSiteByName(sForm.getName());
+		}catch (SiteAlreadyExistException e) {
+			e.printStackTrace();
+			model.addAttribute("alreadyexist", true);
+			return"creation_site";
+		}
+		try {
 			Utilisateur user = principal.principalToDbUser();
 			Long userid = user.getId();
 			String idtoSave = userid.toString();
-			String newName= imgNameCreationService.changeName(idtoSave,file);
-			storageService.store(file, newName);
-			sForm.setSiteimg(newName);
-			session.setAttribute("site", sForm);
+			if(file.isEmpty()) {
+				session.setAttribute("site", sForm);
+				
+			}else {
+				String newName= imgNameCreationService.changeName(idtoSave,file);
+				storageService.store(file, newName);
+				sForm.setSiteimg(newName);
+				session.setAttribute("site", sForm);
+			}
+			
 
-		} catch (CantFindUserException e) {
+		} catch (CantFindUserException e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
