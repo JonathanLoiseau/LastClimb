@@ -29,7 +29,7 @@ spring.datasource.password=root
 
 ##DB
 
-Scrypt de dump et comment éxécuter le dump avec pg admin.
+Le dump est dans Doc/data.
 
 ## Compilation
 
