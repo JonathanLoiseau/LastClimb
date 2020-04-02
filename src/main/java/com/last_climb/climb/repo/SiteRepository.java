@@ -14,4 +14,6 @@ public interface SiteRepository extends CrudRepository<Site, Long> {
 	ArrayList<Site> findDistinctByListSecteur_Listvoies_CotationAndNbSectAndLocalisation(String cotation, int nbSecteur,
 			String location);
 
+	boolean existsByName(String name);
+
 }

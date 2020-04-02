@@ -23,69 +23,71 @@
 
 	<div th:replace="fragments/navbar :: navbar">&copy;navbar</div>
 
-	<div th:replace="fragments/header :: header">&copy; header</div><form class="form-horizontal" action="#" th:action="@{/creation_site}"
-	th:object="${siteForm}" method="post" enctype="multipart/form-data">
-	<fieldset>
+	<div th:replace="fragments/header :: header">&copy; header</div>
 
-		<!-- Form Name -->
-		<legend class="siteName">Mon site:</legend>
+	<form class="form-horizontal" action="#" th:action="@{/creation_site}"
+		th:object="${siteForm}" method="post" enctype="multipart/form-data">
+		<fieldset>
 
-		<div th:if= ${alreadyexist}>
-		<p> un site comportant ce nom existe déjà  </p>
-		</div>
+			<!-- Form Name -->
+			<legend class="siteName">Mon site:</legend>
 
-		<!-- Text input-->
-		<div class="form-group">
-			<label class="col-md-4 control-label" for="textinput">Nommez
-				votre site:</label>
-			<div class="col-md-4">
-				<input id="textinput" name="textinput" type="text"
-					placeholder="ex route champignon" class="form-control input-md"
-					required="" th:field="*{name}">
-
+			<div th:if=${alreadyexist}>
+				<p>un site comportant ce nom existe déjà</p>
 			</div>
-		</div>
-		<!-- Text input-->
-		<div class="form-group">
-			<label class="col-md-4 control-label" for="textinput">Localisation:</label>
-			<div class="col-md-4">
-				<input id="textinput" name="textinput" type="text"
-					placeholder="ex Nice Cannes" class="form-control input-md"
-					required="" th:field="*{localisation}">
 
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="textinput">Nommez
+					votre site:</label>
+				<div class="col-md-4">
+					<input id="textinput" name="textinput" type="text"
+						placeholder="ex route champignon" class="form-control input-md"
+						required="" th:field="*{name}">
+
+				</div>
 			</div>
-		</div>
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="textinput">Localisation:</label>
+				<div class="col-md-4">
+					<input id="textinput" name="textinput" type="text"
+						placeholder="ex Nice Cannes" class="form-control input-md"
+						required="" th:field="*{localisation}">
 
-		<!-- File Button -->
-
-		<div class="form-group">
-			<label class="col-md-4 control-label" for="filebutton">Ajouter
-				une image:</label>
-			<div class="col-md-4">
-				<input type="file" name="file" class=" input-md">
+				</div>
 			</div>
-		</div>
 
-		<!-- Button -->
-		<div class="form-group">
-			<label class="col-md-4 control-label" for="Validez"></label>
-			<div class="col-md-4">
-				<button id="Validez" name="Validez" class="btn btn-success">Validez</button>
+			<!-- File Button -->
+
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="filebutton">Ajouter
+					une image:</label>
+				<div class="col-md-4">
+					<input type="file" name="file" class=" input-md">
+				</div>
 			</div>
-		</div>
 
-	</fieldset>
-</form>
-<div th:replace="fragments/footer :: footer">&copy; footer</div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous">
+			<!-- Button -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="Validez"></label>
+				<div class="col-md-4">
+					<button id="Validez" name="Validez" class="btn btn-success">Validez</button>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+	<div th:replace="fragments/footer :: footer">&copy; footer</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous">
 		
 	</script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-	crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
 
 </body>
 </html>

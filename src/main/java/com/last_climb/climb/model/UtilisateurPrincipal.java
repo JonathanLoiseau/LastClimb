@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.last_climb.climb.model.entity.Utilisateur;
 
+
 public class UtilisateurPrincipal implements UserDetails {
 
 	private Utilisateur user;
@@ -35,7 +36,7 @@ public class UtilisateurPrincipal implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
+		
 		return user.getPassword();
 	}
 

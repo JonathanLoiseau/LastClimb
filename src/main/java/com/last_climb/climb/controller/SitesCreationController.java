@@ -18,6 +18,7 @@ import com.last_climb.climb.model.exception.SiteAlreadyExistException;
 import com.last_climb.climb.model.form.CreationVoieForm;
 import com.last_climb.climb.model.form.SiteForm;
 import com.last_climb.climb.model.form.VoiesForm;
+import com.last_climb.climb.repo.SiteRepository;
 import com.last_climb.climb.services.CheckOptionalGetObjectService;
 import com.last_climb.climb.services.ImgNameCreationService;
 import com.last_climb.climb.services.PrincipalToUserService;
@@ -32,7 +33,7 @@ public class SitesCreationController {
 	@Autowired
 	private ImgNameCreationService imgNameCreationService;
 	@Autowired
-	private CheckOptionalGetObjectService check;
+	private SiteRepository siteRepository;
 
 	@GetMapping("/creation_site")
 	public String displaySiteCreation(Model model, HttpSession session) {
@@ -50,31 +51,31 @@ public class SitesCreationController {
 			@RequestParam("file") MultipartFile file) {
 		model.addAttribute("siteForm", new SiteForm());
 		model.addAttribute("creationvoieform", new CreationVoieForm());
-		try {
-			Site site = check.findANdCheckSiteByName(sForm.getName());
-		}catch (SiteAlreadyExistException e) {
-			e.printStackTrace();
-			model.addAttribute("alreadyexist", true);
-			return"creation_site";
-		}
-		try {
-			Utilisateur user = principal.principalToDbUser();
-			Long userid = user.getId();
-			String idtoSave = userid.toString();
-			if(file.isEmpty()) {
-				session.setAttribute("site", sForm);
-				
-			}else {
-				String newName= imgNameCreationService.changeName(idtoSave,file);
-				storageService.store(file, newName);
-				sForm.setSiteimg(newName);
-				session.setAttribute("site", sForm);
-			}
-			
 
-		} catch (CantFindUserException e ) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		boolean exist = siteRepository.existsByName(sForm.getName());
+		
+		if (exist) {
+			model.addAttribute("alreadyexist", true);
+			return "creation_site";
+		} else {
+
+			try {
+				Utilisateur user = principal.principalToDbUser();
+				Long userid = user.getId();
+				String idtoSave = userid.toString();
+				if (file.isEmpty()) {
+					session.setAttribute("site", sForm);
+
+				} else {
+					String newName = imgNameCreationService.changeName(idtoSave, file);
+					storageService.store(file, newName);
+					sForm.setSiteimg(newName);
+					session.setAttribute("site", sForm);
+				}
+
+			} catch (CantFindUserException e) {
+				e.printStackTrace();
+			}
 		}
 		return "secteur_creation";
 

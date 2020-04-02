@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ImgNameCreationImpl implements ImgNameCreationService {
 
 	@Override
-	public String changeName(String fileName,MultipartFile multipartfile) {
+	public String changeName(String userId,MultipartFile multipartfile) {
 		String pattern = "dd_MM_yyyy_hh_mm_ss a";
 		LocalDateTime nowTime = LocalDateTime.now();
 		String date = nowTime.format(DateTimeFormatter.ofPattern(pattern));
@@ -21,5 +21,4 @@ public class ImgNameCreationImpl implements ImgNameCreationService {
 		filename+= StringUtils.cleanPath(multipartfile.getOriginalFilename());
 		return filename;
 	}
-
 }
