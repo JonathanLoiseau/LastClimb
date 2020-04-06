@@ -3,6 +3,8 @@ package com.last_climb.climb.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +36,8 @@ public class SitesCreationController {
 	private ImgNameCreationService imgNameCreationService;
 	@Autowired
 	private SiteRepository siteRepository;
+	
+	private final static Logger logger = LoggerFactory.getLogger(SitesCreationController.class);
 
 	@GetMapping("/creation_site")
 	public String displaySiteCreation(Model model, HttpSession session) {
@@ -74,11 +78,10 @@ public class SitesCreationController {
 				}
 
 			} catch (CantFindUserException e) {
-				e.printStackTrace();
+				logger.debug("Can't find user exeption",e);
 			}
 		}
 		return "secteur_creation";
-
 	}
 
 }

@@ -7,11 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ClimbApplication {
-	private final static Logger logger = LoggerFactory.getLogger("Joze");
+	private final static Logger logger = LoggerFactory.getLogger(ClimbApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(ClimbApplication.class, args);
-		logger.info("firstLog");
+		logger.info("application running");
 
 	}
 
